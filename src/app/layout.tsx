@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Great_Vibes } from "next/font/google"; // Import Great_Vibes font
+import { Geist, Geist_Mono, Great_Vibes } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
 
@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 const greatVibes = Great_Vibes({
   variable: "--font-great-vibes", 
   subsets: ["latin"],
-  weight: "400",  // Specifying the available weight (400)
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`} // No need to add Great Vibes to body
+        className={`${geistSans.variable} ${geistMono.variable} ${greatVibes.variable} antialiased`}
       >
         {children}
         <Footer />
