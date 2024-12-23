@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/Image";
 import React, { useState } from "react";
 
 interface Product {
@@ -38,7 +38,7 @@ const Products: React.FC = () => {
             key={index}
             className="bg-white border border-gray-200 rounded-lg shadow-md p-4 hover:shadow-lg"
           >
-            <img
+            <Image
               src={product.image}
               alt={product.title}
               className="w-full h-40 object-cover rounded-lg"
