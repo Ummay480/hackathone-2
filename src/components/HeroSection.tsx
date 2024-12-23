@@ -22,17 +22,17 @@ const HeroSection = () => {
          
           </h2>
         <nav className="flex gap-6">
-          {["Home", "Menu", "Blog", "Pages", "About", "Shop", "Contact"].map(
-            (item) => (
-              <link
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-sm font-medium hover:text-orange-400"
-              >
-                {item}
-              </Link>
-            )
-          )}
+        {["Home", "Menu", "Blog", "Pages", "About", "Shop", "Contact"].map(
+        (item) => (
+          <Link
+            key={item}
+            href={`#${item.toLowerCase()}`}
+            className="text-sm font-medium hover:text-orange-400"
+          >
+            {item}
+          </Link>
+        )
+      )}
         </nav>
         <div className="flex gap-4 items-center">
   {/* Input with Search Icon */}
