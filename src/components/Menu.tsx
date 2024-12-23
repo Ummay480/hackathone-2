@@ -53,14 +53,16 @@ const Menu = () => {
   ];
 
   return (
-    <section className="bg-black text-white py-12">
-      <div className="container mx-auto text-center">
+    <section className="bg-black text-white py-8">
+      <div className="container mx-auto text-center mb-10 mt-8">
         {/* Header */}
-        <h3 className="text-orange-400 font-medium text-lg">Choose & pick</h3>
-        <h2 className="text-4xl font-bold mb-8">From Our Menu</h2>
+        <h3 className="text-orange-400 font-greatVibes text-2xl mt-6 ">Choose & pick</h3>
+        <h2 className="text-3xl font-bold  text-orange-400 py4">
+            Fr <span className="text-white mb-10 -ml-2">om Our Menu</span> 
+          </h2>
 
         {/* Menu Categories */}
-        <div className="flex justify-center space-x-6 mb-8 text-gray-400">
+        <div className="flex justify-center space-x-20 my-8 text-gray-400">
           <button className="hover:text-orange-400">Breakfast</button>
           <button className="hover:text-orange-400">Lunch</button>
           <button className="hover:text-orange-400">Dinner</button>
@@ -71,7 +73,7 @@ const Menu = () => {
         </div>
 
         {/* Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 pt-10">
           {/* First Column: Hero Image */}
           <div className="flex items-center justify-center">
             <Image

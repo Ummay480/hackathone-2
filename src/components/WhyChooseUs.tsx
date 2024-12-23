@@ -2,6 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 
+
 const WhyChooseUs: React.FC = () => {
   return (
     <section className="bg-black text-white py-12 px-8 md:px-16">
@@ -62,16 +63,16 @@ const WhyChooseUs: React.FC = () => {
         </div>
 
         {/* Text Section */}
-        <div className="md:col-span-5 flex flex-col justify-center space-y-6">
-          <h2 className="text-orange-500 font-semibold text-xl">Why Choose Us</h2>
+        <div className="md:col-span-5 flex flex-col justify-center space-y-2">
+          <h2 className="text-orange-400 font-greatVibes text-2xl">Why Choose Us</h2>
           <h1 className="text-4xl font-bold leading-snug">
-            Ex <span className="text-orange-500 -ml-2">tra ordinary taste</span> <br />
+            Ex <span className="text-orange-400 -ml-2">tra ordinary taste</span> <br />
             And Experienced
           </h1>
           <p className="text-gray-400">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+            Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque
             diam pellentesque bibendum non dui volutpat fringilla bibendum.
-            Urna, elit augue urna, vitae feugiat pretium donec id elementum.
+            Urna elit augue urna vitae feugiat pretium donec id elementum.
             Ultrices mattis sed vitae mus risus.
           </p>
 
@@ -79,7 +80,7 @@ const WhyChooseUs: React.FC = () => {
           <div className="flex space-x-6">
             <div className="flex flex-col items-center">
           
-  <div className="bg-orange-500 text-white p-4 rounded-sm mb-2">
+  <div className="bg-orange-400 text-white p-4 rounded-sm mb-2">
     <img
       src="/images/image-71.png" // Replace with the edited image path with a transparent background
       alt="Fast Food"
@@ -90,7 +91,7 @@ const WhyChooseUs: React.FC = () => {
 </div>
 
 <div className="flex flex-col items-center">
-  <div className="bg-orange-500 p-4  rounded-sm mb-2">
+  <div className="bg-orange-400 p-4  rounded-sm mb-2">
     <img
       src="/images/image-64.png" // Replace with the edited image path with a transparent background
       alt="Lunch"
@@ -101,7 +102,7 @@ const WhyChooseUs: React.FC = () => {
 </div>
 
 <div className="flex flex-col items-center">
-  <div className="bg-orange-500 p-4  rounded-sm mb-2">
+  <div className="bg-orange-400 p-4  rounded-sm mb-2">
     <img
       src="/images/image-59.png" // Replace with the edited image path with a transparent background
       alt="Dinner"
@@ -116,7 +117,7 @@ const WhyChooseUs: React.FC = () => {
               </div>
               <div className="rounded-md w-60 flex items-center space-x-4 bg-white">
   {/* Column 1: Orange Bar */}
-  <div className="bg-orange-500 w-2 h-full"></div>
+  <div className="bg-orange-400 w-2 h-full"></div>
 
   {/* Column 2: Number with Background */}
   <div className="bg-white text-orange-400 flex items-center justify-center p-4 rounded-full">

@@ -12,6 +12,9 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        greatVibes: ['"Great Vibes"', "cursive"], // Add this line
+      },
     },
   },
   plugins: [],

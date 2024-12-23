@@ -7,7 +7,7 @@ const HeroSection = () => {
       {/* Left Content */}
       <div className="lg:w-1/2 text-center lg:text-left">
         <h2 className="text-orange-500 text-lg font-semibold">
-          It's Quick & Amusing!
+          Its Quick & Amusing!
         </h2>
         <h1 className="text-4xl lg:text-6xl font-bold text-white leading-snug">
           The Art of Speed <br /> Food Quality
