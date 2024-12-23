@@ -46,7 +46,7 @@ const HeroSection = () => {
         {/* Text Content */}
         <div className="lg:w-1/2">
           <h2 className="text-orange-400 font-great-vibes text-2xl font-normal leading-10 text-left underline underline-offset-2 decoration-orange-400 mb-4">
-            It's Quick & Amusing!
+            It&apos;'s Quick & Amusing!
           </h2>
 
 
