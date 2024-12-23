@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/Link"
 import { IoSearchOutline } from "react-icons/io5";
 import { PiHandbag } from "react-icons/pi";
 
@@ -12,13 +13,13 @@ const HeroSection = () => {
         <nav className="flex gap-6">
           {["Home", "Menu", "Blog", "Pages", "About", "Shop", "Contact"].map(
             (item) => (
-              <a
+              <Link
                 key={item}
                 href={`#${item.toLowerCase()}`}
                 className="text-sm font-medium hover:text-orange-400"
               >
                 {item}
-              </a>
+              </Link>
             )
           )}
         </nav>
@@ -46,7 +47,7 @@ const HeroSection = () => {
         {/* Text Content */}
         <div className="lg:w-1/2">
           <h2 className="text-orange-400 font-great-vibes text-2xl font-normal leading-10 text-left underline underline-offset-2 decoration-orange-400 mb-4">
-            It&apos;'s Quick & Amusing!
+            It&apos;s Quick & Amusing!
           </h2>
 
 
@@ -54,7 +55,7 @@ const HeroSection = () => {
             The Art of Speed <br /> Food Quality
           </h2>
           <p className="text-gray-400 mb-8">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius
+            Lorem ipsum dolor sit amet consectetur adipiscing elit. Varius
             sed pharetra dictum neque massa congue.
           </p>
           <button className="bg-orange-400 text-white px-6 py-3 rounded-full hover:bg-yellow-600">
