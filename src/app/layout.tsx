@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Great_Vibes } from "next/font/google";
+import { Geist, Geist_Mono,Great_Vibes } from "next/font/google";
 
 import "./globals.css";
 import Footer from "@/components/Footer";
@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 const greatVibes = Great_Vibes({
-  variable: "--font-great-vibes",
+  variable: "--font-great-vibes", 
   subsets: ["latin"],
   weight: "400",
 });
