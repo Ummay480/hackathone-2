@@ -1,12 +1,14 @@
+"use client"
+import React from "react";
+
 const SupportSection = () => (
     <section className="bg-black text-gray-300 py-12">
       <div className="container mx-auto text-center">
         <h2 className="text-2xl font-bold text-yellow-500 mb-4">Still Need Our Support?</h2>
-<<<<<<< HEAD
+
         <p className="text-gray-400 mb-6">Don &apos;t wait make a smart & logical quote here. It &apos;s pretty easy.</p>
-=======
         <p className="text-gray-400 mb-6">Don&lsquo;t wait&#39; make a smart & logical quote here. It&lsquo;s pretty easy.</p>
->>>>>>> 77b9d844bbd9cde7852952fc6230d7983316f919
+
         <form className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
           <input
             type="email"
