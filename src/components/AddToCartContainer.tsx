@@ -1,6 +1,7 @@
 "use client";
-import Image from "next/Image";
 import React, { useState } from "react";
+import Image from "next/image";
+
 
 interface Product {
   title: string;

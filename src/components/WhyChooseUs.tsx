@@ -81,7 +81,7 @@ const WhyChooseUs: React.FC = () => {
             <div className="flex flex-col items-center">
           
   <div className="bg-orange-400 text-white p-4 rounded-sm mb-2">
-    <img
+    <Image
       src="/images/image-71.png" // Replace with the edited image path with a transparent background
       alt="Fast Food"
       className="h-6 w-6"
@@ -92,7 +92,7 @@ const WhyChooseUs: React.FC = () => {
 
 <div className="flex flex-col items-center">
   <div className="bg-orange-400 p-4  rounded-sm mb-2">
-    <img
+    <Image
       src="/images/image-64.png" // Replace with the edited image path with a transparent background
       alt="Lunch"
       className="h-6 w-6"
@@ -103,7 +103,7 @@ const WhyChooseUs: React.FC = () => {
 
 <div className="flex flex-col items-center">
   <div className="bg-orange-400 p-4  rounded-sm mb-2">
-    <img
+    <Image
       src="/images/image-59.png" // Replace with the edited image path with a transparent background
       alt="Dinner"
       className="h-6 w-6"
