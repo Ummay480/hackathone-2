@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 // components/FoodCategory.tsx
 import Image from "next/image";
 
 
+=======
+import Image from "next/Image";
+>>>>>>> 77b9d844bbd9cde7852952fc6230d7983316f919
 const FoodCategory = () => {
     const categories = [
       { name: "Grand Italiano", type: "Cuisine", image: "/cupcake1.jpg" },

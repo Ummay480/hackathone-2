@@ -1,5 +1,9 @@
 import Image from "next/image";
+<<<<<<< HEAD
 import Link from "next/link";
+=======
+import Link from "next/Link"
+>>>>>>> 77b9d844bbd9cde7852952fc6230d7983316f919
 import { IoSearchOutline } from "react-icons/io5";
 import { PiHandbag } from "react-icons/pi";
 
@@ -8,10 +12,38 @@ const HeroSection = () => {
     <div className="relative bg-black text-white px-10">
       {/* Navigation Bar */}
       <header className="flex justify-between items-center px-10 py-6">
+HEAD
         {/* Logo */}
         <h2 className="text-4xl font-bold leading-snug">
           Food<span className="text-orange-500 -ml-2">tuck</span>
         </h2>
+
+      <h3 className="text-2xl font-semibold text-orange-400 ml-4">Food</h3>
+      <h3 className="flex text-2xl font-semibold text-white -ml-32">tuck</h3>
+        <nav className="flex gap-6">
+          {["Home", "Menu", "Blog", "Pages", "About", "Shop", "Contact"].map(
+            (item) => (
+              <Link
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-sm font-medium hover:text-orange-400"
+              >
+                {item}
+              </Link>
+            )
+          )}
+        </nav>
+        <div className="flex gap-4 items-center">
+  {/* Input with Search Icon */}
+  <div className="relative w-full max-w-xs">
+    <input
+      type="text"
+      placeholder="Search..."
+      className="bg-transparent border-2 border-orange-400 rounded-full px-4 py-2 w-full placeholder:text-white placeholder:italic"
+    />
+    <IoSearchOutline className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white text-2xl" />
+  </div>
+>>>>>>> 77b9d844bbd9cde7852952fc6230d7983316f919
 
         {/* Navigation Links */}
         <nav className="flex gap-6">
@@ -57,8 +89,13 @@ const HeroSection = () => {
       <div className="flex flex-col lg:flex-row items-center lg:items-start px-10 lg:px-20 py-16">
         {/* Text Content */}
         <div className="lg:w-1/2">
+<<<<<<< HEAD
           <h2 className="text-orange-400 font-greatVibes text-2xl leading-10 text-left underline underline-offset-2 decoration-orange-400 mb-4">
             It's Quick & Amusing!
+=======
+          <h2 className="text-orange-400 font-great-vibes text-2xl font-normal leading-10 text-left underline underline-offset-2 decoration-orange-400 mb-4">
+            It&apos;s Quick & Amusing!
+>>>>>>> 77b9d844bbd9cde7852952fc6230d7983316f919
           </h2>
           <h2 className="text-4xl font-bold mb-6">
             The Art of Speed <br /> Food Quality
