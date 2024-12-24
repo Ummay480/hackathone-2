@@ -1,4 +1,5 @@
-<<<<<<< HEAD
+"use client";
+
 import React from "react";
 import Image from "next/image";
 
@@ -8,20 +9,19 @@ const Testimonials: React.FC = () => {
       <div className="container mx-auto px-4 text-center">
         {/* Section Title */}
         <h2 className="text-orange-400 text-xl justify-start text-start font-greatVibes">Testimonials</h2>
-        <h3 className="text-3xl font-bold mt-2 justify-start text-start">What our client are saying</h3>
+        <h3 className="text-3xl font-bold mt-2 justify-start text-start">What our clients are saying</h3>
 
         {/* Testimonial Card */}
         <div className="relative bg-white text-black mt-10 p-8 rounded-lg shadow-lg mx-auto max-w-3xl">
           {/* Right-Side Background Image */}
           <div
-  className="absolute inset-0 rounded-lg bg-no-repeat bg-right pointer-events-none"
-  style={{
-    backgroundImage: "url('/images/image-101.png')", // Replace with the actual path to image-101
-    backgroundSize: "contain",
-    right: "-100px", // Adjust this value to push it more to the right
-  }}
-></div>
-
+            className="absolute inset-0 rounded-lg bg-no-repeat bg-right pointer-events-none"
+            style={{
+              backgroundImage: "url('/images/image-101.png')", // Replace with the actual path to image-101
+              backgroundSize: "contain",
+              right: "-100px", // Adjust this value to push it more to the right
+            }}
+          ></div>
 
           {/* User Info */}
           <div className="relative z-10">
@@ -77,20 +77,3 @@ const Testimonials: React.FC = () => {
 };
 
 export default Testimonials;
-=======
-const Testimonials = () => {
-    return (
-      <section className="py-12 px-6 bg-gray-100">
-        <h2 className="text-3xl font-bold text-center mb-8">What Our Clients Say</h2>
-        <div className="text-center max-w-2xl mx-auto">
-          <p className="italic text-gray-600">&quot;Lorem ipsum dolor sit amet &ldquo; consectetur adipiscing elit.&quot;</p>
-          <h3 className="font-bold mt-4">Alamin Hasan</h3>
-          <p className="text-gray-500">Food Specialist</p>
-        </div>
-      </section>
-    );
-  };
-  
-  export default Testimonials;
-  
->>>>>>> 77b9d844bbd9cde7852952fc6230d7983316f919
