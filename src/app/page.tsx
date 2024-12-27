@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
     
-      <main>
+      <main className="bg-black px-20 overflow-x-hidden">
         <HeroSection />
         <AboutSection />
         <FoodMenu />
@@ -25,6 +25,7 @@ export default function Home() {
         <Testimonials/>
         <CreativeProcess/>
         <BlogSection/>
+        
       </main>
      
     </>
