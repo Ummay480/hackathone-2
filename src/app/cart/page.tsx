@@ -2,6 +2,7 @@
 import React from "react";
 import NavBar from "@/components/NavBar";
 import HeroBanner from "@/components/HeroBanner";
+import Image from "next/image";
 
 const ShoppingCart: React.FC = () => {
   return (
@@ -26,7 +27,7 @@ const ShoppingCart: React.FC = () => {
               {["image-15.png", "image-16", "image-73", "image-74", "image-75.png"].map((image, index) => (
                 <tr key={index} className="hover:bg-gray-50">
                   <td className="border border-gray-200 p-4 flex items-center space-x-4">
-                    <img
+                    <Image
                       src={`/images/${image}`}
                       alt="Product Image"
                       className="w-16 h-16 object-cover"
