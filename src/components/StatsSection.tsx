@@ -19,7 +19,7 @@ const StatsSection: React.FC = () => {
           <div>
           <div className="text-orange-500 text-6xl mb-2 ml-20">
             <Image
-              src="/Icons/image-14.png" // Ensure this path and filename match exactly
+              src="/Images/cap.png" // Ensure this path and filename match exactly
               alt="Professional Chef Icon"
               width={100}
               height={100}
@@ -34,7 +34,7 @@ const StatsSection: React.FC = () => {
           <div>
             <div className="text-orange-500 text-6xl ml-20 mb-2">
               <Image
-                src="/Images/image-13.png" // Replace with your actual image name and extension
+                src="/Images/burger.png" // Replace with your actual image name and extension
                 alt="Items Of Food Icon"
                 width={100}
                 height={100}
@@ -49,7 +49,7 @@ const StatsSection: React.FC = () => {
           <div>
             <div className="text-orange-500 text-6xl ml-20 mb-2">
               <Image
-                src="/Images/image-35.png" // Replace with your actual image name and extension
+                src="/Images/spoon.png" // Replace with your actual image name and extension
                 alt="Years Of Experience Icon"
                 width={100}
                 height={100}
@@ -64,7 +64,7 @@ const StatsSection: React.FC = () => {
           <div>
             <div className="text-orange-500 text-6xl ml-20 mb-2">
               <Image
-                src="/Images/image-31.png" // Replace with your actual image name and extension
+                src="/Images/pizza.png" // Replace with your actual image name and extension
                 alt="Happy Customers Icon"
                 width={100}
                 height={100}
