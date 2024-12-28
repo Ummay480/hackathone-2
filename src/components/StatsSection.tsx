@@ -19,7 +19,7 @@ const StatsSection: React.FC = () => {
           <div>
           <div className="text-orange-500 text-6xl mb-2 ml-20">
             <Image
-              src="/Images/image-14.png" // Ensure this path and filename match exactly
+              src="/Icons/image-14.png" // Ensure this path and filename match exactly
               alt="Professional Chef Icon"
               width={100}
               height={100}
