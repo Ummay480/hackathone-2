@@ -53,13 +53,14 @@ const MainCourse: React.FC<MenuProps> = ({ menuItems, imageSrc, title }) => {
 
         {/* Right Section: Image */}
         <div className="w-full lg:w-1/2">
-          <Image
-            src={imageSrc}
-            alt={`${title} image`}
-            width={448}
-            height={448}
-            className="w-full h-auto rounded-lg shadow-md"
-          />
+        <Image
+        src="/images/image-82.png" // Correct static path to the image
+        alt={`${title} image`} // Dynamic alt text based on the title
+        width={448} // Width of the image
+        height={448} // Height of the image
+        className="w-full h-auto rounded-lg shadow-md" // Tailwind classes for styling
+      />
+  
         </div>
       </div>
     </section>

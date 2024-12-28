@@ -25,10 +25,12 @@ const HeroBanner: React.FC<HeroBannerProps> = ({ title }) => (
       <p className="text-white text-2xl font-semibold mt-6 flex items-center justify-center gap-2">
         <Link href="/">Home</Link>
         <IoIosArrowForward />
-        <span>{title}</span>
+        <span className="text-[#FF9F0D]">{title}</span>
       </p>
     </div>
   </section>
 );
 
 export default HeroBanner;
+ 
+

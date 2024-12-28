@@ -62,18 +62,7 @@ function Page() {
       <div>
         <Partners />
       </div>
-      
-      {/* Example Image Usage */}
-      <div className="mt-10 flex justify-center">
-        <Image
-          src="/images/sample-banner.jpeg" // Replace with a valid image path
-          alt="Sample Banner"
-          width={500}
-          height={300}
-          className="rounded-md shadow-md"
-        />
-      </div>
-    </div>
+       </div>
   );
 }
 

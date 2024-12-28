@@ -13,8 +13,8 @@ const AboutUs: React.FC = () => {
             <Image
               src="/images/image-5.png"
               alt="Fried Chicken"
-              width={180}
-              height={180}
+              width={150}
+              height={150}
               className="rounded-lg object-cover w-full"
             />
           </div>
@@ -22,16 +22,16 @@ const AboutUs: React.FC = () => {
             <Image
               src="/images/image-4.png"
               alt="Burger"
-              width={185}
-              height={180}
+              width={140}
+              height={140}
               className="rounded-lg object-cover w-full"
             />
             <div className="flex space-x-4 mt-4">
               <Image
                 src="/images/image-3.png"
                 alt="Cheese Burger"
-                width={160}
-                height={160}
+                width={120}
+                height={120}
                 className="rounded-lg object-cover w-full"
               />
             </div>
@@ -39,7 +39,7 @@ const AboutUs: React.FC = () => {
         </div>
 
         {/* Text Section */}
-        <div className="md:col-span-5 flex flex-col justify-center space-y-6">
+        <div className="md:col-span-5 flex flex-col justify-center space-y-2 -mt-20">
           <h2 className="text-[#FF9F0D] font-greatVibes text-2xl">
           About Us
           </h2>

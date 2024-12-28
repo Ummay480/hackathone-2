@@ -9,11 +9,11 @@ type Category = {
 
 const FoodCategory: React.FC = () => {
   const categories: Category[] = [
-    { name: "Grand Italiano", type: "Cuisine", image: "/cupcake1.jpg" },
-    { name: "Pane Salmon", type: "Cuisine", image: "/cupcake2.jpg" },
-    { name: "Mello Tagliatelle", type: "Cuisine", image: "/cupcake3.jpg" },
+    { name: "Grand Italiano", type: "Cuisine", image: "/images/image-85.png" },
+    { name: "Pane Salmon", type: "Cuisine", image: "/images/image-87.png" },
+    { name: "Mello Tagliatelle", type: "Cuisine", image: "/images/image-88.png" },
+    { name: "Mello Tagliatelle", type: "Cuisine", image: "/images/image-89.png" },
   ];
-
   return (
     <div className="bg-white py-16">
       <div className="container mx-auto px-4">

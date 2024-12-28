@@ -9,7 +9,7 @@ const WhyChooseUs: React.FC = () => {
         {/* Text Section */}
         <h2 className="text-4xl font-bold mb-4">Why Choose Us</h2>
         <p className="text-gray-700 mb-6">
-          Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum.
+          Lorem ipsum dolor sit amet consectetur adipiscing elit. <br/>Quisque diam pellentesque bibendum non dui volutpat fringilla bibendum.
         </p>
 
         {/* Background Image */}
