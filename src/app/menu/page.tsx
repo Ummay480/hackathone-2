@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import NavBar from "@/components/NavBar";
 import { menuItems } from "@/constant/menu"; // Assuming this exists
 import StarterMenu from "@/components/StarterMenu";
@@ -42,8 +43,8 @@ function Page() {
     <div>
       {/* Navbar Component */}
       <NavBar />
-      <div >
-      <HeroBanner title="Our Menu" />
+      <div>
+        <HeroBanner title="Our Menu" />
       </div>
 
       {/* Starter Menu with imported menuItems */}
@@ -52,15 +53,26 @@ function Page() {
       {/* Main Course Section */}
       <MainCourse
         menuItems={mainCourseItems}
-        imageSrc="/images/main-course.jpg" // Replace with the correct image path
+        imageSrc="/images/image-107.png" // Replace with the correct image path
         title="Main Course"
       />
-      <StatsSection/>
-      <Dessert/>
-      <Drinks/>
+      <StatsSection />
+      <Dessert />
+      <Drinks />
       <div>
-      <Partners />
-    </div>
+        <Partners />
+      </div>
+      
+      {/* Example Image Usage */}
+      <div className="mt-10 flex justify-center">
+        <Image
+          src="/images/sample-banner.jpeg" // Replace with a valid image path
+          alt="Sample Banner"
+          width={500}
+          height={300}
+          className="rounded-md shadow-md"
+        />
+      </div>
     </div>
   );
 }

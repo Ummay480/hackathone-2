@@ -25,12 +25,12 @@ const MainCourse: React.FC<MenuProps> = ({ menuItems, imageSrc, title }) => {
         {/* Left Section: Menu Items */}
         <div className="w-full md:w-1/2">
           <div className="flex items-center mb-4">
-           <div className="-mt-24 lm-20"> 
-            <Coffee className="text-[#FF9F0D]" size={20} />
+            <div className="-mt-24 lm-20"> 
+              <Coffee className="text-[#FF9F0D]" size={20} />
             </div>
             <div className="-ml-7 pt-4">
-            <Heading text="Main Course" />
-          </div>
+              <Heading text={title} />
+            </div>
           </div>
 
           <div className="space-y-6">
@@ -54,8 +54,8 @@ const MainCourse: React.FC<MenuProps> = ({ menuItems, imageSrc, title }) => {
         {/* Right Section: Image */}
         <div className="w-full lg:w-1/2">
           <Image
-            src="/images/image-2.jpeg"
-            alt="Main course image"
+            src={imageSrc}
+            alt={`${title} image`}
             width={448}
             height={448}
             className="w-full h-auto rounded-lg shadow-md"
@@ -65,5 +65,4 @@ const MainCourse: React.FC<MenuProps> = ({ menuItems, imageSrc, title }) => {
     </section>
   );
 };
-
 export default MainCourse;
