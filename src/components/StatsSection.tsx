@@ -17,15 +17,15 @@ const StatsSection: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {/* Stat 1 */}
           <div>
-            <div className="text-orange-500 text-6xl mb-2 ml-20">
-              <Image
-                src="/Images/image-14.png" // Replace with your actual image name and extension
-                alt="Professional Chef Icon"
-                width={100}
-                height={100}
-                className="w-20 h-20" // Adjust size as needed
-              />
-            </div>
+          <div className="text-orange-500 text-6xl mb-2 ml-20">
+            <Image
+              src="/Images/image-14.png" // Ensure this path and filename match exactly
+              alt="Professional Chef Icon"
+              width={100}
+              height={100}
+              className="w-20 h-20" // Optional Tailwind classes for additional styling
+            />
+          </div>
             <h3 className="text-lg font-semibold">Professional Chefs</h3>
             <p className="text-3xl font-bold">420</p>
           </div>
