@@ -97,12 +97,12 @@ const ProductDetails: React.FC = () => {
             </button>
           </div>
           <Link href="/cart">
-          <button className="flex items-center gap-2 bg-[#FF9F0D]
- text-white px-4 py-2 hover:bg-orange-600">
-            <BsCartPlus />
-            Add to cart
-          </button>
-          </Link>
+  <button className="flex items-center gap-2 bg-[#FF9F0D] text-white px-4 py-2 hover:bg-orange-600">
+    <BsCartPlus />
+    Add to cart
+  </button>
+</Link>
+
         </div>
 
         <div className="flex flex-col gap-2 text-gray-400">
