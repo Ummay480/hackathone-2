@@ -25,7 +25,7 @@ const BlogSection = () => {
   ];
 
   return (
-    <section className="py-12 bg-black text-white px-8 md:px-32 -mt-20">
+    <section className="py-12 bg-black text-white px-2 md:px-4 -mt-20">
       <div className="text-center">
         <h4 className="text-[#FF9F0D] font-greatVibes text-lg font-normal">
           Blog Post
@@ -44,8 +44,8 @@ const BlogSection = () => {
               src={blog.image}
               alt={blog.title}
               className="w-full object-cover"
-              width={400}
-              height={200}
+              width={500} // Increased width for wider images
+              height={250} // Adjusted height accordingly to maintain aspect ratio
             />
             <div className="p-4">
               <p className="text-[#FF9F0D] text-sm">{blog.date}</p>

@@ -3,38 +3,40 @@ import { IoSearchOutline } from "react-icons/io5";
 import { PiHandbag } from "react-icons/pi";
 import { useState } from "react";
 import Link from "next/link";
-import { FaBars, FaTimes } from "react-icons/fa"; // Import hamburger (FaBars) and close (FaTimes) icons
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const NavBar2 = () => {
-  const [menuOpen, setMenuOpen] = useState(false); // State to track menu toggle
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen); // Toggle the state of the menu
+    setMenuOpen(!menuOpen);
   };
 
   return (
-    <header className="relative flex justify-between items-center px-1 py-6 bg-black text-white max-w-screen-xl mx-auto">
+    <header className="relative flex justify-between items-center px-4 py-6 bg-black text-white max-w-screen-xl mx-auto">
       {/* Logo */}
-      <h2 className="text-4xl font-bold leading-snug">
+      <h2 className="font-bold leading-snug text-2xl sm:text-4xl">
         Food<span className="text-[#FF9F0D]">tuck</span>
       </h2>
 
       {/* Hamburger Icon for mobile */}
       <div className="lg:hidden" onClick={toggleMenu}>
         {menuOpen ? (
-          <FaTimes className="text-white text-3xl" /> // Show close icon when menu is open
+          <FaTimes className="text-white text-3xl" />
         ) : (
-          <FaBars className="text-white text-3xl" /> // Show hamburger icon when menu is closed
+          <FaBars className="text-white text-3xl" />
         )}
       </div>
 
       {/* Navigation Links */}
       <nav
-        className={`flex gap-6 text-white text-md lg:flex lg:gap-6 ${
-          menuOpen ? "flex-col absolute bg-black top-16 left-0 right-0 px-4 py-8 lg:flex-row" : "hidden"
-        }`} // Make menu stack vertically and visible on small screens
+        className={`${
+          menuOpen
+            ? "flex flex-col absolute bg-black top-16 left-0 right-0 px-4 py-8 lg:flex-row"
+            : "hidden lg:flex"
+        } gap-6 text-white text-md`}
       >
-        {[ 
+        {[
           { name: "Home", link: "/" },
           { name: "Menu", link: "/menu" },
           { name: "Blog", link: "/blog" },
@@ -47,7 +49,7 @@ const NavBar2 = () => {
             key={item.name}
             href={item.link}
             className="text-sm font-medium hover:text-[#FF9F0D]"
-            onClick={() => setMenuOpen(false)} // Close the menu when a link is clicked
+            onClick={() => setMenuOpen(false)}
           >
             {item.name}
           </Link>
@@ -56,8 +58,8 @@ const NavBar2 = () => {
 
       {/* Search and Bag Icons */}
       <div className="flex gap-4 items-center">
-        {/* Input with Search Icon */}
-        <div className="relative w-full max-w-xs">
+        {/* Search Bar */}
+        <div className="relative hidden sm:block max-w-xs">
           <input
             type="text"
             placeholder="Search..."
@@ -66,12 +68,15 @@ const NavBar2 = () => {
           <IoSearchOutline className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white text-2xl" />
         </div>
 
+        {/* Search Icon for Mobile */}
+        <IoSearchOutline className="block sm:hidden text-white text-2xl cursor-pointer" />
+
         {/* Bag Icon */}
         <Link href="/cart">
-            <button className="text-white text-lg">
-              <PiHandbag className="text-xl" />
-            </button>
-          </Link>
+          <button className="text-white text-lg">
+            <PiHandbag className="text-xl" />
+          </button>
+        </Link>
       </div>
     </header>
   );

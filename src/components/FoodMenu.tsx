@@ -15,18 +15,19 @@ const FoodMenu: React.FC = () => {
         Food Category
       </h2>
       <h3 className="text-2xl font-semibold text-[#FF9F0D] -ml-40 -mt-2">ch</h3>
-      <h3 className="flex text-2xl font-semibold text-white justify-center items-center text-center ml-14 -mt-8">
+      <h3 className="flex text-2xl font-semibold text-white justify-center items-center text-center ml-10 -mt-8">
         oose Food Items
       </h3>
 
-      <div className="mt-8 flex justify-center space-x-6">
+      {/* Image Grid */}
+      <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
         {menuItems.map((item, index) => (
           <div key={index} className="bg-black rounded shadow-md">
             <Image
               src={item.image}
               alt={item.image}
-              width={160} // Replace with desired width
-              height={160} // Replace with desired height
+              width={160}
+              height={160}
               className="w-40 h-40 mx-auto"
             />
           </div>
