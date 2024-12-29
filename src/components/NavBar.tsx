@@ -11,8 +11,8 @@ const NavBar: React.FC = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
-    <header className="bg-black text-white relative z-50">
-      <div className="flex justify-between items-center px-2 py-2 mx-auto">
+    <header className="bg-black text-white relative z-50 ">
+      <div className="flex justify-between items-center px-2 md:px-3 lg:px-4 py-2 mx-auto">
         {/* Logo */}
         <h2 className="text-3xl font-bold">
           Food<span className="text-orange-500">tuck</span>

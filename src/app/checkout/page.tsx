@@ -16,7 +16,7 @@ export default function CheckoutPage() {
               {/* Shipping Address Section */}
               <div>
                 <h2 className="text-xl font-semibold mb-4">Shipping Address</h2>
-                <div className="grid gap-4">
+                <div className="grid gap-4 px-2">
                   {/* Input Fields for Shipping Address */}
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label>
@@ -45,8 +45,8 @@ export default function CheckoutPage() {
                       placeholder="123 Main St"
                     />
                   </div>
-                  <div className="flex gap-4">
-                    <div className="w-1/2">
+                  <div className="flex gap-4 flex-wrap px-2">
+                    <div className="w-full sm:w-1/2">
                       <label htmlFor="city" className="block text-sm font-medium text-gray-700">City</label>
                       <input
                         type="text"
@@ -55,7 +55,7 @@ export default function CheckoutPage() {
                         placeholder="New York"
                       />
                     </div>
-                    <div className="w-1/2">
+                    <div className="w-full sm:w-1/2">
                       <label htmlFor="zip" className="block text-sm font-medium text-gray-700">Zip Code</label>
                       <input
                         type="text"
@@ -65,7 +65,7 @@ export default function CheckoutPage() {
                       />
                     </div>
                   </div>
-                  <div>
+                  <div className="px-2">
                     <label htmlFor="country" className="block text-sm font-medium text-gray-700">Country</label>
                     <select
                       id="country"
@@ -81,7 +81,7 @@ export default function CheckoutPage() {
               </div>
 
               {/* Billing Address Section */}
-              <div>
+              <div className="px-2">
                 <h2 className="text-xl font-semibold mb-4">Billing Address</h2>
                 <div className="flex items-center space-x-2">
                   <input
@@ -95,11 +95,12 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-2 pt-4">
-                <button className="flex-1 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500">
+              {/* Buttons */}
+              <div className="flex flex-wrap gap-2 pt-4 px-2">
+                <button className="w-full sm:w-auto py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500">
                   Back to cart
                 </button>
-                <button className="flex-1 py-2 bg-orange-500 text-white rounded-md text-sm font-medium hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                <button className="w-full sm:w-auto py-2 bg-orange-500 text-white rounded-md text-sm font-medium hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500">
                   Proceed to shipping
                 </button>
               </div>

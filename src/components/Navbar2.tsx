@@ -13,9 +13,9 @@ const NavBar2 = () => {
   };
 
   return (
-    <header className="relative flex justify-between items-center px-4 py-6 bg-black text-white max-w-screen-xl mx-auto">
+    <header className="relative flex justify-between items-center px-4 md:px-2 sm:px-0 py-6 bg-black text-white max-w-screen-xl mx-auto">
       {/* Logo */}
-      <h2 className="font-bold leading-snug text-2xl sm:text-4xl">
+      <h2 className="font-bold leading-snug text-2xl sm:text-4xl px-2">
         Food<span className="text-[#FF9F0D]">tuck</span>
       </h2>
 
