@@ -5,7 +5,7 @@ import { FaPlay } from "react-icons/fa";
 
 const AboutUs: React.FC = () => {
   return (
-    <section className="max-w-screen-xl mx-auto bg-white py-12 px-0 md:px-16">
+    <section className="max-w-screen-xl mx-auto bg-white py-12 lg:px-4 md:px-2 sm:px-0">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
         {/* Images Section */}
         <div className="md:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-4">
