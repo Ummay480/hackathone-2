@@ -6,7 +6,7 @@ import Image from "next/image"
 export default function CheckoutPage() {
   return (
 <>
-<div>
+<main className="overflow-x-hidden">
   <Hero title="Checkout"/>
 
 <div className="container mx-auto px-4 py-8 my-[120px]">
@@ -221,7 +221,7 @@ export default function CheckoutPage() {
         </div>
       </div>
     </div>
-</div>
+</main>
 
 </>
   )
