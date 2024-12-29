@@ -1,6 +1,6 @@
 "use client";
 
-import Hero from "../components/HeroBanner";
+import Hero from "@/components/HeroBanner";
 import Image from "next/image";
 
 export default function CheckoutPage() {
