@@ -39,7 +39,7 @@ const AboutUs: React.FC = () => {
         </div>
 
         {/* Text Section */}
-        <div className="md:col-span-5 flex flex-col justify-center space-y-2 -mt-20">
+        <div className="md:col-span-5 flex flex-col justify-center space-y-2 -mt-20 sm:-space-x-2">
           <h2 className="text-[#FF9F0D] font-greatVibes text-2xl">
           About Us
           </h2>

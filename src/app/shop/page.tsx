@@ -9,7 +9,7 @@ import SimilarProducts from '@/components/SimilarProducts';
 const Shop = () => (
   <>
     
-    <main>
+    <main className='overflow-x-hidden'>
     <NavBar/>
       {/* Hero Banner */}
       <div >
@@ -18,10 +18,10 @@ const Shop = () => (
 
       <h2 className="text-2xl font-bold my-6 px-10">Shop Details</h2>
       
-      <div className='px-20'>
+      <div className='px-2'>
       <ProductDetails />
       </div>
-      <div className='px-20'>
+      <div className='px-2'>
        <SimilarProducts />
        </div>
     </main>

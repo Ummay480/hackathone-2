@@ -39,7 +39,7 @@ const mainCourseItems = [
 
 function Page() {
   return (
-    <div>
+    <main className="overflow-x-hidden">
       {/* Navbar Component */}
       <NavBar />
       <div>
@@ -61,7 +61,7 @@ function Page() {
       <div>
         <Partners />
       </div>
-       </div>
+       </main>
   );
 }
 

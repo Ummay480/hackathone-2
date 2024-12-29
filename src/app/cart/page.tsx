@@ -3,6 +3,7 @@ import React from "react";
 import NavBar from "@/components/NavBar";
 import HeroBanner from "@/components/HeroBanner";
 import Image from "next/image";
+import Link from "next/link";
 
 const ShoppingCart: React.FC = () => {
   return (
@@ -81,9 +82,11 @@ const ShoppingCart: React.FC = () => {
                 <span>$205.00</span>
               </div>
             </div>
-            <button className="mt-4 w-full px-4 py-2 bg-yellow-500 text-white rounded">
+            <Link href="/checkout">
+            <button className="mt-4 w-full px-4 py-2 bg-orange-400 text-white rounded">
               Proceed to Checkout
             </button>
+            </Link>
           </div>
         </div>
       </div>
