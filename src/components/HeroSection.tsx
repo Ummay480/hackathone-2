@@ -4,7 +4,7 @@ import Navbar from "./Navbar2"; // Import the NavBar component
 
 const HeroSection = () => {
   return (
-    <div className="relative bg-black text-white px-8">
+    <div className="relative bg-black text-white px-0">
       {/* Include the Navbar component */}
       <Navbar />
 
