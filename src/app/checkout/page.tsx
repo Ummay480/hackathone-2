@@ -1,7 +1,7 @@
 "use client";
 
 import Hero from "@/components/HeroBanner";
-import Link from "next/link";
+import Image from "next/image";
 
 export default function CheckoutPage() {
   return (
@@ -9,15 +9,74 @@ export default function CheckoutPage() {
       <div>
         <Hero title="Checkout" />
 
-        <div className="container mx-auto px-4 py-8 my-12">
-          <div className="grid gap-8 grid-cols-1 lg:grid-cols-2 max-w-screen-md mx-auto">
+        <div className="container mx-auto px-2 py-8 my-12">
+          <div className="grid gap-8 lg:grid-cols-2">
             {/* Left Column - Forms */}
             <div className="space-y-6">
               {/* Shipping Address Section */}
               <div>
                 <h2 className="text-xl font-semibold mb-4">Shipping Address</h2>
-                <div className="grid gap-2">
-                  {/* Add your form inputs here */}
+                <div className="grid gap-4">
+                  {/* Input Fields for Shipping Address */}
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label>
+                    <input
+                      type="text"
+                      id="name"
+                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                      placeholder="John Doe"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email Address</label>
+                    <input
+                      type="email"
+                      id="email"
+                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                      placeholder="you@example.com"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="address" className="block text-sm font-medium text-gray-700">Street Address</label>
+                    <input
+                      type="text"
+                      id="address"
+                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                      placeholder="123 Main St"
+                    />
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="w-1/2">
+                      <label htmlFor="city" className="block text-sm font-medium text-gray-700">City</label>
+                      <input
+                        type="text"
+                        id="city"
+                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                        placeholder="New York"
+                      />
+                    </div>
+                    <div className="w-1/2">
+                      <label htmlFor="zip" className="block text-sm font-medium text-gray-700">Zip Code</label>
+                      <input
+                        type="text"
+                        id="zip"
+                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                        placeholder="10001"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label htmlFor="country" className="block text-sm font-medium text-gray-700">Country</label>
+                    <select
+                      id="country"
+                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                    >
+                      <option>United States</option>
+                      <option>Canada</option>
+                      <option>United Kingdom</option>
+                      <option>Australia</option>
+                    </select>
+                  </div>
                 </div>
               </div>
 
@@ -30,22 +89,17 @@ export default function CheckoutPage() {
                     id="sameAsShipping"
                     className="h-4 w-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500"
                   />
-                  <label
-                    htmlFor="sameAsShipping"
-                    className="text-sm text-gray-700"
-                  >
+                  <label htmlFor="sameAsShipping" className="text-sm text-gray-700">
                     Same as shipping address
                   </label>
                 </div>
               </div>
 
               <div className="flex flex-wrap gap-2 pt-4">
-                <Link href="/cart">
-                <button className="flex-1 min-w-0 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                <button className="flex-1 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500">
                   Back to cart
                 </button>
-                </Link>
-                <button className="flex-1 min-w-0 py-2 bg-orange-500 text-white rounded-md text-sm font-medium hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                <button className="flex-1 py-2 bg-orange-500 text-white rounded-md text-sm font-medium hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500">
                   Proceed to shipping
                 </button>
               </div>
@@ -58,12 +112,18 @@ export default function CheckoutPage() {
                 {[...Array(3)].map((_, index) => (
                   <div key={index} className="flex items-center space-x-4">
                     <div className="relative w-16 h-16">
-                    <img src="/images/image-113.png" alt="Chicken Tikka" width="64" height="64" />
-                      </div>
+                      <Image
+                        src="/images/image-113.png"
+                        alt="Chicken Tikka"
+                        width={64}
+                        height={64}
+                        className="object-cover rounded-md"
+                      />
+                    </div>
                     <div>
                       <h3 className="font-medium">Chicken Tikka</h3>
-                      <p className="text-sm text-gray-500">Delicious BBQ</p>
-                      <p className="text-sm text-gray-500">$10</p>
+                      <p className="text-sm text-gray-500">Delicious chicken tikka</p>
+                      <p className="text-sm text-gray-500">$50</p>
                     </div>
                   </div>
                 ))}
@@ -72,23 +132,23 @@ export default function CheckoutPage() {
               <div className="mt-6 space-y-2 border-t pt-4">
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Subtotal</span>
-                  <span className="font-medium">$30</span>
+                  <span className="font-medium">$150</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Shipping</span>
-                  <span className="font-medium">$5</span>
+                  <span className="font-medium">$10</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-600">Tax</span>
-                  <span className="font-medium">$3</span>
+                  <span className="font-medium">$15</span>
                 </div>
                 <div className="flex justify-between border-t pt-2 text-base font-semibold">
                   <span>Total</span>
-                  <span>$38</span>
+                  <span>$175</span>
                 </div>
               </div>
 
-              <button className="w-full mt-6 py-3 bg-orange-400 text-white rounded-md text-sm font-medium hover:bg-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500">
+              <button className="w-full mt-6 py-3 bg-orange-500 text-white rounded-md text-sm font-medium hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500">
                 Place an order
               </button>
             </div>
