@@ -1,10 +1,12 @@
 "use client";
+import NavBar from "@/components/NavBar";
 import HeroBanner from "@/components/HeroBanner";
 import Image from "next/image";
 
 export default function CheckoutPage() {
   return (
     <div>
+      <NavBar/>
       <HeroBanner title="Checkout" />
 
       <div className="container mx-auto px-4 py-8 md:py-16">
