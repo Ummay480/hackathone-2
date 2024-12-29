@@ -1,7 +1,7 @@
 "use client";
 
 import Hero from "@/components/HeroBanner";
-import Image from "next/image";
+import Link from "next/link";
 
 export default function CheckoutPage() {
   return (
@@ -40,9 +40,11 @@ export default function CheckoutPage() {
               </div>
 
               <div className="flex flex-wrap gap-2 pt-4">
+                <Link href="/cart">
                 <button className="flex-1 min-w-0 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500">
                   Back to cart
                 </button>
+                </Link>
                 <button className="flex-1 min-w-0 py-2 bg-orange-500 text-white rounded-md text-sm font-medium hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500">
                   Proceed to shipping
                 </button>
@@ -56,14 +58,8 @@ export default function CheckoutPage() {
                 {[...Array(3)].map((_, index) => (
                   <div key={index} className="flex items-center space-x-4">
                     <div className="relative w-16 h-16">
-                      <Image
-                        src="/images/image-113.png"
-                        alt={`Chicken Tikka ${index + 1}`}
-                        width={64}
-                        height={64}
-                        className="object-cover rounded-md"
-                      />
-                    </div>
+                    <img src="/images/image-113.png" alt="Chicken Tikka" width="64" height="64" />
+                      </div>
                     <div>
                       <h3 className="font-medium">Chicken Tikka</h3>
                       <p className="text-sm text-gray-500">Delicious BBQ</p>
@@ -92,7 +88,7 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              <button className="w-full mt-6 py-3 bg-orange-500 text-white rounded-md text-sm font-medium hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500">
+              <button className="w-full mt-6 py-3 bg-orange-400 text-white rounded-md text-sm font-medium hover:bg-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500">
                 Place an order
               </button>
             </div>
