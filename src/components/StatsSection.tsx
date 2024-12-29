@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 
+
 const StatsSection: React.FC = () => {
   return (
     <section className="relative bg-black text-white py-20 mx-auto">
@@ -19,7 +20,7 @@ const StatsSection: React.FC = () => {
           <div>
           <div className="text-orange-500 text-6xl mb-2 ml-20">
             <Image
-              src="/Images/cap.png" // Ensure this path and filename match exactly
+              src="/images/cap.png" // Ensure this path and filename match exactly
               alt="Professional Chef Icon"
               width={100}
               height={100}
@@ -34,7 +35,7 @@ const StatsSection: React.FC = () => {
           <div>
             <div className="text-orange-500 text-6xl ml-20 mb-2">
               <Image
-                src="/Images/burger.png" // Replace with your actual image name and extension
+                src="/images/burger.png" // Replace with your actual image name and extension
                 alt="Items Of Food Icon"
                 width={100}
                 height={100}
@@ -49,7 +50,7 @@ const StatsSection: React.FC = () => {
           <div>
             <div className="text-orange-500 text-6xl ml-20 mb-2">
               <Image
-                src="/Images/spoon.png" // Replace with your actual image name and extension
+                src="/images/spoon.png" // Replace with your actual image name and extension
                 alt="Years Of Experience Icon"
                 width={100}
                 height={100}
@@ -64,7 +65,7 @@ const StatsSection: React.FC = () => {
           <div>
             <div className="text-orange-500 text-6xl ml-20 mb-2">
               <Image
-                src="/Images/pizza.png" // Replace with your actual image name and extension
+                src="/images/pizza.png" // Replace with your actual image name and extension
                 alt="Happy Customers Icon"
                 width={100}
                 height={100}
