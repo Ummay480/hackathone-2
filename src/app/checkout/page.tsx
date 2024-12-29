@@ -1,12 +1,11 @@
 "use client";
-
-import Hero from "@/components/HeroBanner";
+import HeroBanner from "@/components/HeroBanner";
 import Image from "next/image";
 
 export default function CheckoutPage() {
   return (
     <div>
-      <Hero title="Checkout" />
+      <HeroBanner title="Checkout" />
 
       <div className="container mx-auto px-4 py-8 md:py-16">
         <div className="grid gap-8 lg:grid-cols-2">
