@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import NavBar from "@/components/NavBar";
 import { menuItems } from "@/constant/menu"; // Assuming this exists
 import StarterMenu from "@/components/StarterMenu";
