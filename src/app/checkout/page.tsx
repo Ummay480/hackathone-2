@@ -2,6 +2,7 @@
 import NavBar from "@/components/NavBar";
 import HeroBanner from "@/components/HeroBanner";
 import Image from "next/image";
+import Link from "next/link";
 
 
 export default function CheckoutPage() {
@@ -90,9 +91,11 @@ export default function CheckoutPage() {
             </div>
 
             <div className="flex flex-wrap gap-2 pt-4">
+              <Link href="/cart">
               <button className="flex-1 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500">
                 Back to cart
               </button>
+              </Link>
               <button className="flex-1 py-2 bg-orange-500 text-white rounded-md text-sm font-medium hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500">
                 Proceed to shipping
               </button>
