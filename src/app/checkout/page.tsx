@@ -1,14 +1,12 @@
 "use client";
-import NavBar from "@/components/NavBar";
-import HeroBanner from "@/components/HeroBanner";
-import Image from "next/image";
 
+import Hero from "../components/HeroBanner";
+import Image from "next/image";
 
 export default function CheckoutPage() {
   return (
     <div>
-      <NavBar/>
-      <HeroBanner title="Checkout" />
+      <Hero title="Checkout" />
 
       <div className="container mx-auto px-4 py-8 md:py-16">
         <div className="grid gap-8 lg:grid-cols-2">
@@ -107,7 +105,7 @@ export default function CheckoutPage() {
                 <div key={index} className="flex items-center space-x-4">
                   <div className="relative w-16 h-16">
                     <Image
-                      src="/images/chicken-tikka.png"
+                      src="/images/image-113.png"
                       alt="Chicken Tikka"
                       width={64}
                       height={64}
