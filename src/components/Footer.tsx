@@ -88,7 +88,7 @@ const Footer: React.FC = () => {
 
       {/* Social Media Links */}
       <div className="flex justify-between items-center py-4 px-10 bg-[#4F4F4F] border-t border-gray-700 max-w-screen-xl mx-auto">
-        <p className="text-xs px-20 text-white">&copy; 2024 by Ummay Kulsoom. All Rights Reserved.</p>
+        <p className="text-xs px-2 text-white">&copy; 2024 by Ummay Kulsoom. All Rights Reserved.</p>
         <div className="flex space-x-4">
           <FaFacebook className="text-white hover:text-orange-500 cursor-pointer" />
           <FaTwitter className="text-white hover:text-orange-500 cursor-pointer" />
