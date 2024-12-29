@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { AiFillStar } from "react-icons/ai";
 import { FaHeart, FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
@@ -95,13 +96,13 @@ const ProductDetails: React.FC = () => {
               +
             </button>
           </div>
-          <link href="/cart">
+          <Link href="/cart">
           <button className="flex items-center gap-2 bg-[#FF9F0D]
  text-white px-4 py-2 hover:bg-orange-600">
             <BsCartPlus />
             Add to cart
           </button>
-          </link>
+          </Link>
         </div>
 
         <div className="flex flex-col gap-2 text-gray-400">
