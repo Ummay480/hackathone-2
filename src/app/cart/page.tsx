@@ -25,33 +25,35 @@ const ShoppingCart: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {["image-15.png", "image-16", "image-73", "image-74", "image-75.png"].map((image, index) => (
-                <tr key={index} className="hover:bg-gray-50">
-                  <td className="border border-gray-200 p-4 flex items-center space-x-4">
-                    <Image
-                      src={`/images/${image}`}
-                      alt="Product Image"
-                      className="w-16 h-16 object-cover"
-                    />
-                    <span>Product Name</span>
-                  </td>
-                  <td className="border border-gray-200 p-4">$15.00</td>
-                  <td className="border border-gray-200 p-4">
-                    <div className="flex items-center space-x-2">
-                      <button className="px-2 py-1 bg-gray-100 rounded">-</button>
-                      <input
-                        type="number"
-                        min="1"
-                        className="w-12 text-center border border-gray-200 rounded"
-                        defaultValue={1}
-                      />
-                      <button className="px-2 py-1 bg-gray-100 rounded">+</button>
-                    </div>
-                  </td>
-                  <td className="border border-gray-200 p-4">$15.00</td>
-                  <td className="border border-gray-200 p-4 text-red-500 cursor-pointer">&times;</td>
-                </tr>
-              ))}
+            {["image-15.png", "image-16.png", "image-73.png", "image-74.png", "image-75.png"].map((image, index) => (
+  <tr key={index} className="hover:bg-gray-50">
+    <td className="border border-gray-200 p-4 flex items-center space-x-4">
+      <Image
+        src={`/images/${image}`}
+        alt="Product Image"
+        width={64} // Specify the width
+        height={64} // Specify the height
+        className="object-cover"
+      />
+      <span>Product Name</span>
+    </td>
+    <td className="border border-gray-200 p-4">$15.00</td>
+    <td className="border border-gray-200 p-4">
+      <div className="flex items-center space-x-2">
+        <button className="px-2 py-1 bg-gray-100 rounded">-</button>
+        <input
+          type="number"
+          min="1"
+          className="w-12 text-center border border-gray-200 rounded"
+          defaultValue={1}
+        />
+        <button className="px-2 py-1 bg-gray-100 rounded">+</button>
+      </div>
+    </td>
+    <td className="border border-gray-200 p-4">$15.00</td>
+    <td className="border border-gray-200 p-4 text-red-500 cursor-pointer">&times;</td>
+  </tr>
+))}
             </tbody>
           </table>
         </div>
