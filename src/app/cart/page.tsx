@@ -1,7 +1,7 @@
 // pages/shopping-cart.tsx
 import React from "react";
 import NavBar from "@/components/NavBar";
-import HeroBanner from "@/components/HeroBanner";
+import HeroBanner  from "@/components/HeroBanner";
 import Image from "next/image";
 import Link from "next/link";
 
