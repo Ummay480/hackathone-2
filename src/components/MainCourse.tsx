@@ -18,7 +18,7 @@ interface MenuProps {
   title: string;
 }
 
-const MainCourse: React.FC<MenuProps> = ({ menuItems, imageSrc, title }) => {
+const MainCourse: React.FC<MenuProps> = ({ menuItems, title }) => {
   return (
     <section className="bg-white py-8 px-4 sm:px-6 lg:px-16">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10">
