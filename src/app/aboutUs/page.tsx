@@ -11,7 +11,7 @@ import FoodMenu2 from "@/components/FoodMenu2";
 
 const aboutPage = () => {
   return (
-    <main className='overflow-x-hidden'>
+    <main className='overflow-x-hidden px-2'>
     <>
         <NavBar/>
       <HeroBenner title="About Us" />

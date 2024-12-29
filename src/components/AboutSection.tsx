@@ -6,7 +6,7 @@ import { FaCheck } from "react-icons/fa6";
 
 const AboutSection = () => {
   return (
-    <section className="max-w-screen-xl mx-auto py-10 px-8 lg:px-20 flex flex-col lg:flex-row gap-4 lg:gap-6 bg-black text-white overflow-auto">
+    <section className="max-w-screen-xl mx-auto py-10 sm:px-2 md:px-3 lg:px-4 flex flex-col lg:flex-row gap-4 lg:gap-6 bg-black text-white overflow-auto">
       {/* Left Side */}
       <div className="flex-1 flex flex-col justify-center px-8">
         <h3 className="text-3xl font-semibold text-[#FF9F0D]">We</h3>
