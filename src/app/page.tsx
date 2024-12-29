@@ -13,7 +13,7 @@ import Testimonials from "@/components/Testimonials2";
 export default function Home() {
   return (
     <>
-      <main className="bg-black px-4 sm:px-6 md:px-10 lg:px-20 overflow-x-hidden">
+      <main className="bg-black px-4 sm:px-2 md:px-2 lg:px-20 overflow-x-hidden">
         <HeroSection />
         <AboutSection />
         <FoodMenu />
@@ -22,7 +22,9 @@ export default function Home() {
         <Menu />
         <Members />
         <Testimonials />
+        <div className="my-10">
         <CreativeProcess />
+        </div>
         <BlogSection />
       </main>
     </>

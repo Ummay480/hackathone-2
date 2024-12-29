@@ -25,7 +25,7 @@ const BlogSection = () => {
   ];
 
   return (
-    <section className="py-12 bg-black text-white px-8 md:px-32 -mt-40">
+    <section className="py-12 bg-black text-white px-8 md:px-32 -mt-20">
       <div className="text-center">
         <h4 className="text-[#FF9F0D] font-greatVibes text-lg font-normal">
           Blog Post
@@ -34,7 +34,7 @@ const BlogSection = () => {
           La<span className="text-[#FF9F0D] ">test News & Blog</span>
         </h2>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10 max-w-7xl mx-auto">
         {blogs.map((blog) => (
           <div
             key={blog.id}
@@ -44,7 +44,7 @@ const BlogSection = () => {
               src={blog.image}
               alt={blog.title}
               className="w-full object-cover"
-              width={300}
+              width={400}
               height={200}
             />
             <div className="p-4">

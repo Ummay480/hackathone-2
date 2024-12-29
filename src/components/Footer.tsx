@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image"; // Import the Next.js Image component
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaPinterest } from "react-icons/fa";
 
 const Footer: React.FC = () => {
@@ -72,9 +73,9 @@ const Footer: React.FC = () => {
         <div>
           <h3 className="text-lg font-semibold mb-2">Recent Post</h3>
           <ul className="space-y-4">
-            {[1, 2, 3].map((_, index) => (
+            {["/images/footer-1.png", "/images/footer-2.png", "/images/footer-3.png"].map((src, index) => (
               <li key={index} className="flex space-x-2 items-center">
-                <div className="w-12 h-12 bg-gray-700 rounded"></div>
+                <Image src={src} alt={`Post Image ${index + 1}`} width={48} height={48} className="rounded" />
                 <div>
                   <p className="text-sm text-gray-400">20 Feb 2022</p>
                   <p className="text-sm">Keep Your Business</p>
