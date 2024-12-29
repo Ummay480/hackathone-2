@@ -6,11 +6,11 @@ import Image from "next/image";
 export default function CheckoutPage() {
   return (
     <>
-      <div className="overflow-x-hidden">
+      <div>
         <Hero title="Checkout" />
 
-        <div className="container mx-auto sm:px-4 px-2 py-8 my-12">
-          <div className="grid gap-8 sm:grid-cols-1 lg:grid-cols-2">
+        <div className="container mx-auto px-4 py-8 my-12">
+          <div className="grid gap-8 grid-cols-1 lg:grid-cols-2 max-w-screen-md mx-auto">
             {/* Left Column - Forms */}
             <div className="space-y-6">
               {/* Shipping Address Section */}
@@ -59,7 +59,8 @@ export default function CheckoutPage() {
                       <Image
                         src="/images/image-113.png"
                         alt={`Chicken Tikka ${index + 1}`}
-                        fill
+                        width={64}
+                        height={64}
                         className="object-cover rounded-md"
                       />
                     </div>
