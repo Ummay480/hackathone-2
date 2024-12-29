@@ -3,6 +3,7 @@ import NavBar from "@/components/NavBar";
 import HeroBanner from "@/components/HeroBanner";
 import Image from "next/image";
 
+
 export default function CheckoutPage() {
   return (
     <div>
@@ -106,7 +107,7 @@ export default function CheckoutPage() {
                 <div key={index} className="flex items-center space-x-4">
                   <div className="relative w-16 h-16">
                     <Image
-                      src="/images/image-113.png"
+                      src="/images/chicken-tikka.png"
                       alt="Chicken Tikka"
                       width={64}
                       height={64}
