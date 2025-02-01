@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Navbar from "./Navbar2"; // Import the NavBar component
+import Link from "next/link";
 
 const HeroSection = () => {
   return (
@@ -22,9 +23,11 @@ const HeroSection = () => {
             Lorem ipsum dolor sit amet consectetur adipiscing elit. Varius sed
             pharetra dictum neque massa congue.
           </p>
+          <Link href="/menu">
           <button className="bg-[#FF9F0D] text-white px-6 py-3 rounded-full hover:bg-yellow-600">
             See Menu
           </button>
+          </Link>
         </div>
 
         {/* Image Content */}

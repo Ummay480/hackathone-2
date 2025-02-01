@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { FaCheck } from "react-icons/fa6";
+import Link from "next/link";
 
 const AboutSection = () => {
   return (
@@ -33,9 +34,11 @@ const AboutSection = () => {
             Lorem, ipsum dolor sit amet consectetur adipisicing elit.
           </li>
         </ul>
+        <Link href="blog">
         <button className="mt-6 ml-2 bg-[#FF9F0D] py-3 px-4 w-1/4 rounded-full text-sm hover:bg-orange-500 transition">
           Read More
         </button>
+        </Link>
       </div>
 
       {/* Right Side */}

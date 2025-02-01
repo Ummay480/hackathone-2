@@ -1,5 +1,5 @@
 "use client";
-import { menuItems } from "@/constant/menu";
+import { DessertItem } from "@/constant/Dessert"; 
 import { Coffee } from "lucide-react";
 import Heading from "@/components/Heading";
 import Image from "next/image";
@@ -22,16 +22,16 @@ export default function Dessert() {
         {/* Menu Items Section */}
         <div className="w-full md:w-1/2">
           <div className="flex items-center mb-4">
-           <div className="-mt-24 lm-20"> 
-            <Coffee className="text-[#FF9F0D]" size={20} />
+            <div className="-mt-24 lm-20">
+              <Coffee className="text-[#FF9F0D]" size={20} />
             </div>
             <div className="-ml-7 pt-4">
-            <Heading text="Dessert" />
-          </div>
+              <Heading text="Dessert" />
+            </div>
           </div>
 
           <div className="space-y-4">
-            {menuItems.map((item, index) => (
+            {DessertItem.map((item, index) => (
               <div key={index} className="border-b border-dashed border-gray-300 pb-4">
                 <div className="flex justify-between items-center mb-1">
                   <h3 className="text-base sm:text-lg font-semibold text-gray-800">

@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const WhyChooseUs: React.FC = () => {
   return (
@@ -14,24 +15,24 @@ const WhyChooseUs: React.FC = () => {
               alt="Tacos"
               width={270}
               height={180}
-              className="rounded-lg object-cover w-full"
+              className="rounded-lg object-cover w-full transition-transform transform hover:scale-105 hover:shadow-xl"
             />
             <Image
               src="/images/image-51.jpeg"
               alt="Fried Chicken"
               width={180}
               height={180}
-              className="rounded-lg object-cover w-full"
+              className="rounded-lg object-cover w-full transition-transform transform hover:scale-105 hover:shadow-xl"
             />
           </div>
 
-          <div className="flex flex-col space-y-4 mt-8 md:mt-0">
+          <div className="flex flex-col space-y-4 mt-8 md:mt-0 ">
             <Image
               src="/images/image-50.jpeg"
               alt="Burger"
               width={185}
               height={180}
-              className="rounded-lg object-cover w-full"
+              className="rounded-lg object-cover w-full transition-transform transform hover:scale-105 hover:shadow-xl"
             />
             <div className="flex space-x-4 mt-4">
               <Image
@@ -39,7 +40,7 @@ const WhyChooseUs: React.FC = () => {
                 alt="Cheese Burger"
                 width={160}
                 height={160}
-                className="rounded-lg object-cover w-full"
+                className="rounded-lg object-cover w-full transition-transform transform hover:scale-105 hover:shadow-xl"
               />
               <div className="flex flex-col space-y-4">
                 <Image
@@ -47,14 +48,14 @@ const WhyChooseUs: React.FC = () => {
                   alt="Cheese Burger"
                   width={100}
                   height={100}
-                  className="rounded-lg object-cover w-full"
+                  className="rounded-lg object-cover w-full transition-transform transform hover:scale-105 hover:shadow-xl"
                 />
                 <Image
                   src="/images/image-54.jpeg"
                   alt="Salad"
                   width={100}
                   height={100}
-                  className="rounded-lg object-cover w-full"
+                  className="rounded-lg object-cover w-full transition-transform transform hover:scale-105 hover:shadow-xl"
                 />
               </div>
             </div>
@@ -74,47 +75,56 @@ const WhyChooseUs: React.FC = () => {
             Urna elit augue urna vitae feugiat pretium donec id elementum.
             Ultrices mattis sed vitae mus risus.
           </p>
-
           {/* Icon Section */}
           <div className="flex space-x-6 justify-center md:justify-start">
+            {/* Fast Food */}
             <div className="flex flex-col items-center">
-              <div className="bg-[#FF9F0D] text-white p-4 rounded-sm mb-2">
-                <Image
-                  src="/images/image-71.png"
-                  alt="Fast Food"
-                  width={20}
-                  height={20}
-                  className="h-6 w-6"
-                />
-              </div>
+              <Link href="/menu/fastfood">
+                <div className="hover:scale-105 hover:shadow-xl transition-transform transform bg-[#FF9F0D] text-white p-4 rounded-sm mb-2 cursor-pointer">
+                  <Image
+                    src="/images/image-71.png"
+                    alt="Fast Food"
+                    width={20}
+                    height={20}
+                    className="h-6 w-6"
+                  />
+                </div>
+              </Link>
               <p className="text-gray-300">Fast Food</p>
             </div>
 
+            {/* Lunch */}
             <div className="flex flex-col items-center">
-              <div className="bg-[#FF9F0D] p-4 rounded-sm mb-2">
-                <Image
-                  src="/images/image-64.png"
-                  alt="Lunch"
-                  width={20}
-                  height={20}
-                  className="h-6 w-6"
-                />
-              </div>
+              <Link href="/menu/lunch">
+                <div className="hover:scale-105 hover:shadow-xl transition-transform transform bg-[#FF9F0D] text-white p-4 rounded-sm mb-2 cursor-pointer">
+                  <Image
+                    src="/images/image-64.png"
+                    alt="Lunch"
+                    width={20}
+                    height={20}
+                    className="h-6 w-6"
+                  />
+                </div>
+              </Link>
               <p className="text-gray-300">Lunch</p>
             </div>
 
+            {/* Dinner */}
             <div className="flex flex-col items-center">
-              <div className="bg-[#FF9F0D] p-4 rounded-sm mb-2">
-                <Image
-                  src="/images/image-59.png"
-                  alt="Dinner"
-                  width={20}
-                  height={20}
-                  className="h-6 w-6"
-                />
-              </div>
+              <Link href="/menu/dinner">
+                <div className="hover:scale-105 hover:shadow-xl transition-transform transform bg-[#FF9F0D] text-white p-4 rounded-sm mb-2 cursor-pointer">
+                  <Image
+                    src="/images/image-59.png"
+                    alt="Dinner"
+                    width={20}
+                    height={20}
+                    className="h-6 w-6"
+                  />
+                </div>
+              </Link>
               <p className="text-gray-300">Dinner</p>
             </div>
+                      
           </div>
 
           <div className="rounded-md w-60 flex items-center space-x-4 bg-white mx-auto">

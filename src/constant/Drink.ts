@@ -1,36 +1,42 @@
-
 interface MenuItem {
-    name: string
-    description: string
-    calories: number
-    price: number
-    highlight?: boolean
-  }
-  
-  export const DrinksItem: MenuItem[] = [
-    {
-      name: "Optic Big Breakfast Combo Menu",
-      description: "Toasted French bread topped with romano, cheddar",
-      calories: 560,
-      price: 32
-    },
-    {
-      name: "Cashew Chicken With Stir-Fry",
-      description: "Gorgonzola, ricotta, mozzarella, taleggio",
-      calories: 700,
-      price: 43,
-      highlight: true
-    },
-    {
-      name: " Vegetables & Green Salad",
-      description: "Ground cumin, avocados, peeled and cubed",
-      calories: 1000,
-      price: 14
-    },
-    {
-      name: "Spicy Vegan Potato Curry",
-      description: "Spreadable cream cheese, crumbled blue cheese",
-      calories: 560,
-      price: 35
-    }
-  ]
+  name: string;
+  description: string;
+  calories: number;
+  price: string;
+  highlight?: boolean;
+}
+
+export const DrinksItem: MenuItem[] = [
+  {
+    name: "Coconut Water",
+    description: "Fresh and refreshing coconut water, perfect for hydration.",
+    price: "$3",
+    calories: 50,
+  },
+  {
+    name: "Orange Juice",
+    description: "Freshly squeezed orange juice.",
+    price: "$2",
+    calories: 100,
+  },
+  {
+    name: "Grapefruit Juice",
+    description: "Tangy and refreshing grapefruit juice.",
+    price: "$2",
+    calories: 90,
+  },
+  {
+    name: "Apple Juice",
+    description: "Fresh and sweet apple juice.",
+    price: "$2",
+    calories: 95,
+  },
+ 
+  {
+    name: "Melon Shake",
+    description: "Refreshing melon shake with a hint of sweetness.",
+    price: "$3",
+    calories: 220,
+  },
+ 
+]

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono,Great_Vibes } from "next/font/google";
-
+import ReduxProvider from '../providers/ReduxProvider';
+import ThemeProvider from '../providers/ThemeProvider';
+import Cart from "@/components/Cart";
+import { Geist, Geist_Mono, Great_Vibes } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
 
@@ -31,15 +33,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${greatVibes.variable} antialiased`}
-      >
-        {children}
-        <div className="overflow-x-hidden">
-           <Footer />
-        </div>
-        </body>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${greatVibes.variable} antialiased`} dir="ltr">
+      <body>
+        {/* Wrapping ReduxProvider and ThemeProvider */}
+        <ReduxProvider>
+          <ThemeProvider>
+            <div className="overflow-x-hidden min-h-screen flex flex-col">
+              {/* Cart component at the top */}
+              <Cart />
+              
+              {/* Main content area */}
+              <main className="flex-grow">
+                {children} {/* This is where your pages will render */}
+              </main>
+              
+              {/* Footer component at the bottom */}
+              <Footer />
+            </div>
+          </ThemeProvider>
+        </ReduxProvider>
+      </body>
     </html>
   );
 }

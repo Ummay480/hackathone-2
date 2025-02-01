@@ -8,7 +8,7 @@ const ChefBanner = () => {
         <div>
             <NavBar />
             <div className="text-orange-400">
-            <HeroBanner title="Our Chef " />
+            <HeroBanner title="Chef" />
             </div>
            <div>
             </div>

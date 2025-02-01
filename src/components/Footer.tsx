@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image"; // Import the Next.js Image component
+import Link from "next/link"; // Import the Next.js Link component
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaPinterest } from "react-icons/fa";
 
 const Footer: React.FC = () => {
@@ -8,7 +9,7 @@ const Footer: React.FC = () => {
       {/* Top Section */}
       <div className="flex justify-between items-center py-6 px-4 border-b border-gray-700 max-w-screen-xl mx-auto">
         <h2 className="text-2xl font-semibold">
-          <span className="text-orange-400">Still</span> You Need Our Support ?
+          <span className="text-orange-400">Still</span> You Need Our Support?
         </h2>
         <div className="flex space-x-2">
           <input
@@ -26,7 +27,7 @@ const Footer: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 py-8 px-4 max-w-screen-xl mx-auto">
         {/* About Us */}
         <div>
-          <h3 className="text-lg font-semibold mb-2">About Us.</h3>
+          <h3 className="text-lg font-semibold mb-2">About Us</h3>
           <p className="text-gray-400 text-sm mb-4">
             Corporate clients and leisure travelers have been relying on Groundlink for dependable, safe, and
             professional chauffeured car service in major cities across the world.
@@ -47,12 +48,24 @@ const Footer: React.FC = () => {
         <div>
           <h3 className="text-lg font-semibold mb-2">Useful Links</h3>
           <ul className="text-gray-400 space-y-2">
-            <li>About</li>
-            <li>News</li>
-            <li>Partners</li>
-            <li>Team</li>
-            <li>Menu</li>
-            <li>Contacts</li>
+            <li>
+              <Link href="/aboutUs">About</Link>
+            </li>
+            <li>
+              <Link href="/news">News</Link>
+            </li>
+            <li>
+              <Link href="/partners">Partners</Link>
+            </li>
+            <li>
+              <Link href="/team">Team</Link>
+            </li>
+            <li>
+              <Link href="/menu">Menu</Link>
+            </li>
+            <li>
+              <Link href="/contacts">Contacts</Link>
+            </li>
           </ul>
         </div>
 
@@ -60,12 +73,24 @@ const Footer: React.FC = () => {
         <div>
           <h3 className="text-lg font-semibold mb-2">Help?</h3>
           <ul className="text-gray-400 space-y-2">
-            <li>FAQ</li>
-            <li>Term & Conditions</li>
-            <li>Reporting</li>
-            <li>Documentation</li>
-            <li>Support Policy</li>
-            <li>Privacy</li>
+            <li>
+              <Link href="/faq">FAQ</Link>
+            </li>
+            <li>
+              <Link href="/terms">Terms & Conditions</Link>
+            </li>
+            <li>
+              <Link href="/reporting">Reporting</Link>
+            </li>
+            <li>
+              <Link href="/documentation">Documentation</Link>
+            </li>
+            <li>
+              <Link href="/support-policy">Support Policy</Link>
+            </li>
+            <li>
+              <Link href="/privacy">Privacy</Link>
+            </li>
           </ul>
         </div>
 
@@ -90,11 +115,21 @@ const Footer: React.FC = () => {
       <div className="flex justify-between items-center py-4 px-10 bg-[#4F4F4F] border-t border-gray-700 max-w-screen-xl mx-auto">
         <p className="text-xs px-2 text-white">&copy; 2024 by Ummay Kulsoom. All Rights Reserved.</p>
         <div className="flex space-x-4">
-          <FaFacebook className="text-white hover:text-orange-500 cursor-pointer" />
-          <FaTwitter className="text-white hover:text-orange-500 cursor-pointer" />
-          <FaInstagram className="text-white hover:text-orange-500 cursor-pointer" />
-          <FaYoutube className="text-white hover:text-orange-500 cursor-pointer" />
-          <FaPinterest className="text-white hover:text-orange-500 cursor-pointer" />
+          <Link href="https://www.facebook.com" target="_blank">
+            <FaFacebook className="text-white hover:text-orange-500 cursor-pointer" />
+          </Link>
+          <Link href="https://www.twitter.com" target="_blank">
+            <FaTwitter className="text-white hover:text-orange-500 cursor-pointer" />
+          </Link>
+          <Link href="https://www.instagram.com" target="_blank">
+            <FaInstagram className="text-white hover:text-orange-500 cursor-pointer" />
+          </Link>
+          <Link href="https://www.youtube.com" target="_blank">
+            <FaYoutube className="text-white hover:text-orange-500 cursor-pointer" />
+          </Link>
+          <Link href="https://www.pinterest.com" target="_blank">
+            <FaPinterest className="text-white hover:text-orange-500 cursor-pointer" />
+          </Link>
         </div>
       </div>
     </footer>

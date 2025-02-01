@@ -4,13 +4,14 @@ import FoodMenu from "@/components/FoodMenu";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Menu from "@/components/Menu";
 import Members from "@/components/Members";
-import BlogSection from "@/components/BlogSection";
+import BlogSection from "@/components/Blog/BlogSection";
 import CreativeProcess from "@/components/CreativeProcess";
 import StatsSection from "@/components/StatsSection";
 import Testimonials from "@/components/Testimonials2";
+import Cart from "@/components/Cart";
+import Product from "@/components/Product";
 
-
-export default function Home() {
+const  HomePage =() =>{
   return (
     <>
       <main className="bg-black px-4 sm:px-2 md:px-2 lg:px-20 overflow-x-hidden">
@@ -26,7 +27,10 @@ export default function Home() {
         <CreativeProcess />
         </div>
         <BlogSection />
+        <Product /> 
+        <Cart />
       </main>
     </>
   );
 }
+export default HomePage;

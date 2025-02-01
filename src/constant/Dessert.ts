@@ -1,36 +1,40 @@
-
 interface MenuItem {
-    name: string
-    description: string
-    calories: number
-    price: number
-    highlight?: boolean
-  }
-  
-  export const menuItems: MenuItem[] = [
+  name: string;
+  description: string;
+  calories: number;
+  price: string;
+  highlight?: boolean;
+}
+
+export const DessertItem: MenuItem[] = [
     {
-      name: "Fig and lemon cake",
-      description: "Toasted French bread topped with romano, cheddar",
-      calories: 560,
-      price: 32
+      name: "Brownies",
+      description: "Rich, fudgy brownies with a chocolatey delight.",
+      calories: 450,
+      price: "$4",
     },
     {
-      name: "Creamy mascarpone cake",
-      description: "Gorgonzola, ricotta, mozzarella, taleggio",
-      calories: 700,
-      price: 43,
-      highlight: true
+      name: "Cupcake",
+      description: "Deliciously soft cupcakes topped with creamy frosting.",
+      calories: 350,
+      price: "$3",
     },
     {
-      name: "Pastry, blueberries, lemon juice",
-      description: "Ground cumin, avocados, peeled and cubed",
-      calories: 1000,
-      price: 14
+      name: "Tea Cake",
+      description: "Light and fluffy tea cake with a hint of vanilla.",
+      calories: 300,
+      price: "$3",
     },
     {
-      name: "Pain au chocolat",
-      description: "Spreadable cream cheese, crumbled blue cheese",
-      calories: 560,
-      price: 35
-    }
+      name: "Chip Cookies",
+      description: "Crispy cookies filled with chocolate chips.",
+      calories: 250,
+      price: "$2",
+    },
+    {
+      name: "Chocolate Cake",
+      description: "Rich and moist chocolate cake with chocolate ganache.",
+      calories: 600,
+      price: "$5",
+    },
   ]

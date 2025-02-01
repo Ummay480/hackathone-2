@@ -37,6 +37,7 @@ const mainCourseItems = [
   },
 ];
 
+
 function Page() {
   return (
     <main className="overflow-x-hidden">

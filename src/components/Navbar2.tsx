@@ -43,7 +43,7 @@ const NavBar2 = () => {
           { name: "Pages", link: "/pages" },
           { name: "About", link: "/aboutUs" },
           { name: "Shop", link: "/shop" },
-          { name: "Contact", link: "/contact" },
+          { name: "Contact", link: "/contacts" },
         ].map((item) => (
           <Link
             key={item.name}

@@ -3,7 +3,7 @@ import Image from "next/image";
 
 
  
-function MeetShef() {
+function Meetchef() {
   return (
     <>
       <section className="bg-black md:px-[135px]   py-[50px]">
@@ -27,4 +27,4 @@ function MeetShef() {
   );
 }
 
-export default MeetShef;
+export default Meetchef;

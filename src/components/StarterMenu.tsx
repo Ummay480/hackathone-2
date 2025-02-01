@@ -1,83 +1,53 @@
 "use client";
-import React from "react";
-import Image from "next/image";
+import { starters } from "@/constant/Starter"; // Import starters array
 import { Coffee } from "lucide-react";
 import Heading from "@/components/Heading";
+import Image from "next/image";
 
-interface MenuItem {
-  name: string;
-  description: string;
-  calories: number;
-  price: number;
-  highlight?: boolean;
-}
-
-interface StarterMenuProps {
-  menuItems: MenuItem[];
-}
-
-const StarterMenu: React.FC<StarterMenuProps> = ({ menuItems = [] }) => {
+export default function Starter() {
   return (
-    <section className="w-full mx-auto px-6 sm:px-8 lg:px-12 bg-white">
-      <div className="container mx-auto py-12 flex flex-col lg:flex-row gap-12 items-start">
-        {/* Left Section: Image */}
-        <div className="w-full lg:w-[40%]">
+    <section className="bg-white w-full px-4 py-6 sm:py-10">
+      <div className="container mx-auto flex flex-col md:flex-row items-center gap-6 sm:gap-10">
+        {/* Image Section */}
+        <div className="w-full md:w-1/3">
           <Image
-            src="/images/image-106.png"
+            src="/images/image-106.png" // Adjust image based on your content
             alt="Starter dish"
-            width={500}
-            height={600}
-            className="w-full rounded-lg shadow-lg object-cover"
+            width={448}
+            height={448}
+            className="w-full h-auto rounded-lg shadow-md"
           />
         </div>
 
-        {/* Right Section: Menu Content */}
+        {/* Menu Items Section */}
         <div className="w-full md:w-1/2">
           <div className="flex items-center mb-4">
-           <div className="-mt-24 lm-20"> 
-            <Coffee className="text-[#FF9F0D]" size={20} />
+            <div className="-mt-24 lm-20">
+              <Coffee className="text-[#FF9F0D]" size={20} />
             </div>
             <div className="-ml-7 pt-4">
-            <Heading text="Starter Menu" />
-          </div>
+              <Heading text="Starters" /> {/* Updated heading to "Starters" */}
+            </div>
           </div>
 
-          {/* Menu Items */}
-          <div className="space-y-8">
-            {menuItems.length > 0 ? (
-              menuItems.map((item, index) => (
-                <div
-                  key={index}
-                  className="border-b border-dashed border-gray-300 pb-6 last:border-b-0"
-                >
-                  <div className="flex justify-between items-start mb-3">
-                    <h3
-                      className={`text-lg sm:text-xl font-semibold ${
-                        item.highlight ? "text-[#FF9F0D]" : "text-gray-900"
-                      }`}
-                    >
-                      {item.name}
-                    </h3>
-                    <span className="text-lg sm:text-xl font-bold text-[#FF9F0D]">
-                      ${item.price}
-                    </span>
-                  </div>
-                  <p className="text-sm sm:text-base text-gray-600">
-                    {item.description}
-                  </p>
-                  <p className="text-xs sm:text-sm text-gray-500 mt-1">
-                    {item.calories} CAL
-                  </p>
+          <div className="space-y-4">
+            {starters.map((item, index) => (
+              <div key={index} className="border-b border-dashed border-gray-300 pb-4">
+                <div className="flex justify-between items-center mb-1">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-800">
+                    {item.name}
+                  </h3>
+                  <span className="text-base sm:text-lg font-bold text-[#FF9F0D]">
+                    {item.price}$
+                  </span>
                 </div>
-              ))
-            ) : (
-              <p className="text-gray-500">No menu items available.</p>
-            )}
+                <p className="text-xs sm:text-sm text-gray-600">{item.description}</p>
+                <p className="text-xs text-gray-500">{item.calories} CAL</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default StarterMenu;
+}
