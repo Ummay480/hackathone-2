@@ -3,7 +3,7 @@ import { FC, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { addToCart } from "@/redux/cartSlice"; // Import addToCart action
+import { addToCart } from "@/redux/slices/cartSlice"; // Import addToCart action
 import MenuCard from "@/components/MenuCard"; // Reusable component for menu items
 
 interface FoodItem {
