@@ -2,6 +2,7 @@
 import { Coffee } from "lucide-react";
 import Heading from "@/components/Heading";
 import Image from "next/image";
+import Link from "next/link";  
 import { DrinksItem } from "@/constant/Drink";
 
 export default function Drink() {
@@ -12,17 +13,21 @@ export default function Drink() {
         {/* Drink Menu Section */}
         <div className="w-full md:w-1/2">
           <div className="flex items-center mb-4">
-          <div className="-mt-24 lm-20"> 
-            <Coffee className="text-[#FF9F0D]" size={20} />
+            <div className="-mt-24 lm-20"> 
+              <Coffee className="text-[#FF9F0D]" size={20} />
             </div>
             <div className="-ml-7 pt-4">
-            <Heading text="Drink" />
-          </div>
+              <Heading text="Drink" />
+            </div>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-4"> 
             {DrinksItem.map((item, index) => (
-              <div key={index} className="border-b border-dashed border-gray-300 pb-4">
+              <Link 
+                key={index} 
+                href={`/shop/${item.slug}`} 
+                className="block border-b border-dashed border-gray-300 pb-4 hover:bg-gray-50 transition"
+              >
                 <div className="flex justify-between items-center mb-1">
                   <h3
                     className={`text-base sm:text-lg font-semibold ${
@@ -37,7 +42,7 @@ export default function Drink() {
                 </div>
                 <p className="text-xs sm:text-sm text-gray-600">{item.description}</p>
                 <p className="text-xs text-gray-500">{item.calories} CAL</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

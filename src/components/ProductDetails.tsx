@@ -17,41 +17,38 @@ const ProductDetails: React.FC = () => {
   return (
     <div className="flex flex-col lg:flex-row gap-6 p-6 lg:p-10 text-black bg-white">
       {/* Left: Image Gallery */}
-      <div className="flex lg:w-1/2 flex-col gap-4">
-         {/* Thumbnail Images */}
-                <div className="flex flex-col gap-4 items-start lg:w-1/5">
-                  {["108.png", "106.png", "105.png", "107.png"].map((image, index) => (
-                    <Image
-                      key={index}
-                      src={`/images/${image}`}
-                      alt={`Thumbnail ${index + 1}`}
-                      className="w-24 h-20 object-cover rounded-lg border border-gray-200"
-                      width={64}
-                      height={64}
-                    />
-                  ))}
-                </div>
-        
-                {/* Main Image */}
-                <div className="flex justify-start -mt-40">
-                  <Image
-                    src="/images/image-33.png"
-                    alt="food"
-                    className="w-80 h-auto rounded-lg py-10 ml-28 -mt-64"
-                    width={100} // Increased width for the main image
-                    height={800} // Adjusted height for the main image
-                    priority
-                  />
-                </div>
-              </div>
+      <div className="flex lg:w-1/2 flex-col lg:flex-row gap-4">
+        {/* Thumbnail Images */}
+        <div className="flex flex-col gap-4 items-start">
+          {["108.png", "106.png", "105.png", "107.png"].map((image, index) => (
+            <Image
+              key={index}
+              src={`/images/${image}`}
+              alt={`Thumbnail ${index + 1}`}
+              className="w-24 h-20 object-cover rounded-lg border border-gray-200"
+              width={64}
+              height={64}
+            />
+          ))}
+        </div>
+
+        {/* Main Image */}
+        <div className="flex justify-center">
+          <Image
+            src="/images/image-33.png"
+            alt="Food item"
+            className="w-80 h-auto rounded-lg"
+            width={300}
+            height={400}
+            priority
+          />
+        </div>
+      </div>
 
       {/* Right: Product Info */}
       <div className="lg:w-1/2 flex flex-col gap-6">
         <div className="flex items-center justify-between">
-          <span className="bg-[#FF9F0D]
- text-black px-4 py-1 text-sm">
-            In stock
-          </span>
+          <span className="bg-[#FF9F0D] text-black px-4 py-1 text-sm">In stock</span>
           <div className="flex gap-2">
             <button className="text-gray-400">Prev</button>
             <button className="text-gray-400">Next</button>
@@ -78,33 +75,29 @@ const ProductDetails: React.FC = () => {
           <span className="text-sm text-gray-400">(22 Reviews)</span>
         </div>
 
-        <div className="text-gray-500">Dictum/cursus/Risus</div>
+        <div className="text-gray-500">Dictum / Cursus / Risus</div>
 
+        {/* Quantity & Cart Buttons */}
         <div className="flex items-center gap-4">
           <div className="flex items-center border border-gray-600 rounded-lg">
-            <button
-              onClick={decreaseQuantity}
-              className="px-3 py-1 text-lg font-bold"
-            >
+            <button onClick={decreaseQuantity} className="px-3 py-1 text-lg font-bold">
               -
             </button>
             <span className="px-3 py-1">{quantity}</span>
-            <button
-              onClick={increaseQuantity}
-              className="px-3 py-1 text-lg font-bold"
-            >
+            <button onClick={increaseQuantity} className="px-3 py-1 text-lg font-bold">
               +
             </button>
           </div>
+
           <Link href="/cart">
-          <button className="flex items-center gap-2 bg-[#FF9F0D]
- text-white px-4 py-2 hover:bg-orange-600">
-            <BsCartPlus />
-            Add to cart
-          </button>
+            <button className="flex items-center gap-2 bg-[#FF9F0D] text-white px-4 py-2 hover:bg-orange-600">
+              <BsCartPlus />
+              Add to cart
+            </button>
           </Link>
         </div>
 
+        {/* Wishlist & Compare */}
         <div className="flex flex-col gap-2 text-gray-400">
           <button className="flex items-center gap-2">
             <FaHeart />
@@ -122,6 +115,7 @@ const ProductDetails: React.FC = () => {
           </div>
         </div>
 
+        {/* Social Icons */}
         <div className="flex gap-4 text-gray-400">
           <FaFacebookF />
           <FaTwitter />
