@@ -1,6 +1,4 @@
-// src/app/blog/[slug]/page.tsx
-
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 const blogData = [
   {
@@ -39,8 +37,12 @@ const BlogPage = () => {
   )
 }
 
+// Define the type for the params
+interface Params {
+  slug: string
+}
+
 export async function getStaticPaths() {
-  // Generate paths for each blog post
   const paths = blogData.map(post => ({
     params: { slug: post.slug }
   }))
@@ -48,8 +50,7 @@ export async function getStaticPaths() {
   return { paths, fallback: false }
 }
 
-export async function getStaticProps({ params }) {
-  // Get the blog post based on the slug from the URL
+export async function getStaticProps({ params }: { params: Params }) {
   const post = blogData.find(post => post.slug === params.slug)
 
   return {
