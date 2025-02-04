@@ -1,56 +1,83 @@
-import React from "react";
-import Image from "next/image";
+"use client"; // Ensures client-side rendering
 
-const chefs = [
-  { name: "Tahmina Rumi", role: "Chef", image: "/images/image-21.png" },
-  { name: "Jorina Begum", role: "Chef", image: "/images/image-22.png" },
-  { name: "M. Mohammad", role: "Chef", image: "/images/image-23.png" },
-  { name: "Munna Kathy", role: "Chef", image: "/images/image-24.png" },
-  { name: "Tahmina Rumi", role: "Cook", image: "/images/image-25.png" },
-  { name: "Bisnu Devgon", role: "Chef", image: "/images/image-26.png" },
-  { name: "Motin Molladst", role: "Chef", image: "/images/image-112.png" },
-  { name: "William Rumi", role: "Chef", image: "/images/image-38.png" },
-  { name: "Kets William Roy", role: "Chef", image: "/images/image-29.png" },
-  { name: "Mahmud Kholil", role: "Chef", image: "/images/image-30.png" },
-  { name: "Ataur Rahman", role: "Chef", image: "/images/image-27.png" },
-  { name: "Monalisa Holly", role: "Chef", image: "/images/image-28.png" },
-];
+import React, { useEffect, useState } from "react";
+import { createClient } from "@sanity/client";
+import ChefCard from "@/components/ChefCard"; // Assuming the ChefCard component is correctly named and located
 
-const ChefGrid = () => {
+
+// Initialie Sanity client
+const client = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: "production",
+  useCdn: false,
+  apiVersion: "2025-02-02",
+});
+
+// Define the chef type for TypeScript
+type Chef = {
+  _id: string;
+  name: string;
+  position?: string; // Marked as optional
+  experience: number;
+  specialty: string;
+  imageUrl: string;
+  description: string;
+  available: boolean;
+};
+
+const Chef: React.FC = () => {
+  const [chefs, setChefs] = useState<Chef[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchChefs = async () => {
+      const query = `*[_type == "chef"]{
+        _id,
+        name,
+        position,
+        experience,
+        specialty,
+        "imageUrl": image.asset->url,
+        description,
+        available
+      }`;
+
+      try {
+        const data = await client.fetch(query);
+        setChefs(data);
+      } catch (error) {
+        console.error("Failed to fetch chefs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchChefs();
+  }, []);
+
+  if (loading) {
+    return <div className="text-center py-10">Loading chefs...</div>;
+  }
+
   return (
-    <div className="p-6 mt-20"> {/* Adding mt-20 for margin top */}
-      {/* Grid with responsive columns */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
-        {chefs.map((chef, index) => (
-          <div
-            key={index}
-            className={`rounded-lg shadow-lg bg-white flex flex-col transition-transform transform hover:scale-105 hover:shadow-xl ${
-              index === 6
-                ? "border-gray-200" // Complete purple border for the 7th box
-                : "border-4 border-transparent hover:border-gray-200" // Hover effect for other boxes
-            }`}
-          >
-            {/* Chef Image */}
-            <div className="flex-1">
-              <Image
-                src={chef.image}
-                alt={chef.name}
-                width={300}
-                height={300}
-                className="w-full h-full object-cover rounded-t-lg"
-              />
-            </div>
-
-            {/* Static Information Section Below Image */}
-            <div className="p-4 text-center">
-              <h3 className="text-gray-800 font-bold text-lg">{chef.name}</h3>
-              <p className="text-gray-600">{chef.role}</p>
-            </div>
-          </div>
+    <div className="container mx-auto p-4">
+       
+         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {chefs.map((chef) => (
+          <ChefCard
+            key={chef._id}
+            imageUrl={chef.imageUrl}
+            name={chef.name}
+            position={chef.position || "Position not specified"} // Fallback text
+            experience={`${chef.experience} years`}
+            specialty={chef.specialty}
+            description={chef.description}
+            available={chef.available}
+          />
         ))}
       </div>
     </div>
   );
 };
 
-export default ChefGrid;
+export default Chef;

@@ -9,10 +9,12 @@ interface CartItem {
 
 interface CartState {
   items: CartItem[];
+  totalAmount: number;
 }
 
 const initialState: CartState = {
   items: [],
+  totalAmount: 0,
 };
 
 const cartSlice = createSlice({
@@ -21,12 +23,17 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action: PayloadAction<CartItem>) => {
       state.items.push(action.payload);
+      state.totalAmount += action.payload.price * action.payload.quantity;
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
-      state.items = state.items.filter(item => item.id !== action.payload);
+      const index = state.items.findIndex(item => item.id === action.payload);
+      if (index !== -1) {
+        state.totalAmount -= state.items[index].price * state.items[index].quantity;
+        state.items.splice(index, 1);
+      }
     },
   },
 });
 
 export const { addToCart, removeFromCart } = cartSlice.actions;
-export default cartSlice.reducer; // ✅ This exports the reducer correctly
+export default cartSlice.reducer;

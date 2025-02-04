@@ -2,14 +2,14 @@
 
 import React, { useEffect, useState } from "react";
 import { createClient } from "@sanity/client";
-import FoodCard from "@/components/ProductCard"; // Assuming the FoodCard component is in the same directory
+import FoodCard from "@/components/FoodCard"; // Assuming the FoodCard component is in the same directory
 
 // Initialize Sanity client
 const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: "production",
   useCdn: false,
-  apiVersion: "2025-01-11",
+  apiVersion: "2025-02-02",
 });
 
 // Define the food type for TypeScript
@@ -55,19 +55,20 @@ const Food: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 ">
       <h1 className="text-3xl font-bold mb-6">Foods</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {foods.map((food) => (
           <FoodCard
             key={food._id}
-            image={food.imageUrl}
+            imageUrl={food.imageUrl}
             name={food.name}
+            title={food.name}
             price={`$${food.price}`}
-            discountedPrice={`$${(food.price * 0.8).toFixed(2)}`} // 20% discount example
+            discountPrice={`$${(food.price * 0.8).toFixed(2)}`} // 20% discount example
             discount="20% off" // Example static discount
             rating={food.rating}
-            reviews={Math.floor(Math.random() * 100)} // Example random review count
+            reviewCount={Math.floor(Math.random() * 100)} // Example random review count
           />
         ))}
       </div>

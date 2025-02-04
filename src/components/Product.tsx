@@ -17,11 +17,13 @@ const Product: React.FC<ProductProps> = ({ product }) => {
     return null; // or return a fallback UI
   }
 
-  const handleAddToCart = () => {
+ 
     // Convert id to string before dispatching
-    const cartItem = { ...product, id: product.id.toString() };
-    dispatch(addToCart(cartItem)); // Dispatching addToCart action with the modified product
-  };
+    const handleAddToCart = () => {
+      const cartItem = { ...product, id: product.id.toString(), quantity: 1 }; // Add default quantity
+      dispatch(addToCart(cartItem));
+    };
+    
 
   return (
     <div>

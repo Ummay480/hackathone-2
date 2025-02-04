@@ -1,13 +1,11 @@
-<<<<<<< HEAD
 "use client";
-=======
 // pages/shopping-cart.tsx
 import React from "react";
 import NavBar from "@/components/NavBar";
 import HeroBanner  from "@/components/HeroBanner";
 import Image from "next/image";
 import Link from "next/link";
->>>>>>> 4d59b815b5607b542703f006c219c0d47e5dad44
+
 
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";

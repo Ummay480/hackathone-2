@@ -1,4 +1,4 @@
-export type Product = {
+export interface Product {
   id: string;
   name: string;
   price: number;
@@ -6,4 +6,5 @@ export type Product = {
   image: string;
   category: string;
   onSale?: boolean;
-};
+}
+

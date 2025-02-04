@@ -1,15 +1,13 @@
-"use client";
+"use server"
 import React from 'react';
 import { createClient } from '@sanity/client';
-
 const client = createClient({
-  projectId: "12q1kpjz",
+  projectId:"yfaabr9s",
   dataset: "production",
-  useCdn: true,
+  useCdn: false,
   token: process.env.SANITY_API_TOKEN,
-  apiVersion: '2025-01-17',
+  apiVersion: '2025-02-02',
 });
-
 export default async function FetchFood() {
   const query = `*[_type == "food"]{
     _id,
@@ -22,9 +20,7 @@ export default async function FetchFood() {
     description,
     available
   }`;
-
   const foods = await client.fetch(query);
-
   return (
     <div>
       <h1>Foods</h1>
@@ -42,9 +38,7 @@ export default async function FetchFood() {
             <p>{food.available ? "Available" : "Out of Stock"}</p>
             <img src={food.imageUrl} alt={food.name} />
             {food.tags && (
-              <p>
-                Tags: {food.tags.join(", ")}
-              </p>
+              <p>Tags: {food.tags.join(", ")}</p>
             )}
           </div>
         ))}
