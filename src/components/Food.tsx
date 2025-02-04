@@ -6,7 +6,7 @@ import FoodCard from "@/components/FoodCard"; // Assuming the FoodCard component
 
 // Initialize Sanity client
 const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  projectId: "yfaabr9s",
   dataset: "production",
   useCdn: false,
   apiVersion: "2025-02-02",

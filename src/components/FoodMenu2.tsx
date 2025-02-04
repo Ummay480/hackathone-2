@@ -1,8 +1,11 @@
-"use client"
+"use client";
 import React from "react";
 import Link from "next/link";
 
 const FoodMenu2: React.FC = () => {
+  // List of valid tabs (no 'slug' included)
+  const tabs = ["Breakfast", "Lunch", "Dinner", "Dessert", "Drink"];
+
   return (
     <section className="text-black bg-white py-12">
       <div className="container mx-auto px-4">
@@ -17,32 +20,30 @@ const FoodMenu2: React.FC = () => {
 
         {/* Tabs */}
         <div className="flex justify-center mb-8 space-x-6 text-gray-400 text-sm md:text-base">
-        {["Breakfast", "Lunch", "Dinner", "Dessert", "Drink", "Snack"].map(
-    (tab, index) => {
-      // Define the type of the customPaths object with exact keys
-      const customPaths: Record<"Lunch" | "Dinner" | "Snack", string> = {
-        Lunch: "/menu/lunch",
-        Dinner: "/menu/dinner",
-        Snack: "/menu/snack", // You can add more if needed
-      };
+          {tabs.map((tab, index) => {
+            // Mapping each tab to a specific path
+            const customPaths: Record<"Lunch" | "Dinner" | "Snack", string> = {
+              Lunch: "/menu/lunch",
+              Dinner: "/menu/dinner",
+              Snack: "/menu/snack",
+            };
 
-      // Type check for the tab to ensure it's one of the keys in customPaths
-      const href = customPaths[tab as "Lunch" | "Dinner" | "Snack"] || `/${tab.toLowerCase()}`;
+            // Dynamically generate the href or fallback to default path
+            const href = customPaths[tab as "Lunch" | "Dinner" | "Snack"] || `/menu/${tab.toLowerCase()}`;
 
-      return (
-        <Link key={index} href={href} passHref>
-          <button
-            className={`${
-              index === 0 ? "text-[#FF9F0D] border-b-2 border-[#FF9F0D]" : ""
-            } pb-2 hover:text-[#FF9F0D] transition`}
-          >
-            {tab}
-          </button>
-        </Link>
-      );
-    }
-  )}
-</div>
+            return (
+              <Link key={index} href={href} passHref>
+                <button
+                  className={`${
+                    index === 0 ? "text-[#FF9F0D] border-b-2 border-[#FF9F0D]" : ""
+                  } pb-2 hover:text-[#FF9F0D] transition`}
+                >
+                  {tab}
+                </button>
+              </Link>
+            );
+          })}
+        </div>
 
         {/* Menu Items */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-gray-600">
@@ -71,9 +72,11 @@ const FoodMenu2: React.FC = () => {
 
         {/* View Menu Button */}
         <div className="text-center mt-8">
-          <button className="bg-transparent border border-[#FF9F0D] text-[#FF9F0D] px-6 py-2 rounded-lg hover:bg-[#FF9F0D] hover:text-black transition">
-            View menu
-          </button>
+          <Link href="/menu">
+            <button className="bg-transparent border border-[#FF9F0D] text-[#FF9F0D] px-6 py-2 rounded-lg hover:bg-[#FF9F0D] hover:text-black transition">
+              View menu
+            </button>
+          </Link>
         </div>
       </div>
     </section>

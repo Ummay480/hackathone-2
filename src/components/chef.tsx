@@ -7,7 +7,7 @@ import ChefCard from "@/components/ChefCard"; // Assuming the ChefCard component
 
 // Initialie Sanity client
 const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  projectId: "yfaabr9s",
   dataset: "production",
   useCdn: false,
   apiVersion: "2025-02-02",
