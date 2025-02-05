@@ -35,12 +35,10 @@ const Chef: React.FC = () => {
         _id,
         name,
         position,
-        experience,
         specialty,
         "imageUrl": image.asset->url,
-        description,
-        available
-      }`;
+   
+     }`;
 
       try {
         const data = await client.fetch(query);
@@ -69,11 +67,9 @@ const Chef: React.FC = () => {
             imageUrl={chef.imageUrl}
             name={chef.name}
             position={chef.position || "Position not specified"} // Fallback text
-            experience={`${chef.experience} years`}
             specialty={chef.specialty}
             description={chef.description}
-            available={chef.available}
-          />
+                    />
         ))}
       </div>
     </div>
