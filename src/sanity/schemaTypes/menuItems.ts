@@ -45,10 +45,16 @@ export default {
               title: 'Price',
               description: 'Price of this variety',
             },
+            {
+              name: 'description',
+              type: 'text',
+              title: 'Description',
+              description: 'Description of this particular variety',
+            },
           ],
         },
       ],
-      description: 'Different variations of this food item with separate prices',
+      description: 'Different variations of this food item with separate prices and descriptions',
     },
     {
       name: 'description',
@@ -65,12 +71,6 @@ export default {
       },
     },
     {
-      name: 'originalPrice',
-      type: 'number',
-      title: 'Original Price',
-      description: 'Original price before discount (if any)',
-    },
-    {
       name: 'calories',
       type: 'number',
       title: 'Calories',
@@ -82,12 +82,6 @@ export default {
       title: 'Tags',
       of: [{ type: 'string' }],
       description: 'Tags related to the dish (e.g., Healthy, Spicy, Popular)',
-    },
-    {
-      name: 'available',
-      type: 'boolean',
-      title: 'Available',
-      description: 'Availability status of the item',
     },
     {
       name: 'menu',

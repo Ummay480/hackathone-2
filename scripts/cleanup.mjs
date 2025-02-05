@@ -50,15 +50,13 @@ async function deleteDocumentsByType(documentType) {
   }
 }
 
-// Main function to clean up food and chef data
+// Main function to clean up menuItem data
 async function cleanupData() {
   console.log("🚀 Starting data cleanup...");
 
   try {
-    await deleteDocumentsByType("food");
-    await deleteDocumentsByType("chef");
-
-    console.log("🎉 Data cleanup completed successfully!");
+    await deleteDocumentsByType("menuItem");
+    console.log("🎉 menuItem data cleanup completed successfully!");
   } catch (error) {
     console.error("❌ Error during cleanup:", error.message);
     process.exit(1);
