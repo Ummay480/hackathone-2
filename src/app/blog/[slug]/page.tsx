@@ -1,5 +1,5 @@
 "use client"
-import { useRouter } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 
 const blogData = [
   {
@@ -20,9 +20,13 @@ const blogData = [
 ]
 
 const BlogPage = () => {
-  const router = useRouter()
-  const { slug } = router.query
-  
+  const searchParams = useSearchParams()
+  const slug = searchParams.get('slug')
+
+  if (!slug) {
+    return <div>Blog post not found!</div>
+  }
+
   // Find the blog post based on the slug
   const post = blogData.find(post => post.slug === slug)
 
@@ -38,11 +42,6 @@ const BlogPage = () => {
   )
 }
 
-// Define the type for the params
-interface Params {
-  slug: string
-}
-
 export async function getStaticPaths() {
   const paths = blogData.map(post => ({
     params: { slug: post.slug }
@@ -51,7 +50,7 @@ export async function getStaticPaths() {
   return { paths, fallback: false }
 }
 
-export async function getStaticProps({ params }: { params: Params }) {
+export async function getStaticProps({ params }: { params: { slug: string } }) {
   const post = blogData.find(post => post.slug === params.slug)
 
   return {
