@@ -1,7 +1,5 @@
 import React from "react";
 import NavBar from "@/components/NavBar";
-import { menuItems } from "@/constant/menu"; // Assuming this exists
-import StarterMenu from "@/components/StarterMenu";
 import MainCourse from "@/components/MainCourse"; // Ensure MainCourse is imported correctly
 import StatsSection from "@/components/StatsSection";
 import Dessert from "@/components/Dessert";
@@ -49,7 +47,7 @@ function Page() {
       </div>
 
       {/* Starter Menu with imported menuItems */}
-      <StarterMenu menuItems={menuItems} />
+   
 
       {/* Main Course Section */}
       <MainCourse
@@ -57,15 +55,7 @@ function Page() {
         imageSrc="/images/image-107.png" // Replace with the correct image path
         title="Main Course"
       />
-      <StatsSection />
-      <Breakfast/>
-      <Dessert />
-      <Dinner/>
-      <Drinks />
-      <Snacks/>
-      <Lunch/>
-      <Fastfood/>
-      <HealthyFood/>
+     
       <div>
         <Partners />
       </div>
