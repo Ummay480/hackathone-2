@@ -1,39 +1,76 @@
-"use server";
 import React from "react";
-import { createClient } from "@sanity/client";
-import Link from "next/link";
+import NavBar from "@/components/NavBar";
+import { menuItems } from "@/constant/menu"; // Assuming this exists
+import StarterMenu from "@/components/StarterMenu";
+import MainCourse from "@/components/MainCourse"; // Ensure MainCourse is imported correctly
+import StatsSection from "@/components/StatsSection";
+import Dessert from "@/components/Dessert";
+import Drinks from "@/components/Drinks";
+import HeroBanner from "@/components/HeroBanner";
+import Partners from "@/components/Partners";
+import Breakfast from "@/components/Breakfast";
 
-const client = createClient({
-  projectId: "yfaabr9s",
-  dataset: "production",
-  useCdn: false,
-  token: process.env.SANITY_API_TOKEN,
-  apiVersion: "2025-02-02",
-});
+// Local menuItems array for MainCourse component
+const mainCourseItems = [
+  {
+    name: "Optic Big Breakfast Combo Menu",
+    description: "Toasted French bread topped with romano, cheddar",
+    calories: 560,
+    price: 32,
+  },
+  {
+    name: "Cashew Chicken With Stir-Fry",
+    description: "Gorgonzola, ricotta, mozzarella, taleggio",
+    calories: 700,
+    price: 43,
+  },
+  {
+    name: "Vegetables & Green Salad",
+    description: "Ground cumin, avocados, peeled and cubed",
+    calories: 1000,
+    price: 14,
+  },
+  {
+    name: "Spicy Vegan Potato Curry",
+    description: "Spreadable cream cheese, crumbled blue cheese",
+    calories: 560,
+    price: 35,
+  },
+];
 
-interface Food {
-  _id: string;
-  name: string;
-  price: number;
-  imageUrl: string;
-}
 
-export default async function ShopPage() {
-  const query = `*[_type == "food"]{ _id, name, price, "imageUrl": image.asset->url }`;
-  const foods: Food[] = await client.fetch(query);
-
+function Page() {
   return (
-    <div className="container mx-auto px-4 mt-10">
-      <h1 className="text-3xl font-bold text-center mb-8">Our Menu</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {foods.map((food) => (
-          <Link key={food._id} href={`/shop/${food._id}`} className="border p-4 rounded-lg shadow-md bg-white">
-            <img src={food.imageUrl} alt={food.name} className="w-full h-48 object-cover rounded-md" />
-            <h2 className="text-lg font-semibold mt-4">{food.name}</h2>
-            <p className="text-gray-700 text-md mt-2">${food.price}</p>
-          </Link>
-        ))}
+    <main className="overflow-x-hidden">
+      {/* Navbar Component */}
+      <NavBar />
+      <div>
+        <HeroBanner title="Our Menu" />
       </div>
-    </div>
+
+      {/* Starter Menu with imported menuItems */}
+      <StarterMenu menuItems={menuItems} />
+
+      {/* Main Course Section */}
+      <MainCourse
+        menuItems={mainCourseItems}
+        imageSrc="/images/image-107.png" // Replace with the correct image path
+        title="Main Course"
+      />
+      <StatsSection />
+      <Breakfast/>
+      <Dessert />
+      <Dinner/>
+      <Drinks />
+      <Snacks/>
+      <Lunch/>
+      <Fastfood/>
+      <HealthyFood/>
+      <div>
+        <Partners />
+      </div>
+       </main>
   );
 }
+
+export default Page;
