@@ -14,12 +14,13 @@ interface Chef {
 // 🚀 Fetch chef by slug dynamically
 async function getChef(slug: string): Promise<Chef | null> {
   try {
-    const res = await fetch(`https://your-api-url.com/chefs?slug=${slug}`, {
+    const res = await fetch(`https://sanity-nextjs-rouge.vercel.app/api/chefs?slug=${slug}`, {
       cache: "no-store", // Fetch fresh data every time
     });
     const data = await res.json();
     return data.length ? data[0] : null; // Assuming API returns an array
   } catch (error) {
+    console.error(error); // Log the error if necessary
     return null;
   }
 }
