@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 
 interface Chef {
   id: string;
@@ -32,7 +33,7 @@ export default async function ChefPage({ params }: { params: { slug: string } })
 
   return (
     <div className="p-6 max-w-2xl mx-auto text-center">
-      <img src={chef.image} alt={chef.name} className="w-40 h-40 rounded-full mx-auto object-cover" />
+      <Image src={chef.image} alt={chef.name} className="w-40 h-40 rounded-full mx-auto object-cover" />
       <h1 className="text-3xl font-bold mt-4">{chef.name}</h1>
       <p className="text-lg text-gray-600 italic">{chef.specialty}</p>
       <p className="mt-3 text-gray-700">{chef.bio}</p>

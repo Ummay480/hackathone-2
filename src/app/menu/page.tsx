@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "@/components/NavBar";
-import { menuItems } from "@/constant/menu"; // Assuming this exists
-import StarterMenu from "@/components/StarterMenu";
+import StarterMenu from "@/components/StarterMenu"; // ✅ Ensure file exists
+import { starters } from "@/constant/Starter"; // ✅ Ensure correct file path
 import MainCourse from "@/components/MainCourse"; // Ensure MainCourse is imported correctly
 import StatsSection from "@/components/StatsSection";
 import Dessert from "@/components/Dessert";
@@ -48,7 +48,7 @@ function Page() {
       </div>
 
       {/* Starter Menu with imported menuItems */}
-      <StarterMenu menuItems={menuItems} />
+      <StarterMenu menuItems={starters} /> 
 
       {/* Main Course Section */}
       <MainCourse

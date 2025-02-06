@@ -1,11 +1,15 @@
 "use client";
-import { starters } from "@/constant/Starter"; // Import starters array
 import { Coffee } from "lucide-react";
 import Heading from "@/components/Heading";
 import Image from "next/image";
 import Link from "next/link"; // Import Link for navigation
+import { MenuItem } from "@/constant/Starter"; // Import the MenuItem type
 
-export default function Starter() {
+interface StarterMenuProps {
+  menuItems: MenuItem[]; // Expecting an array of MenuItem
+}
+
+const StarterMenu: React.FC<StarterMenuProps> = ({ menuItems }) => {
   return (
     <section className="bg-white w-full px-4 py-6 sm:py-10">
       <div className="container mx-auto flex flex-col md:flex-row items-center gap-6 sm:gap-10">
@@ -32,7 +36,7 @@ export default function Starter() {
           </div>
 
           <div className="space-y-4">
-            {starters.map((item, index) => (
+            {menuItems.map((item, index) => (
               <Link key={index} href="/shop" passHref>
                 <div className="border-b border-dashed border-gray-300 pb-4">
                   <div className="flex justify-between items-center mb-1">
@@ -53,4 +57,6 @@ export default function Starter() {
       </div>
     </section>
   );
-}
+};
+
+export default StarterMenu;

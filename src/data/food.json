@@ -1,33 +1,322 @@
-[
-    { "title": "Cheeseburger", "slug": "cheeseburger", "category": "Main Course", "price": 2000, "description": "Juicy beef patty with melted cheese, lettuce, and tomato.", "image": "images-cheeseburger.png" },
-    { "title": "Veggie Burger", "slug": "veggie-burger", "category": "Main Course", "price": 1700, "description": "Plant-based patty with fresh veggies and vegan mayo.", "image": "veggie-burger-image.png" },
-    { "title": "Spaghetti Bolognese", "slug": "spaghetti-bolognese", "category": "Main Course", "price": 2500, "description": "Classic Italian pasta with a rich meat sauce.", "image": "spaghetti-bolognese-image.jpg" },
-    { "title": "Caesar Salad", "slug": "caesar-salad", "category": "Starter", "price": 1000, "description": "Crisp romaine lettuce with Caesar dressing, croutons, and parmesan.", "image": "caesar-salad-image.jpg" },
-    { "title": "French Fries", "slug": "french-fries", "category": "Side", "price": 600, "description": "Golden and crispy fried potatoes.", "image": "french-fries-image.jpg" },
-    { "title": "Chicken Wings", "slug": "chicken-wings", "category": "Starter", "price": 1200, "description": "Buffalo wings served with ranch dip.", "image": "chicken-wings-image.jpg" },
-    { "title": "Margherita Pizza", "slug": "margherita-pizza", "category": "Main Course", "price": 2200, "description": "Tomato, mozzarella, and fresh basil pizza.", "image": "margherita-pizza-image.jpg" },
-    { "title": "Pepperoni Pizza", "slug": "pepperoni-pizza", "category": "Main Course", "price": 2400, "description": "Classic pizza with pepperoni slices and cheese.", "image": "pepperoni-pizza-image.jpg" },
-    { "title": "Fish & Chips", "slug": "fish-and-chips", "category": "Main Course", "price": 2300, "description": "Crispy battered fish served with fries.", "image": "fish-and-chips-image.jpg" },
-    { "title": "Penne Alfredo", "slug": "penne-alfredo", "category": "Main Course", "price": 2200, "description": "Penne pasta with a creamy Alfredo sauce.", "image": "penne-alfredo-image.jpg" },
-    { "title": "Cheese Nachos", "slug": "cheese-nachos", "category": "Starter", "price": 800, "description": "Corn chips with melted cheese and jalape\u00f1os.", "image": "cheese-nachos-image.jpg" },
-    { "title": "Garlic Bread", "slug": "garlic-bread", "category": "Side", "price": 500, "description": "Toasted bread with garlic butter.", "image": "garlic-bread-image.jpg" },
-    { "title": "Vegetable Samosas", "slug": "vegetable-samosas", "category": "Starter", "price": 400, "description": "Crispy pastries filled with spiced vegetables.", "image": "vegetable-samosas-image.jpg" },
-    { "title": "Beef Tacos", "slug": "beef-tacos", "category": "Main Course", "price": 1200, "description": "Soft taco shells filled with seasoned beef and toppings.", "image": "beef-tacos-image.jpg" },
-    { "title": "Chicken Quesadilla", "slug": "chicken-quesadilla", "category": "Main Course", "price": 1500, "description": "Grilled tortilla filled with chicken and cheese.", "image": "chicken-quesadilla-image.jpg" },
-    { "title": "Chocolate Lava Cake", "slug": "chocolate-lava-cake", "category": "Dessert", "price": 1200, "description": "Molten chocolate cake served with vanilla ice cream.", "image": "chocolate-lava-cake-image.jpg" },
-    { "title": "Tiramisu", "slug": "tiramisu", "category": "Dessert", "price": 1300, "description": "Layered dessert with coffee-soaked ladyfingers and mascarpone.", "image": "tiramisu-image.jpg" },
-    { "title": "Ice Cream Sundae", "slug": "ice-cream-sundae", "category": "Dessert", "price": 1000, "description": "Vanilla ice cream topped with chocolate sauce and nuts.", "image": "ice-cream-sundae-image.jpg" },
-    { "title": "Lemonade", "slug": "lemonade", "category": "Drink", "price": 500, "description": "Freshly squeezed lemonade with a hint of mint.", "image": "lemonade-image.jpg" },
-    { "title": "Iced Tea", "slug": "iced-tea", "category": "Drink", "price": 500, "description": "Chilled tea served with lemon slices.", "image": "iced-tea-image.jpg" },
-    { "title": "Cappuccino", "slug": "cappuccino", "category": "Drink", "price": 700, "description": "Espresso with steamed milk and foam.", "image": "cappuccino-image.jpg" },
-    { "title": "Latte", "slug": "latte", "category": "Drink", "price": 700, "description": "Espresso with steamed milk and a light layer of foam.", "image": "latte-image.jpg" },
-    { "title": "Espresso", "slug": "espresso", "category": "Drink", "price": 600, "description": "Strong and bold espresso shot.", "image": "espresso-image.jpg" },
-    { "title": "Coca-Cola", "slug": "coca-cola", "category": "Drink", "price": 300, "description": "Classic carbonated soft drink.", "image": "coca-cola-image.jpg" },
-    { "title": "Sprite", "slug": "sprite", "category": "Drink", "price": 300, "description": "Citrusy, refreshing soda.", "image": "sprite-image.jpg" },
-    { "title": "Mineral Water", "slug": "mineral-water", "category": "Drink", "price": 150, "description": "Refreshing, pure bottled water.", "image": "mineral-water-image.jpg" },
-    { "title": "Orange Juice", "slug": "orange-juice", "category": "Drink", "price": 600, "description": "Freshly squeezed orange juice.", "image": "orange-juice-image.jpg" },
-    { "title": "Hot Chocolate", "slug": "hot-chocolate", "category": "Drink", "price": 800, "description": "Warm, creamy chocolate drink with whipped cream.", "image": "hot-chocolate-image.jpg" },
-    { "title": "Milkshake", "slug": "milkshake", "category": "Drink", "price": 900, "description": "Thick, creamy milkshake in vanilla, chocolate, or strawberry flavor.", "image": "milkshake-image.jpg" },
-    { "title": "Fruit Salad", "slug": "fruit-salad", "category": "Dessert", "price": 1000, "description": "A mix of fresh seasonal fruits.", "image": "fruit-salad-image.jpg" }
+ [
+    {
+      "name": "Naan/Kulcha with Beef Paya",
+      "category": "Breakfast",
+      "price": 6,
+      "originalPrice": 6,
+      "tags": ["Popular"],
+      "image": "images/Paya.jpg",
+      "description": "Soft naan or kulcha served with tender beef paya in rich gravy.",
+      "available": true
+    },
+    {
+      "name": "2-Kabab Paratha",
+      "category": "Breakfast",
+      "price": 5,
+      "originalPrice": 5,
+      "tags": ["Best Seller"],
+      "image": "images/Kabab-paratha.jpg",
+      "description": "Two juicy kebabs wrapped in soft paratha.",
+      "available": true
+    },
+    {
+      "name": "Omelette Paratha",
+      "category": "Breakfast",
+      "price": 4,
+      "originalPrice": 4,
+      "tags": ["New"],
+      "image": "images/Omlate-paratha.jpg",
+      "description": "Fluffy omelette wrapped in warm, crispy paratha.",
+      "available": true
+    },
+    {
+      "name": "Lacha Paratha",
+      "category": "Breakfast",
+      "price": 3,
+      "originalPrice": 3,
+      "tags": ["Popular"],
+      "image": "images/lacha-paratha.jpg",
+      "description": "Crispy, flaky paratha served with chutney.",
+      "available": true
+    },
+    {
+      "name": "Bran Paratha",
+      "category": "Breakfast",
+      "price": 3,
+      "originalPrice": 3,
+      "tags": ["Healthy"],
+      "image": "images/bran-paratha.jpg",
+      "description": "Crispy, flaky paratha served with chutney.",
+      "available": true
+    },
+    {
+      "name": "Naan/Paratha with Chana",
+      "category": "Breakfast",
+      "price": 4,
+      "originalPrice": 4,
+      "tags": ["Popular"],
+      "image": "images/chana-paratha.jpg",
+      "description": "Soft naan or paratha served with spiced chickpeas.",
+      "available": true
+    },
+    {
+      "name": "Halwa Poori",
+      "category": "Breakfast",
+      "price": 5,
+      "originalPrice": 5,
+      "tags": ["Classic"],
+      "image": "images/halwa-puri.jpg",
+      "description": "Classic breakfast of puri, sweet halwa, and chana masala.",
+      "available": true
+    },
+    {
+      "name": "Qeema Kachori",
+      "category": "Breakfast",
+      "price": 4,
+      "originalPrice": 4,
+      "tags": ["Spicy"],
+      "image": "images/qeema-kachori.jpg",
+      "description": "Fried kachori stuffed with flavorful minced meat.",
+      "available": true
+    },
+    {
+      "name": "Sandwich",
+      "category": "Breakfast",
+      "price": 3,
+      "originalPrice": 3,
+      "tags": ["Light"],
+      "image": "images/sandwich.png",
+      "description": "Simple and delicious sandwich with fillings of your choice.",
+      "available": true
+    },
+    {
+      "name": "Shami Kabab",
+      "category": "Snacks",
+      "price": 4,
+      "originalPrice": 4,
+      "tags": ["Juicy"],
+      "image": "images/shami-kabab.jpg",
+      "description": "Flavorful minced meat kebabs served with naan or chutney.",
+      "available": true
+    },
+    {
+      "name": "Chicken Patties",
+      "category": "Snacks",
+      "price": 3,
+      "originalPrice": 3,
+      "tags": ["Crunchy"],
+      "image": "images/chicken-patties.jpg",
+      "description": "Crispy pastry filled with seasoned chicken filling.",
+      "available": true
+    },
+    {
+      "name": "Vegetable Roll",
+      "category": "Snacks",
+      "price": 3,
+      "originalPrice": 3,
+      "tags": ["Healthy"],
+      "image": "images/vegitable-rolls.jpg",
+      "description": "Healthy and delicious vegetable roll with a tangy sauce.",
+      "available": true
+    },
+    {
+      "name": "Aloo Samosa",
+      "category": "Snacks",
+      "price": 2,
+      "originalPrice": 2,
+      "tags": ["Classic"],
+      "image": "images/aloo-samosa.jpg",
+      "description": "Crispy samosas filled with spiced mashed potatoes.",
+      "available": true
+    },
+    {
+      "name": "Chicken Shawarma",
+      "category": "Snacks",
+      "price": 4,
+      "originalPrice": 4,
+      "tags": ["Popular"],
+      "image": "images/chicken-shawarma.jpg",
+      "description": "Grilled chicken wrapped in pita bread with garlic sauce.",
+      "available": true
+    },
+    {
+      "name": "Zinger with Fries",
+      "category": "Snacks",
+      "price": 7,
+      "originalPrice": 7,
+      "tags": ["Heavy"],
+      "image": "images/zinger.jpg",
+      "description": "Crispy zinger burger served with fries.",
+      "available": true
+    },
+    {
+      "name": "Club Sandwich",
+      "category": "Snacks",
+      "price": 5,
+      "originalPrice": 5,
+      "tags": ["Delicious"],
+      "image": "images/club-sandwich.jpg",
+      "description": "Triple-layered sandwich filled with chicken, eggs, and veggies.",
+      "available": true
+    },
+    {
+      "name": "Chicken Bites",
+      "category": "Snacks",
+      "price": 10,
+      "originalPrice": 10,
+      "tags": ["Protein-packed"],
+      "image": "images/chicken-bites.jpg",
+      "description": "Grilled chicken bites served with a side of vegetables.",
+      "available": true
+    },
+    {
+      "name": "Kali Daal Chawal",
+      "category": "Lunch",
+      "price": 5,
+      "originalPrice": 5,
+      "tags": ["Traditional"],
+      "image": "images/Kaali-daal-chawal.jpg",
+      "description": "Rich, spicy black lentil dal served with steamed rice.",
+      "available": true
+    },
+    {
+      "name": "Chicken Tikka Macaroni",
+      "category": "Lunch",
+      "price": 6,
+      "originalPrice": 6,
+      "tags": ["Spicy"],
+      "image": "images/tikka-macroni.jpg",
+      "description": "Macaroni infused with tikka spices and grilled chicken chunks.",
+      "available": true
+    },
+    {
+      "name": "Tikka Macaroni",
+      "category": "Lunch",
+      "price": 6,
+      "originalPrice": 6,
+      "tags": ["Spicy"],
+      "image": "images/tikka-macroni.jpg",
+      "description": "Macaroni infused with tikka spices and grilled chicken chunks.",
+      "available": true
+    },
+    {
+      "name": "Chicken Achari Macaroni",
+      "category": "Lunch",
+      "price": 6,
+      "originalPrice": 6,
+      "tags": ["Tangy"],
+      "image": "images/macroni.jpg",
+      "description": "Macaroni cooked with tangy achar masala and chicken.",
+      "available": true
+    },
+    {
+      "name": "Achari Macaroni",
+      "category": "Lunch",
+      "price": 6,
+      "originalPrice": 6,
+      "tags": ["Tangy"],
+      "image": "images/macroni.jpg",
+      "description": "Macaroni cooked with tangy achar masala and chicken.",
+      "available": true
+    },
+    {
+      "name": "Muter Pulao",
+      "category": "Lunch",
+      "price": 5,
+      "originalPrice": 5,
+      "tags": ["Flavorful"],
+      "image": "images/muter-pulao.jpg",
+      "description": "Flavored rice cooked with green peas and aromatic spices.",
+      "available": true
+    },
+    {
+      "name": "Chicken Nihari",
+      "category": "Dinner",
+      "price": 8,
+      "originalPrice": 8,
+      "tags": ["Rich"],
+      "image": "images/chicken-nihari.jpg",
+      "description": "Slow-cooked chicken in a rich, flavorful curry.",
+      "available": true
+    },
+    {
+      "name": "Chicken Karahi",
+      "category": "Dinner",
+      "price": 8,
+      "originalPrice": 8,
+      "tags": ["Spicy"],
+      "image": "images/chicken-karahi.jpg",
+      "description": "Traditional chicken curry cooked in a wok with aromatic spices.",
+      "available": true
+    },
+    {
+      "name": "Chicken Tikka",
+      "category": "Dinner",
+      "price": 6,
+      "originalPrice": 6,
+      "tags": ["Grilled"],
+      "image": "images/chicken-tikka.jpg",
+      "description": "Grilled chicken marinated with spices, served with naan.",
+      "available": true
+    },
+    {
+      "name": "Behari Kabab",
+      "category": "Dinner",
+      "price": 7,
+      "originalPrice": 7,
+      "tags": ["Grilled"],
+      "image": "images/bihari-kabab.jpg",
+      "description": "Tender, spiced beef kebabs grilled to perfection.",
+      "available": true
+    },
+    {
+      "name": "Reshmi Kabab",
+      "category": "Dinner",
+      "price": 6,
+      "originalPrice": 6,
+      "tags": ["Soft"],
+      "image": "images/reshmi-kabab.jpg",
+      "description": "Soft and juicy chicken kebabs, grilled with a creamy marinade.",
+      "available": true
+    },
+    {
+      "name": "Mutton Karahi",
+      "category": "Dinner",
+      "price": 10,
+      "originalPrice": 10,
+      "tags": ["Hearty"],
+      "image": "images/mutton-karahi.jpg",
+      "description": "Mutton cooked in a wok with fresh spices and rich gravy.",
+      "available": true
+    },
+    {
+      "name": "French Fries",
+      "category": "Sides",
+      "price": 3,
+      "originalPrice": 3,
+      "tags": ["Crispy"],
+      "image": "images/french-fries.jpg",
+      "description": "Crispy fries served with your choice of dipping sauce.",
+      "available": true
+    },
+    {
+      "name": "Juice",
+      "category": "Drinks",
+      "price": 3,
+      "originalPrice": 3,
+      "tags": ["Refreshing"],
+      "image": "images/juice.jpg",
+      "description": "Freshly squeezed fruit juice to complement your meal.",
+      "available": true
+    },
+    {
+      "name": "Tea",
+      "category": "Drinks",
+      "price": 2,
+      "originalPrice": 2,
+      "tags": ["Warm"],
+      "image": "images/tea.jpg",
+      "description": "Traditional tea served hot.",
+      "available": true
+    }
   ]
-
