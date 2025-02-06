@@ -19,11 +19,11 @@ async function getChef(slug: string): Promise<Chef | null> {
     });
     const data = await res.json();
     return data.length ? data[0] : null; // Assuming API returns an array
-  } catch (error) {
-    console.error("Failed to fetch chef:", error); // ✅ Now using error
+  }catch (_) {
     return null;
   }
-}
+  }
+
 
 export default async function ChefPage({ params }: { params: { slug: string } }) {
   const chef = await getChef(params.slug);
