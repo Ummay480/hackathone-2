@@ -1,7 +1,7 @@
 import React from "react";
 
 interface CartItemProps {
-  id: string;
+
   name: string;
   image: string; // Added image property
   stock: number; // Added stock property
@@ -10,7 +10,7 @@ interface CartItemProps {
   onRemove: () => void;
 }
 
-const CartItem: React.FC<CartItemProps> = ({ id, name, image, stock, price, quantity, onRemove }) => {
+const CartItem: React.FC<CartItemProps> = ({  name, image, stock, price, quantity, onRemove }) => {
   return (
     <div className="border p-4 rounded-lg shadow-lg text-center">
       <img src={image || "/images/product.jpg"} alt={name} className="mx-auto w-32 h-32 object-cover" />

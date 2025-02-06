@@ -1,6 +1,7 @@
 "use server";
 import React from "react";
 import { createClient } from "@sanity/client";
+import Image from "next/image"; // Import the Image component from next/image
 
 const client = createClient({
   projectId: "yfaabr9s",
@@ -23,7 +24,7 @@ export default async function FoodDetailsPage({ params }: { params: { slug: stri
   const query = `*[_type == "food" && _id == $slug][0] {
     _id, name, price, "imageUrl": image.asset->url, description, available
   }`;
-  
+
   const food: Food | null = await client.fetch(query, { slug: params.slug });
 
   if (!food) return <div className="text-center text-gray-600 mt-10">Food item not found</div>;
@@ -32,7 +33,14 @@ export default async function FoodDetailsPage({ params }: { params: { slug: stri
     <div className="container mx-auto px-4 mt-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
-          <img src={food.imageUrl} alt={food.name} className="w-full h-[350px] object-cover rounded-md" />
+          {/* Replacing <img> with <Image> from next/image */}
+          <Image 
+            src={food.imageUrl} 
+            alt={food.name} 
+            width={500}  // Specify the width you want
+            height={350} // Specify the height you want
+            className="w-full h-[350px] object-cover rounded-md" 
+          />
         </div>
         <div>
           <h1 className="text-3xl font-bold">{food.name}</h1>

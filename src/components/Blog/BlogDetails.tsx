@@ -1,7 +1,7 @@
-import { GetStaticPaths, GetStaticProps } from 'next'; 
+import { GetStaticProps } from 'next'; 
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+
 
 type BlogPost = {
   id: number;

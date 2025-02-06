@@ -6,7 +6,7 @@ import Dessert from "@/components/Dessert";
 import Drinks from "@/components/Drinks";
 import HeroBanner from "@/components/HeroBanner";
 import Partners from "@/components/Partners";
-import Breakfast from "@/components/Breakfast";
+
 
 // Local menuItems array for MainCourse component
 const mainCourseItems = [
@@ -36,30 +36,38 @@ const mainCourseItems = [
   },
 ];
 
-
 function Page() {
   return (
     <main className="overflow-x-hidden">
       {/* Navbar Component */}
       <NavBar />
+      
+      {/* Hero Banner */}
       <div>
         <HeroBanner title="Our Menu" />
       </div>
 
-      {/* Starter Menu with imported menuItems */}
-   
-
+      {/* Starter Menu Component */}
+      {/* You can add the StarterMenu component here once you've imported it */}
+      {/* <StarterMenu menuItems={starters} /> */}
+      
       {/* Main Course Section */}
       <MainCourse
         menuItems={mainCourseItems}
         imageSrc="/images/image-107.png" // Replace with the correct image path
         title="Main Course"
       />
-     
+      
+      {/* Optional Sections */}
+      <StatsSection />
+      <Dessert />
+      <Drinks />
+
+      {/* Partners Section */}
       <div>
         <Partners />
       </div>
-       </main>
+    </main>
   );
 }
 
