@@ -5,7 +5,7 @@ import SnackSection from "@/components/Snack"; // Renamed the import to avoid co
 import HeroBanner from "@/components/HeroBanner";
 import Partners from "@/components/Partners";
 
-const Page = () => {
+const SnackPage = () => {
   return (
     <main className="overflow-x-hidden">
       {/* Navbar Component */}
@@ -32,5 +32,5 @@ const Page = () => {
   );
 };
 
-export default Page; // ✅ Correctly export the Page component
+export default SnackPage; // ✅ Correctly export the Page component
 

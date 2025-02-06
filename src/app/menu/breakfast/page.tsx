@@ -5,7 +5,7 @@ import BreakfastSection from "@/components/Breakfast"; // Renamed the import to 
 import HeroBanner from "@/components/HeroBanner";
 import Partners from "@/components/Partners";
 
-const Page = () => {
+const BreakFastPage = () => {
   return (
     <main className="overflow-x-hidden">
       {/* Navbar Component */}
@@ -32,4 +32,4 @@ const Page = () => {
   );
 };
 
-export default Page; // Export the Page component instead of BreakFastItems
+export default BreakFastPage; // Export the Page component instead of BreakFastItems

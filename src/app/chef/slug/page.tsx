@@ -20,7 +20,7 @@ async function getChef(slug: string): Promise<Chef | null> {
     const data = await res.json();
     return data.length ? data[0] : null; // Assuming API returns an array
   } catch (error) {
-    console.error(error); // Log the error if necessary
+    console.error("Failed to fetch chef:", error); // ✅ Now using error
     return null;
   }
 }
