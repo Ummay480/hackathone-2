@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import { GetServerSideProps } from "next";
 
 interface Chef {
   id: string;
@@ -26,7 +27,7 @@ async function getChef(slug: string): Promise<Chef | null> {
   }
 }
 
-export default async function ChefPage({ params }: { params: { slug: string } }) {
+export default async function ChefPage({ params }: { params: Record<string, string> }) {
   const chef = await getChef(params.slug);
 
   if (!chef) {
