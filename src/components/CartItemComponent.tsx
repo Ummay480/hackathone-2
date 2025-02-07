@@ -2,18 +2,20 @@ import React from "react";
 
 import Image from "next/image";
 
-interface CartItemProps {
+
+interface CartItemsProps {
 
   name: string;
   image: string; // Added image property
   stock: number; // Added stock property
   price: number;
   quantity: number;
+  onAdd: () => void;
   onRemove: () => void;
   id:string;
 }
 
-const CartItem: React.FC<CartItemProps> = ({ name, image, stock, price, quantity, onAdd, onRemove }) => {
+const CartItem: React.FC<CartItemsProps> = ({ name, image, stock, price, quantity, onAdd, onRemove }) => {
   return (
     <div className="border p-4 rounded-lg shadow-lg text-center">
       <Image src={image || "/images/product.jpg"} alt={name} className="mx-auto w-32 h-32 object-cover" />

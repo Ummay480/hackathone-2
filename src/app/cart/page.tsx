@@ -1,60 +1,44 @@
-"use client";
-
 import React from "react";
-import NavBar from "@/components/NavBar";
-import HeroBanner from "@/components/HeroBanner";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import { addToCart, removeFromCart } from "@/redux/slices/cartSlice"; // ✅ Import addToCart
-import CartItem from "@/components/CartItem";
-import { FoodItem } from "@/types/food"; // ✅ Import FoodItem
+import { CartItemProps } from "@/types/cart"; // Ensure correct import
 
-const CartPage = () => {
-  const dispatch = useDispatch();
-  const cart = useSelector((state: RootState) => state.cart);
-
-  const handleAddToCart = (item: FoodItem) => {
-    dispatch(
-      addToCart({
-        ...item,
-        quantity: 1,
-        stock: item.stock ?? 0,
-        image: item.image || "/images/default.jpg", // ✅ Ensure image is set
-      })
-    );
-  };
-  const handleRemoveFromCart = (id: string) => {
-    dispatch(removeFromCart(id));
-  };
-
+const CartItem: React.FC<CartItemProps> = ({ 
+  
+  name, 
+  image, 
+  price, 
+  quantity, 
+  onAdd, 
+  onRemove 
+}) => {
   return (
-    <div>
-      <NavBar />
-      <HeroBanner title="Your Shopping Cart" />
-      <div className="container mx-auto py-10">
-        <h2 className="text-3xl font-bold mb-6 text-center">Your Cart</h2>
-        {cart.items.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {cart.items.map((item) => (
-            <CartItem
-              key={item.id}
-              id={item.id}
-              name={item.name}
-              image={item.image || "/images/product.jpg"}
-              stock={item.stock ?? 0}
-              price={item.price}
-              quantity={item.quantity}
-              onAdd={() => handleAddToCart(item)} // ✅ Fix by ensuring onAdd exists in props
-              onRemove={() => handleRemoveFromCart(item.id)}
-            />
-          ))}
-          </div>
-        ) : (
-          <p className="text-gray-600 text-center text-lg">Your cart is empty.</p>
+    <div className="border p-4 rounded-lg shadow-lg text-center">
+      <img 
+        src={image || "/images/product.jpg"} 
+        alt={name} 
+        className="mx-auto w-32 h-32 object-cover" 
+      />
+      <h3 className="text-xl font-semibold mt-4">{name}</h3>
+      <p className="text-lg font-bold text-gray-700">${price}</p>
+      <p className="text-gray-600">Quantity: {quantity}</p>
+      
+      <div className="flex justify-center mt-4 space-x-2">
+        {onAdd && ( // ✅ Ensure onAdd is defined before using
+          <button 
+            className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-700"
+            onClick={onAdd}
+          >
+            Add More
+          </button>
         )}
+        <button 
+          className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700"
+          onClick={onRemove}
+        >
+          Remove
+        </button>
       </div>
     </div>
   );
 };
 
-export default CartPage;
+export default CartItem; // ✅ Make sure to export correctly

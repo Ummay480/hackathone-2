@@ -5,8 +5,6 @@ export interface CartItemProps {
   stock: number;
   price: number;
   quantity: number;
-  onAdd?: () => void;  // ✅ Make it optional to avoid errors
+  onAdd?: () => void; // ✅ Optional to prevent errors
   onRemove: () => void;
 }
-
-
