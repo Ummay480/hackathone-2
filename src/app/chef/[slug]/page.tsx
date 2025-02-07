@@ -1,21 +1,14 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 
-// ✅ Manually define PageProps
-interface PageProps {
-  params: { slug: string };
-}
-
 interface Chef {
-  id: string;
-  slug: string;
   name: string;
   bio: string;
   image: string;
+  slug: string;
 }
 
-// ✅ Define the getChef function
-async function getChef(slug: string): Promise<Chef | null> {
+const getChef = async (slug: string): Promise<Chef | null> => {
   try {
     const res = await fetch(`https://sanity-nextjs-rouge.vercel.app/api/chefs?slug=${slug}`, {
       cache: "no-store",
@@ -31,39 +24,37 @@ async function getChef(slug: string): Promise<Chef | null> {
     console.error("Error fetching chef:", error);
     return null;
   }
-}
+};
 
-// ✅ Fix type usage in component
-export default async function ChefDetailsPage({ params }: PageProps) {
-  if (!params?.slug) {
-    return notFound();
-  }
-
-  const chef = await getChef(params.slug);
+const ChefPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const slug = (await params).slug;
+  const chef = await getChef(slug);
 
   if (!chef) {
-    return notFound();
+    notFound();
   }
 
   return (
-    <div className="container mx-auto px-4 mt-10">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          {chef.image && (
-            <Image
-              src={chef.image}
-              alt={chef.name}
-              width={500}
-              height={350}
-              className="w-full h-[350px] object-cover rounded-md"
-            />
-          )}
-        </div>
-        <div>
-          <h1 className="text-3xl font-bold">{chef.name}</h1>
-          <p className="text-md text-gray-600 mt-6">{chef.bio}</p>
-        </div>
-      </div>
+    <div className="max-w-5xl mx-auto my-20">
+      <h1 className="text-3xl font-bold">{chef.name}</h1>
+      <Image
+        src={chef.image || "/placeholder.jpg"}
+        alt={chef.name || "Chef image"}
+        width={500}
+        height={350}
+        className="rounded-lg object-cover"
+      />
+      <p className="text-md text-gray-600 mt-6">{chef.bio}</p>
     </div>
   );
+};
+
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
+  const chefs: Array<{ slug: { current: string } }> = await fetch(
+    "https://sanity-nextjs-rouge.vercel.app/api/chefs"
+  ).then((res) => res.json());
+
+  return chefs.map((chef) => ({ slug: chef.slug.current }));
 }
+
+export default ChefPage;
