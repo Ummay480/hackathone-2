@@ -1,14 +1,8 @@
-// src/types/cart.ts
-
-import { Product } from '@/types/product'; // Ensure correct import
-
-export interface CartItems extends Product {
+export interface CartItems {
+  id: string;
+  name: string;
+  price: number;
   quantity: number;
-    id: string;
-    name: string;
-    description: string;  // Required description field
-    price: number;
-    imageUrl: string; 
-    stock:number;    // Required image URL field
-  }
-  
+  stock: number;
+  image: string; // ✅ Ensure this property exists
+}

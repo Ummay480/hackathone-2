@@ -2,7 +2,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from "@/redux/slices/cartSlice"; // Corrected import
-import type { Product } from '@/types/product'; // Correct Product type import
+import type { Product } from '@/types/food'; // Correct Product type import
 
 interface ProductProps {
   product: Product; // Ensure 'product' prop is passed correctly

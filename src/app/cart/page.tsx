@@ -5,12 +5,26 @@ import NavBar from "@/components/NavBar";
 import HeroBanner from "@/components/HeroBanner";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { removeFromCart } from "@/redux/slices/cartSlice";
+import { addToCart, removeFromCart } from "@/redux/slices/cartSlice"; // ✅ Import addToCart
 import CartItem from "@/components/CartItem";
+import { FoodItem } from "@/types/food"; // ✅ Import FoodItem
 
 const CartPage = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state: RootState) => state.cart);
+
+  const handleAddToCart = (item: FoodItem) => {
+    dispatch(
+      addToCart({
+        ...item,
+        quantity: 1,
+        stock: item.stock ?? 0,
+        image: item.image || "/images/default.jpg", // ✅ Ensure image is set
+      })
+    );
+  };
+  
+  
 
   const handleRemoveFromCart = (id: string) => {
     dispatch(removeFromCart(id));
@@ -29,10 +43,10 @@ const CartPage = () => {
                 key={item.id}
                 id={item.id}
                 name={item.name}
-                image={item.image || "/images/product.jpg"}
-                stock={item.stock ?? 0} // Ensure stock is not undefined
+                image={item.image } // ✅ Fix: Fallback for missing images
+                stock={item.stock ?? 0} // ✅ Fix: Ensure stock is not undefined
                 price={item.price}
-                quantity={item.quantity}
+                quantity={item.quantity || 1} // ✅ Fix: Ensure quantity is always at least 1
                 onRemove={() => handleRemoveFromCart(item.id)}
               />
             ))}

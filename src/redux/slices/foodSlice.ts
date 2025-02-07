@@ -1,10 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface FoodItem {
-  id: string;
-  name: string;
-  price: number;
-}
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { FoodItem } from "@/types/food"; // Import from types
 
 interface FoodState {
   items: FoodItem[];
@@ -15,7 +10,7 @@ const initialState: FoodState = {
 };
 
 const foodSlice = createSlice({
-  name: 'food',
+  name: "food",
   initialState,
   reducers: {
     setFood: (state, action: PayloadAction<FoodItem[]>) => {

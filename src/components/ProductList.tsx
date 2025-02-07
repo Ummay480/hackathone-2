@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Product } from "@/types/product"; // Adjust path as needed
+import { Product } from "@/types/food"; // Adjust path as needed
 import ProductCard from "./ShopCard"; // Ensure ProductCard is default exported
 
 const products: Product[] = [
