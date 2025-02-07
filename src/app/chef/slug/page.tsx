@@ -11,31 +11,29 @@ interface Chef {
   specialty: string;
 }
 
-// Fetch chef by slug dynamically
+// ✅ Fetch chef by slug dynamically
 async function getChef(slug: string): Promise<Chef | null> {
   try {
     const res = await fetch(`https://sanity-nextjs-rouge.vercel.app/api/chefs?slug=${slug}`, {
       cache: "no-store", // Ensure fresh data on every request
     });
 
+    if (!res.ok) throw new Error("Failed to fetch chef");
+
     const data: Chef[] = await res.json();
-    return data.length ? data[0] : null; // Assuming API returns an array
+    return data.length ? data[0] : null; // API returns an array
   } catch (error) {
     console.error("Error fetching chef:", error);
     return null;
   }
 }
 
-// Define the type for props
-interface ChefPageProps {
-  params: { slug: string };
-}
-
-export default async function ChefPage({ params }: ChefPageProps) {
+// ✅ Fix the prop type issue
+export default async function ChefPage({ params }: { params: { slug: string } }) {
   const chef = await getChef(params.slug);
 
   if (!chef) {
-    return notFound(); // Return 404 page if chef not found
+    return notFound(); // ❌ Show 404 if chef not found
   }
 
   return (
@@ -49,7 +47,7 @@ export default async function ChefPage({ params }: ChefPageProps) {
   );
 }
 
-// ✅ Fix: Use generateStaticParams to register dynamic routes
+// ✅ Ensure Next.js recognizes this as a dynamic route
 export async function generateStaticParams() {
-  return []; // Ensure Next.js recognizes this as a dynamic route
+  return []; // No pre-rendered static pages
 }
