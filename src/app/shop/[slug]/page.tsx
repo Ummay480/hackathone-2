@@ -2,6 +2,7 @@
 
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import { PageProps } from "next";
 
 interface Food {
   id: string;
@@ -32,14 +33,8 @@ async function getFood(slug: string): Promise<Food | null> {
   }
 }
 
-// ✅ Define Props Interface
-interface FoodDetailsPageProps {
-  params: {
-    slug: string;
-  };
-}
-
-export default async function FoodDetailsPage({ params }: FoodDetailsPageProps) {
+// ✅ Explicitly define `PageProps`
+export default async function FoodDetailsPage({ params }: PageProps<{ slug: string }>) {
   if (!params?.slug) {
     return notFound();
   }
