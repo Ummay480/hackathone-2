@@ -11,7 +11,7 @@ interface Chef {
   specialty: string;
 }
 
-// ✅ Define getChef function
+// ✅ Define the getChef function
 async function getChef(slug: string): Promise<Chef | null> {
   try {
     const res = await fetch(`https://sanity-nextjs-rouge.vercel.app/api/chefs?slug=${slug}`, {
@@ -30,12 +30,13 @@ async function getChef(slug: string): Promise<Chef | null> {
   }
 }
 
+// ✅ Fix the params type issue
 export default async function ChefPage({ params }: { params: { slug: string } }) {
   if (!params?.slug) {
     return notFound();
   }
 
-  const chef = await getChef(params.slug); // ✅ getChef function now exists
+  const chef = await getChef(params.slug);
 
   if (!chef) {
     return notFound();
@@ -54,8 +55,9 @@ export default async function ChefPage({ params }: { params: { slug: string } })
   );
 }
 
+// ✅ Correct the format of generateStaticParams
 export async function generateStaticParams() {
-  return [{ slug: 'placeholder' }]; // ✅ Correct format
+  return [{ slug: 'placeholder' }]; // Correct format
 }
 
-export const dynamicParams = true; // ✅ Dynamic params enabled
+export const dynamicParams = true; // Enable dynamic params
