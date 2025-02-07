@@ -1,61 +1,85 @@
 "use server";
 
-import React from "react";
-import { createClient } from "@sanity/client";
+import { notFound } from "next/navigation";
 import Image from "next/image";
 
-const client = createClient({
-  projectId: "yfaabr9s",
-  dataset: "production",
-  useCdn: false,
-  token: process.env.SANITY_API_TOKEN,
-  apiVersion: "2025-02-02",
-});
-
 interface Food {
-  _id: string;
+  id: string;
+  slug: string;
   name: string;
   price: number;
-  imageUrl: string;
+  image: string;
   description: string;
   available: boolean;
 }
 
-// ✅ Corrected Type for params
+// ✅ Define the getFood function
+async function getFood(slug: string): Promise<Food | null> {
+  try {
+    const res = await fetch(`https://sanity-nextjs-rouge.vercel.app/api/foods?slug=${slug}`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      return null;
+    }
+
+    const data: Food[] = await res.json();
+    return data.length ? data[0] : null;
+  } catch (error) {
+    console.error("Error fetching food:", error);
+    return null;
+  }
+}
+
+// ✅ Define Props Interface
 interface FoodDetailsPageProps {
   params: {
     slug: string;
   };
 }
 
-export default async function FoodDetailsPage({ params }: FoodDetailsPageProps) { 
-  const query = `*[_type == "food" && _id == $slug][0] {
-    _id, name, price, "imageUrl": image.asset->url, description, available
-  }`;
+export default async function FoodDetailsPage({ params }: FoodDetailsPageProps) {
+  if (!params?.slug) {
+    return notFound();
+  }
 
-  const food: Food | null = await client.fetch(query, { slug: params.slug });
+  const food = await getFood(params.slug);
 
-  if (!food) return <div className="text-center text-gray-600 mt-10">Food item not found</div>;
+  if (!food) {
+    return notFound();
+  }
 
   return (
     <div className="container mx-auto px-4 mt-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
-          <Image 
-            src={food.imageUrl} 
-            alt={food.name} 
-            width={500}  
-            height={350} 
-            className="w-full h-[350px] object-cover rounded-md" 
-          />
+          {food.image && (
+            <Image
+              src={food.image}
+              alt={food.name}
+              width={500}
+              height={350}
+              className="w-full h-[350px] object-cover rounded-md"
+            />
+          )}
         </div>
         <div>
           <h1 className="text-3xl font-bold">{food.name}</h1>
           <p className="text-xl font-semibold text-gray-700 mt-4">${food.price}</p>
           <p className="text-md text-gray-600 mt-6">{food.description}</p>
-          <p className="text-md font-semibold mt-4">{food.available ? "Available" : "Out of Stock"}</p>
+          <p className="text-md font-semibold mt-4">
+            {food.available ? "Available" : "Out of Stock"}
+          </p>
         </div>
       </div>
     </div>
   );
 }
+
+// ✅ Correct the format of generateStaticParams
+export async function generateStaticParams() {
+  return [{ slug: "placeholder" }]; // Correct format
+}
+
+export const dynamicParams = true; // Enable dynamic params
