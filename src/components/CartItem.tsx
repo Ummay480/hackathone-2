@@ -1,4 +1,5 @@
 import React from "react";
+
 import Image from "next/image";
 
 interface CartItemProps {
@@ -9,6 +10,7 @@ interface CartItemProps {
   price: number;
   quantity: number;
   onRemove: () => void;
+  id:string;
 }
 
 const CartItem: React.FC<CartItemProps> = ({  name, image, stock, price, quantity, onRemove }) => {

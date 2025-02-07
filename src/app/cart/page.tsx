@@ -6,7 +6,7 @@ import HeroBanner from "@/components/HeroBanner";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { removeFromCart } from "@/redux/slices/cartSlice";
-import CartItem from "@/components/CartItems";
+import CartItem from "@/components/CartItem";
 
 const CartPage = () => {
   const dispatch = useDispatch();

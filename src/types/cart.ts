@@ -2,12 +2,13 @@
 
 import { Product } from '@/types/product'; // Ensure correct import
 
-export interface CartItem extends Product {
+export interface CartItems extends Product {
   quantity: number;
     id: string;
     name: string;
     description: string;  // Required description field
     price: number;
-    imageUrl: string;     // Required image URL field
+    imageUrl: string; 
+    stock:number;    // Required image URL field
   }
   
