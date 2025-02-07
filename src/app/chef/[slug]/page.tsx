@@ -1,4 +1,3 @@
-"use client"
 import { notFound } from "next/navigation";
 import Image from "next/image";
 
@@ -29,7 +28,7 @@ async function getChef(slug: string): Promise<Chef | null> {
   }
 }
 
-// ✅ Fix the prop type issue
+// ✅ Fix the type issue with `params`
 export default async function ChefPage({ params }: { params: { slug: string } }) {
   const chef = await getChef(params.slug);
 
@@ -48,7 +47,7 @@ export default async function ChefPage({ params }: { params: { slug: string } })
   );
 }
 
-// ✅ Ensure Next.js recognizes this as a dynamic route
+// ✅ Ensure Next.js Recognizes This as a Dynamic Route
 export async function generateStaticParams() {
   return []; // No pre-rendered static pages
 }
