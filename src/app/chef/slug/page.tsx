@@ -17,13 +17,14 @@ async function getChef(slug: string): Promise<Chef | null> {
     const res = await fetch(`https://sanity-nextjs-rouge.vercel.app/api/chefs?slug=${slug}`, {
       cache: "no-store", // Fetch fresh data every time
     });
-    const data = await res.json();
+
+    const data: Chef[] = await res.json();
     return data.length ? data[0] : null; // Assuming API returns an array
-  }catch (_) {
+  } catch (error) {
+    console.error("Error fetching chef:", error);
     return null;
   }
-  }
-
+}
 
 export default async function ChefPage({ params }: { params: { slug: string } }) {
   const chef = await getChef(params.slug);
@@ -33,12 +34,12 @@ export default async function ChefPage({ params }: { params: { slug: string } })
   }
 
   return (
-    <div className="p-6 max-w-2xl mx-auto text-center">
-      <Image src={chef.image} alt={chef.name} className="w-40 h-40 rounded-full mx-auto object-cover" />
-      <h1 className="text-3xl font-bold mt-4">{chef.name}</h1>
-      <p className="text-lg text-gray-600 italic">{chef.specialty}</p>
-      <p className="mt-3 text-gray-700">{chef.bio}</p>
-      <p className="mt-2 font-semibold">Experience: {chef.experience}</p>
+    <div>
+      <h1>{chef.name}</h1>
+      <h2>{chef.specialty}</h2>
+      <Image src={chef.image} alt={chef.name} width={500} height={500} />
+      <p>{chef.bio}</p>
+      <p>Experience: {chef.experience}</p>
     </div>
   );
 }
