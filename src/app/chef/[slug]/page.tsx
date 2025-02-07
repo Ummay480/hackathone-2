@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import { PageProps } from "next";
 
 interface Chef {
   id: string;
@@ -30,8 +31,8 @@ async function getChef(slug: string): Promise<Chef | null> {
   }
 }
 
-// ✅ Fix the params type issue
-export default async function ChefPage({ params }: { params: { slug: string } }) {
+// ✅ Explicitly define `PageProps` type
+export default async function ChefPage({ params }: PageProps<{ slug: string }>) {
   if (!params?.slug) {
     return notFound();
   }
