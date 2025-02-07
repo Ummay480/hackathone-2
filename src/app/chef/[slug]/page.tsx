@@ -1,15 +1,17 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { PageProps } from "next";
+
+// ✅ Manually define PageProps
+interface PageProps {
+  params: { slug: string };
+}
 
 interface Chef {
   id: string;
   slug: string;
   name: string;
   bio: string;
-  experience: string;
   image: string;
-  specialty: string;
 }
 
 // ✅ Define the getChef function
@@ -31,8 +33,8 @@ async function getChef(slug: string): Promise<Chef | null> {
   }
 }
 
-// ✅ Explicitly define `PageProps` type
-export default async function ChefPage({ params }: PageProps<{ slug: string }>) {
+// ✅ Fix type usage in component
+export default async function ChefDetailsPage({ params }: PageProps) {
   if (!params?.slug) {
     return notFound();
   }
@@ -44,21 +46,24 @@ export default async function ChefPage({ params }: PageProps<{ slug: string }>) 
   }
 
   return (
-    <>
-      <h1>{chef.name}</h1>
-      <p>{chef.specialty}</p>
-      <p>{chef.bio}</p>
-      <p>Experience: {chef.experience}</p>
-      {chef.image && (
-        <Image src={chef.image} alt={chef.name} width={500} height={500} />
-      )}
-    </>
+    <div className="container mx-auto px-4 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          {chef.image && (
+            <Image
+              src={chef.image}
+              alt={chef.name}
+              width={500}
+              height={350}
+              className="w-full h-[350px] object-cover rounded-md"
+            />
+          )}
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold">{chef.name}</h1>
+          <p className="text-md text-gray-600 mt-6">{chef.bio}</p>
+        </div>
+      </div>
+    </div>
   );
 }
-
-// ✅ Correct the format of generateStaticParams
-export async function generateStaticParams() {
-  return [{ slug: 'placeholder' }]; // Correct format
-}
-
-export const dynamicParams = true; // Enable dynamic params
