@@ -23,9 +23,6 @@ const CartPage = () => {
       })
     );
   };
-  
-  
-
   const handleRemoveFromCart = (id: string) => {
     dispatch(removeFromCart(id));
   };
@@ -39,17 +36,18 @@ const CartPage = () => {
         {cart.items.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {cart.items.map((item) => (
-              <CartItem
-                key={item.id}
-                id={item.id}
-                name={item.name}
-                image={item.image } // ✅ Fix: Fallback for missing images
-                stock={item.stock ?? 0} // ✅ Fix: Ensure stock is not undefined
-                price={item.price}
-                quantity={item.quantity || 1} // ✅ Fix: Ensure quantity is always at least 1
-                onRemove={() => handleRemoveFromCart(item.id)}
-              />
-            ))}
+            <CartItem
+              key={item.id}
+              id={item.id}
+              name={item.name}
+              image={item.image || "/images/product.jpg"}
+              stock={item.stock ?? 0}
+              price={item.price}
+              quantity={item.quantity}
+              onAdd={() => handleAddToCart(item)} // ✅ Fix by ensuring onAdd exists in props
+              onRemove={() => handleRemoveFromCart(item.id)}
+            />
+          ))}
           </div>
         ) : (
           <p className="text-gray-600 text-center text-lg">Your cart is empty.</p>
