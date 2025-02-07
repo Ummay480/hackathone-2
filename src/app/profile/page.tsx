@@ -1,8 +1,10 @@
-// src/app/profile/page.tsx
+"use client"; // ✅ Add this at the top of the file
+
 import { FC, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/redux/store';
-import { updateUser } from '@/redux/slices/userSlice'; // Assuming you have an action to update user in redux
+import { updateUser } from '@/redux/slices/userSlice'; 
+
 
 interface UserProfile {
   id: string;
@@ -120,7 +122,7 @@ const ProfilePage: FC = () => {
               </button>
               <button
                 onClick={handleSave}
-                className="bg-blue-500 text-white py-2 px-4 rounded-md"
+                className="bg-orange-400 text-white py-2 px-4 rounded-md"
               >
                 Save Changes
               </button>

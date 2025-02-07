@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface UserState {
+interface UserProfile {
   id: string;
   name: string;
   email: string;
@@ -8,7 +8,7 @@ interface UserState {
   address: string;
 }
 
-const initialState: UserState = {
+const initialState: UserProfile = {
   id: "",
   name: "",
   email: "",
@@ -20,11 +20,11 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    updateUser: (state, action: PayloadAction<UserState>) => {
-      return action.payload; // Replacing state with new user data
+    updateUser: (state, action: PayloadAction<UserProfile>) => {
+      return action.payload;
     },
   },
 });
 
 export const { updateUser } = userSlice.actions;
-export default userSlice.reducer;
+export default userSlice.reducer; // ✅ Ensure it's a default export
