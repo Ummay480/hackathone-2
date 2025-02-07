@@ -1,4 +1,6 @@
-const menuSchema= {
+import { defineType } from 'sanity'; 
+ 
+ const menuSchema = defineType({
     name: "menu",
     type: "document",
     title: "Menu",
@@ -14,5 +16,5 @@ const menuSchema= {
         title: "Description",
       },
     ],
-  };
+  });
   export default menuSchema;

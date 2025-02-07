@@ -1,4 +1,6 @@
-const menuItem={
+import { defineType } from 'sanity';
+
+const menuItemsSchema = defineType({
   name: 'menuItem',
   type: 'document',
   title: 'Menu Item',
@@ -91,5 +93,6 @@ const menuItem={
       description: 'Reference to the menu category this item belongs to',
     },
   ],
-};
+});
+
 export default menuItemsSchema;

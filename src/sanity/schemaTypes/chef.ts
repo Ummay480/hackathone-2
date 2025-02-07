@@ -1,6 +1,6 @@
 import { defineField, defineType } from 'sanity'
 
-const chefSchema=({
+const chefSchema= defineType({
   name: 'chef',
   title: 'Chef',
   type: 'document',

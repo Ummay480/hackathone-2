@@ -1,6 +1,6 @@
 import { defineField, defineType } from 'sanity'
 
-const categorySchema=({
+const categorySchema= defineType({
   name: 'category',
   title: 'Category',
   type: 'document',
