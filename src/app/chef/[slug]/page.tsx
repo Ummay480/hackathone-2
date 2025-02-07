@@ -30,6 +30,10 @@ async function getChef(slug: string): Promise<Chef | null> {
 
 // ✅ Fix the type issue with `params`
 export default async function ChefPage({ params }: { params: { slug: string } }) {
+  if (!params || !params.slug) {
+    return notFound(); // Handle missing params
+  }
+
   const chef = await getChef(params.slug);
 
   if (!chef) {
@@ -48,6 +52,6 @@ export default async function ChefPage({ params }: { params: { slug: string } })
 }
 
 // ✅ Ensure Next.js Recognizes This as a Dynamic Route
-export async function generateStaticParams() {
-  return []; // No pre-rendered static pages
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
+  return []; // No pre-generated static pages, everything is dynamic
 }
