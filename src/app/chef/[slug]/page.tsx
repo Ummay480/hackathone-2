@@ -11,15 +11,15 @@ interface Chef {
   specialty: string;
 }
 
-async function getChef(slug: string): Promise<Chef | null> { // Explicitly return null
+// ✅ Define getChef function
+async function getChef(slug: string): Promise<Chef | null> {
   try {
     const res = await fetch(`https://sanity-nextjs-rouge.vercel.app/api/chefs?slug=${slug}`, {
       cache: "no-store",
     });
+
     if (!res.ok) {
-        const errorText = await res.text(); // Get error message from response
-        console.error("Failed to fetch chef:", res.status, errorText); // Log status and error
-        return null;
+      return null;
     }
 
     const data: Chef[] = await res.json();
@@ -31,11 +31,11 @@ async function getChef(slug: string): Promise<Chef | null> { // Explicitly retur
 }
 
 export default async function ChefPage({ params }: { params: { slug: string } }) {
-  if (!params || !params.slug) {
+  if (!params?.slug) {
     return notFound();
   }
 
-  const chef = await getChef(params.slug);
+  const chef = await getChef(params.slug); // ✅ getChef function now exists
 
   if (!chef) {
     return notFound();
@@ -47,17 +47,15 @@ export default async function ChefPage({ params }: { params: { slug: string } })
       <p>{chef.specialty}</p>
       <p>{chef.bio}</p>
       <p>Experience: {chef.experience}</p>
-      {/* Add Image component if image URL is valid */}
       {chef.image && (
-          <Image src={chef.image} alt={chef.name} width={500} height={500} />
+        <Image src={chef.image} alt={chef.name} width={500} height={500} />
       )}
     </>
   );
 }
 
-
 export async function generateStaticParams() {
-  return [{ params: { slug: 'placeholder' } }]; // Return a placeholder
+  return [{ slug: 'placeholder' }]; // ✅ Correct format
 }
 
-export const dynamicParams = true; // Key change: Indicate dynamic params
+export const dynamicParams = true; // ✅ Dynamic params enabled
