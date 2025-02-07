@@ -1,322 +1,418 @@
- [
-    {
-      "name": "Naan/Kulcha with Beef Paya",
-      "category": "Breakfast",
-      "price": 6,
-      "originalPrice": 6,
-      "tags": ["Popular"],
-      "image": "images/Paya.jpg",
-      "description": "Soft naan or kulcha served with tender beef paya in rich gravy.",
-      "available": true
+[
+  {
+    "name": "Naan/Kulcha with Beef Paya",
+    "category": "Breakfast",
+    "price": 400,
+    "originalPrice": 400,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738868757/food/chicken-shawarma.jpg"
+      }
     },
-    {
-      "name": "2-Kabab Paratha",
-      "category": "Breakfast",
-      "price": 5,
-      "originalPrice": 5,
-      "tags": ["Best Seller"],
-      "image": "images/Kabab-paratha.jpg",
-      "description": "Two juicy kebabs wrapped in soft paratha.",
-      "available": true
+    "description": "Soft naan or kulcha served with tender beef paya in rich gravy.",
+    "available": true
+  },
+  {
+    "name": "2-Kabab Paratha",
+    "category": "Breakfast",
+    "price": 350,
+    "originalPrice": 350,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738868756/food/chicken-karahi.jpg"
+      }
     },
-    {
-      "name": "Omelette Paratha",
-      "category": "Breakfast",
-      "price": 4,
-      "originalPrice": 4,
-      "tags": ["New"],
-      "image": "images/Omlate-paratha.jpg",
-      "description": "Fluffy omelette wrapped in warm, crispy paratha.",
-      "available": true
+    "description": "Two juicy kebabs wrapped in soft paratha.",
+    "available": true
+  },
+  {
+    "name": "Omelette Paratha",
+    "category": "Breakfast",
+    "price": 300,
+    "originalPrice": 300,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738868756/food/Nihari.jpg"
+      }
     },
-    {
-      "name": "Lacha Paratha",
-      "category": "Breakfast",
-      "price": 3,
-      "originalPrice": 3,
-      "tags": ["Popular"],
-      "image": "images/lacha-paratha.jpg",
-      "description": "Crispy, flaky paratha served with chutney.",
-      "available": true
+    "description": "Fluffy omelette wrapped in warm, crispy paratha.",
+    "available": true
+  },
+  {
+    "name": "Lacha Paratha",
+    "category": "Breakfast",
+    "price": 250,
+    "originalPrice": 250,
+    "tags": [],
+    "image": null,
+    "description": "Crispy, flaky paratha served with chutney.",
+    "available": true
+  },
+  {
+    "name": "Bran Paratha",
+    "category": "Breakfast",
+    "price": 250,
+    "originalPrice": 250,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738868666/food/bran-paratha.jpg"
+      }
     },
-    {
-      "name": "Bran Paratha",
-      "category": "Breakfast",
-      "price": 3,
-      "originalPrice": 3,
-      "tags": ["Healthy"],
-      "image": "images/bran-paratha.jpg",
-      "description": "Crispy, flaky paratha served with chutney.",
-      "available": true
+    "description": "Crispy, flaky paratha served with chutney.",
+    "available": true
+  },
+  {
+    "name": "Naan/Paratha with Chana",
+    "category": "Breakfast",
+    "price": 300,
+    "originalPrice": 300,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870687/food/burger.png"
+      }
     },
-    {
-      "name": "Naan/Paratha with Chana",
-      "category": "Breakfast",
-      "price": 4,
-      "originalPrice": 4,
-      "tags": ["Popular"],
-      "image": "images/chana-paratha.jpg",
-      "description": "Soft naan or paratha served with spiced chickpeas.",
-      "available": true
+    "description": "Soft naan or paratha served with spiced chickpeas.",
+    "available": true
+  },
+  {
+    "name": "Halwa Poori",
+    "category": "Breakfast",
+    "price": 350,
+    "originalPrice": 350,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870686/food/coffee-cake-half.jpg"
+      }
     },
-    {
-      "name": "Halwa Poori",
-      "category": "Breakfast",
-      "price": 5,
-      "originalPrice": 5,
-      "tags": ["Classic"],
-      "image": "images/halwa-puri.jpg",
-      "description": "Classic breakfast of puri, sweet halwa, and chana masala.",
-      "available": true
+    "description": "Classic breakfast of puri, sweet halwa, and chana masala.",
+    "available": true
+  },
+  {
+    "name": "Qeema Kachori",
+    "category": "Breakfast",
+    "price": 300,
+    "originalPrice": 300,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870686/food/chocolate-cup-cake.png"
+      }
     },
-    {
-      "name": "Qeema Kachori",
-      "category": "Breakfast",
-      "price": 4,
-      "originalPrice": 4,
-      "tags": ["Spicy"],
-      "image": "images/qeema-kachori.jpg",
-      "description": "Fried kachori stuffed with flavorful minced meat.",
-      "available": true
+    "description": "Fried kachori stuffed with flavorful minced meat.",
+    "available": true
+  },
+  {
+    "name": "Sandwich",
+    "category": "Breakfast",
+    "price": 250,
+    "originalPrice": 250,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870686/food/sandwich.jpg"
+      }
     },
-    {
-      "name": "Sandwich",
-      "category": "Breakfast",
-      "price": 3,
-      "originalPrice": 3,
-      "tags": ["Light"],
-      "image": "images/sandwich.png",
-      "description": "Simple and delicious sandwich with fillings of your choice.",
-      "available": true
+    "description": "Simple and delicious sandwich with fillings of your choice.",
+    "available": true
+  },
+  {
+    "name": "Shami Kabab",
+    "category": "Snacks",
+    "price": 300,
+    "originalPrice": 300,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870686/food/fajita-pizza.jpg"
+      }
     },
-    {
-      "name": "Shami Kabab",
-      "category": "Snacks",
-      "price": 4,
-      "originalPrice": 4,
-      "tags": ["Juicy"],
-      "image": "images/shami-kabab.jpg",
-      "description": "Flavorful minced meat kebabs served with naan or chutney.",
-      "available": true
+    "description": "Flavorful minced meat kebabs served with naan or chutney.",
+    "available": true
+  },
+  {
+    "name": "Chicken Patties",
+    "category": "Snacks",
+    "price": 250,
+    "originalPrice": 250,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870686/food/donuts.png"
+      }
     },
-    {
-      "name": "Chicken Patties",
-      "category": "Snacks",
-      "price": 3,
-      "originalPrice": 3,
-      "tags": ["Crunchy"],
-      "image": "images/chicken-patties.jpg",
-      "description": "Crispy pastry filled with seasoned chicken filling.",
-      "available": true
+    "description": "Crispy pastry filled with seasoned chicken filling.",
+    "available": true
+  },
+  {
+    "name": "Vegetable Roll",
+    "category": "Snacks",
+    "price": 250,
+    "originalPrice": 250,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870685/food/chocolate-cup-cake-1.png"
+      }
     },
-    {
-      "name": "Vegetable Roll",
-      "category": "Snacks",
-      "price": 3,
-      "originalPrice": 3,
-      "tags": ["Healthy"],
-      "image": "images/vegitable-rolls.jpg",
-      "description": "Healthy and delicious vegetable roll with a tangy sauce.",
-      "available": true
+    "description": "Healthy and delicious vegetable roll with a tangy sauce.",
+    "available": true
+  },
+  {
+    "name": "Aloo Samosa",
+    "category": "Snacks",
+    "price": 200,
+    "originalPrice": 200,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870685/food/shrimps.png"
+      }
     },
-    {
-      "name": "Aloo Samosa",
-      "category": "Snacks",
-      "price": 2,
-      "originalPrice": 2,
-      "tags": ["Classic"],
-      "image": "images/aloo-samosa.jpg",
-      "description": "Crispy samosas filled with spiced mashed potatoes.",
-      "available": true
+    "description": "Crispy samosas filled with spiced mashed potatoes.",
+    "available": true
+  },
+  {
+    "name": "Chicken Shawarma",
+    "category": "Snacks",
+    "price": 300,
+    "originalPrice": 300,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870684/food/coconut-water.jpg"
+      }
     },
-    {
-      "name": "Chicken Shawarma",
-      "category": "Snacks",
-      "price": 4,
-      "originalPrice": 4,
-      "tags": ["Popular"],
-      "image": "images/chicken-shawarma.jpg",
-      "description": "Grilled chicken wrapped in pita bread with garlic sauce.",
-      "available": true
+    "description": "Grilled chicken wrapped in pita bread with garlic sauce.",
+    "available": true
+  },
+  {
+    "name": "Zinger with Fries",
+    "category": "Snacks",
+    "price": 500,
+    "originalPrice": 500,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870683/food/club-sandwich.jpg"
+      }
     },
-    {
-      "name": "Zinger with Fries",
-      "category": "Snacks",
-      "price": 7,
-      "originalPrice": 7,
-      "tags": ["Heavy"],
-      "image": "images/zinger.jpg",
-      "description": "Crispy zinger burger served with fries.",
-      "available": true
+    "description": "Crispy zinger burger served with fries.",
+    "available": true
+  },
+  {
+    "name": "Club Sandwich",
+    "category": "Snacks",
+    "price": 350,
+    "originalPrice": 350,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870683/food/dates-shake.jpg"
+      }
     },
-    {
-      "name": "Club Sandwich",
-      "category": "Snacks",
-      "price": 5,
-      "originalPrice": 5,
-      "tags": ["Delicious"],
-      "image": "images/club-sandwich.jpg",
-      "description": "Triple-layered sandwich filled with chicken, eggs, and veggies.",
-      "available": true
+    "description": "Triple-layered sandwich filled with chicken, eggs, and veggies.",
+    "available": true
+  },
+  {
+    "name": "Chicken Bites",
+    "category": "Snacks",
+    "price": 600,
+    "originalPrice": 600,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870683/food/chicken-chrgha.png"
+      }
     },
-    {
-      "name": "Chicken Bites",
-      "category": "Snacks",
-      "price": 10,
-      "originalPrice": 10,
-      "tags": ["Protein-packed"],
-      "image": "images/chicken-bites.jpg",
-      "description": "Grilled chicken bites served with a side of vegetables.",
-      "available": true
+    "description": "Grilled chicken bites served with a side of vegetables.",
+    "available": true
+  },
+  {
+    "name": "Kali Daal Chawal",
+    "category": "Lunch",
+    "price": 350,
+    "originalPrice": 350,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870682/food/daal-chawal.jpg"
+      }
     },
-    {
-      "name": "Kali Daal Chawal",
-      "category": "Lunch",
-      "price": 5,
-      "originalPrice": 5,
-      "tags": ["Traditional"],
-      "image": "images/Kaali-daal-chawal.jpg",
-      "description": "Rich, spicy black lentil dal served with steamed rice.",
-      "available": true
+    "description": "Rich, spicy black lentil dal served with steamed rice.",
+    "available": true
+  },
+  {
+    "name": "Chicken Tikka Macaroni",
+    "category": "Lunch",
+    "price": 400,
+    "originalPrice": 400,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870682/food/muffins.png"
+      }
     },
-    {
-      "name": "Chicken Tikka Macaroni",
-      "category": "Lunch",
-      "price": 6,
-      "originalPrice": 6,
-      "tags": ["Spicy"],
-      "image": "images/tikka-macroni.jpg",
-      "description": "Macaroni infused with tikka spices and grilled chicken chunks.",
-      "available": true
+    "description": "Macaroni infused with tikka spices and grilled chicken chunks.",
+    "available": true
+  },
+  {
+    "name": "Tikka Macaroni",
+    "category": "Lunch",
+    "price": 400,
+    "originalPrice": 400,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870682/food/cup-cake.jpg"
+      }
     },
-    {
-      "name": "Tikka Macaroni",
-      "category": "Lunch",
-      "price": 6,
-      "originalPrice": 6,
-      "tags": ["Spicy"],
-      "image": "images/tikka-macroni.jpg",
-      "description": "Macaroni infused with tikka spices and grilled chicken chunks.",
-      "available": true
+    "description": "Macaroni infused with tikka spices and grilled chicken chunks.",
+    "available": true
+  },
+  {
+    "name": "Chicken Achari Macaroni",
+    "category": "Lunch",
+    "price": 400,
+    "originalPrice": 400,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870682/food/muffins.png"
+      }
     },
-    {
-      "name": "Chicken Achari Macaroni",
-      "category": "Lunch",
-      "price": 6,
-      "originalPrice": 6,
-      "tags": ["Tangy"],
-      "image": "images/macroni.jpg",
-      "description": "Macaroni cooked with tangy achar masala and chicken.",
-      "available": true
+    "description": "Macaroni cooked with tangy achar masala and chicken.",
+    "available": true
+  },
+  {
+    "name": "Achari Macaroni",
+    "category": "Lunch",
+    "price": 400,
+    "originalPrice": 400,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870682/food/cup-cake.jpg"
+      }
     },
-    {
-      "name": "Achari Macaroni",
-      "category": "Lunch",
-      "price": 6,
-      "originalPrice": 6,
-      "tags": ["Tangy"],
-      "image": "images/macroni.jpg",
-      "description": "Macaroni cooked with tangy achar masala and chicken.",
-      "available": true
+    "description": "Macaroni cooked with tangy achar masala and chicken.",
+    "available": true
+  },
+  {
+    "name": "Muter Pulao",
+    "category": "Lunch",
+    "price": 350,
+    "originalPrice": 350,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870681/food/pulao.jpg"
+      }
     },
-    {
-      "name": "Muter Pulao",
-      "category": "Lunch",
-      "price": 5,
-      "originalPrice": 5,
-      "tags": ["Flavorful"],
-      "image": "images/muter-pulao.jpg",
-      "description": "Flavored rice cooked with green peas and aromatic spices.",
-      "available": true
+    "description": "Flavored rice cooked with green peas and aromatic spices.",
+    "available": true
+  },
+  {
+    "name": "Chicken Nihari",
+    "category": "Dinner",
+    "price": 500,
+    "originalPrice": 500,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870681/food/nihari.jpg"
+      }
     },
-    {
-      "name": "Chicken Nihari",
-      "category": "Dinner",
-      "price": 8,
-      "originalPrice": 8,
-      "tags": ["Rich"],
-      "image": "images/chicken-nihari.jpg",
-      "description": "Slow-cooked chicken in a rich, flavorful curry.",
-      "available": true
+    "description": "Slow-cooked chicken in a rich, flavorful curry.",
+    "available": true
+  },
+  {
+    "name": "Chicken Karahi",
+    "category": "Dinner",
+    "price": 500,
+    "originalPrice": 500,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870681/food/karahi.jpg"
+      }
     },
-    {
-      "name": "Chicken Karahi",
-      "category": "Dinner",
-      "price": 8,
-      "originalPrice": 8,
-      "tags": ["Spicy"],
-      "image": "images/chicken-karahi.jpg",
-      "description": "Traditional chicken curry cooked in a wok with aromatic spices.",
-      "available": true
+    "description": "Traditional chicken curry cooked in a wok with aromatic spices.",
+    "available": true
+  },
+  {
+    "name": "Chicken Tikka",
+    "category": "Dinner",
+    "price": 400,
+    "originalPrice": 400,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870681/food/tikka.jpg"
+      }
     },
-    {
-      "name": "Chicken Tikka",
-      "category": "Dinner",
-      "price": 6,
-      "originalPrice": 6,
-      "tags": ["Grilled"],
-      "image": "images/chicken-tikka.jpg",
-      "description": "Grilled chicken marinated with spices, served with naan.",
-      "available": true
+    "description": "Grilled chicken marinated with spices, served with naan.",
+    "available": true
+  },
+  {
+    "name": "Behari Kabab",
+    "category": "Dinner",
+    "price": 450,
+    "originalPrice": 450,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870680/food/bihari-kabab.jpg"
+      }
     },
-    {
-      "name": "Behari Kabab",
-      "category": "Dinner",
-      "price": 7,
-      "originalPrice": 7,
-      "tags": ["Grilled"],
-      "image": "images/bihari-kabab.jpg",
-      "description": "Tender, spiced beef kebabs grilled to perfection.",
-      "available": true
+    "description": "Tender, spiced beef kebabs grilled to perfection.",
+    "available": true
+  },
+  {
+    "name": "Reshmi Kabab",
+    "category": "Dinner",
+    "price": 450,
+    "originalPrice": 450,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870680/food/reshmi-kabab.jpg"
+      }
     },
-    {
-      "name": "Reshmi Kabab",
-      "category": "Dinner",
-      "price": 6,
-      "originalPrice": 6,
-      "tags": ["Soft"],
-      "image": "images/reshmi-kabab.jpg",
-      "description": "Soft and juicy chicken kebabs, grilled with a creamy marinade.",
-      "available": true
+    "description": "Succulent chicken kebabs marinated in cream and spices.",
+    "available": true
+  },
+  {
+    "name": "Chicken Malai Boti",
+    "category": "Dinner",
+    "price": 450,
+    "originalPrice": 450,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870680/food/malai-boti.jpg"
+      }
     },
-    {
-      "name": "Mutton Karahi",
-      "category": "Dinner",
-      "price": 10,
-      "originalPrice": 10,
-      "tags": ["Hearty"],
-      "image": "images/mutton-karahi.jpg",
-      "description": "Mutton cooked in a wok with fresh spices and rich gravy.",
-      "available": true
+    "description": "Chicken pieces marinated in cream and spices, grilled to perfection.",
+    "available": true
+  },
+  {
+    "name": "Chicken Tikka Pizza",
+    "category": "Dinner",
+    "price": 600,
+    "originalPrice": 600,
+    "tags": [],
+    "image": {
+      "asset": {
+        "url": "https://res.cloudinary.com/dhr0kjbem/image/upload/v1738870680/food/pizza.png"
+      }
     },
-    {
-      "name": "French Fries",
-      "category": "Sides",
-      "price": 3,
-      "originalPrice": 3,
-      "tags": ["Crispy"],
-      "image": "images/french-fries.jpg",
-      "description": "Crispy fries served with your choice of dipping sauce.",
-      "available": true
-    },
-    {
-      "name": "Juice",
-      "category": "Drinks",
-      "price": 3,
-      "originalPrice": 3,
-      "tags": ["Refreshing"],
-      "image": "images/juice.jpg",
-      "description": "Freshly squeezed fruit juice to complement your meal.",
-      "available": true
-    },
-    {
-      "name": "Tea",
-      "category": "Drinks",
-      "price": 2,
-      "originalPrice": 2,
-      "tags": ["Warm"],
-      "image": "images/tea.jpg",
-      "description": "Traditional tea served hot.",
-      "available": true
-    }
-  ]
+    "description": "Tikka-flavored chicken on a cheesy pizza crust.",
+    "available": true
+  }
+]
