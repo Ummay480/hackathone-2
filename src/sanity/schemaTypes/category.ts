@@ -1,6 +1,6 @@
 import { defineField, defineType } from 'sanity'
 
-export default defineType({
+const categorySchema=({
   name: 'category',
   title: 'Category',
   type: 'document',
@@ -29,3 +29,4 @@ export default defineType({
     }),
   ],
 })
+export default categorySchema;

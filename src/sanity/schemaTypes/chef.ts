@@ -1,6 +1,6 @@
 import { defineField, defineType } from 'sanity'
 
-export default defineType({
+const chefSchema=({
   name: 'chef',
   title: 'Chef',
   type: 'document',
@@ -68,3 +68,4 @@ export default defineType({
     }),
   ],
 })
+export default chefSchema;

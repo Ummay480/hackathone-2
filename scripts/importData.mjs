@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import sanityClient from '@sanity/client';
+import sanityClient from '@sanity/lib/client';
 import fs from 'fs';
 
 // Load environment variables from .env.local

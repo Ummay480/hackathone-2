@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface CartItemProps {
 
@@ -13,7 +14,7 @@ interface CartItemProps {
 const CartItem: React.FC<CartItemProps> = ({  name, image, stock, price, quantity, onRemove }) => {
   return (
     <div className="border p-4 rounded-lg shadow-lg text-center">
-      <img src={image || "/images/product.jpg"} alt={name} className="mx-auto w-32 h-32 object-cover" />
+      <Image src={image || "/images/product.jpg"} alt={name} className="mx-auto w-32 h-32 object-cover" />
       <h3 className="text-xl font-semibold mt-4">{name}</h3>
       <p className="text-lg font-bold text-gray-700">${price}</p>
       <p className="text-gray-600">Quantity: {quantity}</p>

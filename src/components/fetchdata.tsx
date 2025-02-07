@@ -1,13 +1,29 @@
-"use server"
-import React from 'react';
-import { createClient } from '@sanity/client';
+"use server";
+
+import React from "react";
+import { createClient } from "@sanity/client";
+
 const client = createClient({
-  projectId:"yfaabr9s",
+  projectId: "yfaabr9s",
   dataset: "production",
   useCdn: false,
   token: process.env.SANITY_API_TOKEN,
-  apiVersion: '2025-02-02',
+  apiVersion: "2025-02-02",
 });
+
+// Define a TypeScript interface for the food object
+interface Food {
+  _id: string;
+  name: string;
+  price: number;
+  originalPrice?: number;
+  rating: number;
+  tags?: string[];
+  imageUrl: string;
+  description: string;
+  available: boolean;
+}
+
 export default async function FetchFood() {
   const query = `*[_type == "food"]{
     _id,
@@ -20,12 +36,14 @@ export default async function FetchFood() {
     description,
     available
   }`;
-  const foods = await client.fetch(query);
+
+  const foods: Food[] = await client.fetch(query); // Apply the Food[] type
+
   return (
     <div>
       <h1>Foods</h1>
       <div>
-        {foods.map((food: any) => (
+        {foods.map((food: Food) => (
           <div key={food._id}>
             <h2>{food.name}</h2>
             <p>{food.description}</p>
@@ -37,9 +55,7 @@ export default async function FetchFood() {
             )}
             <p>{food.available ? "Available" : "Out of Stock"}</p>
             <img src={food.imageUrl} alt={food.name} />
-            {food.tags && (
-              <p>Tags: {food.tags.join(", ")}</p>
-            )}
+            {food.tags && <p>Tags: {food.tags.join(", ")}</p>}
           </div>
         ))}
       </div>

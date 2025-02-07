@@ -1,4 +1,4 @@
-export default {
+const menuItem={
   name: 'menuItem',
   type: 'document',
   title: 'Menu Item',
@@ -92,3 +92,4 @@ export default {
     },
   ],
 };
+export default menuItemsSchema;
