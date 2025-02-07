@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { GetServerSideProps } from "next";
 
 interface Chef {
   id: string;
@@ -12,11 +11,11 @@ interface Chef {
   specialty: string;
 }
 
-// 🚀 Fetch chef by slug dynamically
+// Fetch chef by slug dynamically
 async function getChef(slug: string): Promise<Chef | null> {
   try {
     const res = await fetch(`https://sanity-nextjs-rouge.vercel.app/api/chefs?slug=${slug}`, {
-      cache: "no-store", // Fetch fresh data every time
+      cache: "no-store", // Ensure fresh data on every request
     });
 
     const data: Chef[] = await res.json();
@@ -27,11 +26,16 @@ async function getChef(slug: string): Promise<Chef | null> {
   }
 }
 
-export default async function ChefPage({ params }: { params: Record<string, string> }) {
+// Define the type for props
+interface ChefPageProps {
+  params: { slug: string };
+}
+
+export default async function ChefPage({ params }: ChefPageProps) {
   const chef = await getChef(params.slug);
 
   if (!chef) {
-    return notFound(); // ❌ Show 404 if chef not found
+    return notFound(); // Return 404 page if chef not found
   }
 
   return (
@@ -43,4 +47,9 @@ export default async function ChefPage({ params }: { params: Record<string, stri
       <p>Experience: {chef.experience}</p>
     </div>
   );
+}
+
+// ✅ Fix: Use generateStaticParams to register dynamic routes
+export async function generateStaticParams() {
+  return []; // Ensure Next.js recognizes this as a dynamic route
 }
