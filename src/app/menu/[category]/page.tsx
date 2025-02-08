@@ -12,13 +12,18 @@ interface FoodItem {
   description: string;
   price: number;
   category: string;
-  image: string;
-}
+  image?: string
+  };
+
 
 const CategoryPage: FC = () => {
   const router = useRouter();
   const { category } = router.query; // Get category from URL
   const dispatch = useDispatch();
+
+  const state = useSelector((state: RootState) => state);
+console.log("Redux state:", state);
+
 
   // Fetch food items from Redux store
   const foodItems = useSelector((state: RootState) => state.food.items);
@@ -29,18 +34,18 @@ const CategoryPage: FC = () => {
       setCategoryItems(foodItems.filter((item) => item.category === category));
     }
   }, [category, foodItems]);
+  
 
-// Handle adding to cart
-const handleAddToCart = (item: FoodItem) => {
-  dispatch(
-    addToCart({
-      ...item, // Spread FoodItem properties
-      quantity: 1, // Ensure quantity exists
-      stock: item.stock ?? 0, // Default stock to 0 if undefined
-      image: item.imageUrl ?? "https://default.jpg", // Ensure image is never undefined
-    })
-  );
-};
+  const handleAddToCart = (item: FoodItem) => {
+    dispatch(
+      addToCart({
+        ...item,
+        quantity: 1,
+       image: item.image ,
+      })
+    );
+  };
+  
 
 
   if (!categoryItems.length) {

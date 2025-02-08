@@ -13,6 +13,18 @@ export interface CartItemProps {
   onAdd: () => void;
 }
 
+// ✅ Correct cartItem object (Removed `item: FoodItem`)
+const CartItemProps = {
+  id: "123",
+  name: "Pizza",
+  image: { asset: { url: "https://example.com/pizza.jpg" } },
+  stock: 5,
+  price: 10,
+  quantity: 2,
+  onAdd: () => console.log("Added"),
+  onRemove: () => console.log("Removed"),
+};
+
 // ✅ Use `CartItemProps` correctly in the component
 const CartItem: React.FC<CartItemProps> = ({ 
   id, 
@@ -55,7 +67,6 @@ const CartItem: React.FC<CartItemProps> = ({
     </div>
   );
 };
-
 
 // ✅ Correct Export
 export default CartItem;

@@ -13,9 +13,12 @@ export interface FoodItem {
 export interface CartItemProps {
   id: string;
   name: string;
-  image?: { asset?: { url?: string } }; 
+  image?: { 
+    string?: string; 
+    asset?: { url?: string } 
+  }; 
   stock: number;
-  item: FoodItem; // ✅ Change from string to FoodItem
+  item: FoodItem; // ✅ Changed from string to FoodItem
   price: number;
   quantity: number;
   onAdd?: () => void;
