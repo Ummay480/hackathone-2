@@ -1,18 +1,19 @@
-"use client"; // Ensure it's a client component
+"use client";
 
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { CartItems } from "@/types/cart";
+import { CartItemProps } from "@/types/cart";
 import { loadStripe } from "@stripe/stripe-js";
+import Image from "next/image";
 
 const CheckoutPage = () => {
-  const cart: CartItems[] = useSelector((state: RootState) => state.cart.items);
+  const cart: CartItemProps[] = useSelector((state: RootState) => state.cart.items);
   const [checkoutSessionId, setCheckoutSessionId] = useState<string>("");
 
   useEffect(() => {
     const createCheckoutSession = async () => {
-      if (cart.length === 0) return; // Prevent API call if cart is empty
+      if (cart.length === 0) return;
       try {
         const res = await fetch("/api/stripe", {
           method: "POST",
@@ -35,7 +36,10 @@ const CheckoutPage = () => {
   const handleCheckout = async () => {
     if (!checkoutSessionId) return;
     try {
-      const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!);
+      if (!process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY) {
+        throw new Error("Stripe public key is missing");
+      }
+      const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
       if (!stripe) throw new Error("Stripe failed to initialize");
 
       const { error } = await stripe.redirectToCheckout({ sessionId: checkoutSessionId });
@@ -51,12 +55,17 @@ const CheckoutPage = () => {
       <div>
         <h2>Order Summary</h2>
         <div>
-          {cart.map((item: CartItems, index: number) => (
+          {cart.map((item: CartItemProps, index: number) => (
             <div key={index}>
-              <img src={item.imageUrl} alt={item.name} width={50} height={50} />
+              <Image
+                src={item.image?.asset?.url || "/fallback-image.jpg"} 
+                alt={item.name}
+                width={50}
+                height={50}
+              />
               <h3>{item.name}</h3>
-              <p>{item.description}</p>
               <p>${item.price}</p>
+              <p>Quantity: {item.quantity}</p>
             </div>
           ))}
         </div>

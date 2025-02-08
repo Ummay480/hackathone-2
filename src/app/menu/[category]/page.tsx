@@ -30,10 +30,18 @@ const CategoryPage: FC = () => {
     }
   }, [category, foodItems]);
 
-  // Handle adding to cart
-  const handleAddToCart = (item: FoodItem) => {
-    dispatch(addToCart(item));
-  };
+// Handle adding to cart
+const handleAddToCart = (item: FoodItem) => {
+  dispatch(
+    addToCart({
+      ...item, // Spread FoodItem properties
+      quantity: 1, // Ensure quantity exists
+      stock: item.stock ?? 0, // Default stock to 0 if undefined
+      image: item.imageUrl ?? "https://default.jpg", // Ensure image is never undefined
+    })
+  );
+};
+
 
   if (!categoryItems.length) {
     return (
