@@ -1,13 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import cartReducer from "./slices/cartSlice"; // Ensure correct import
+import foodReducer from "./slices/foodSlice";
+import cartReducer from "./slices/cartSlice";
 
 export const store = configureStore({
   reducer: {
-    cart: cartReducer, // Ensure this exists
+    food: foodReducer,  // Ensure 'food' is properly included
+    cart: cartReducer,
   },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
-
-
