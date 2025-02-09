@@ -1,24 +1,10 @@
 "use client";
 import { FC, useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation"; 
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/slices/cartSlice";
 import MenuCard from "@/components/MenuCard";
-
-interface FoodItem {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  category: string;
-  image?: {
-    string?: string;
-    asset?: {
-      url?: string;
-    };
-  };
-}
+import type { FoodItem } from "@/types/food";
 
 const CategoryPage: FC = () => {
   const router = useRouter();
@@ -27,8 +13,7 @@ const CategoryPage: FC = () => {
 
   const category = searchParams.get("category") || "";
 
-  const foodItems = useSelector((state: RootState) => state.food.items) || [];
-
+  const [foodItems] = useState<FoodItem[]>([]);
   const [categoryItems, setCategoryItems] = useState<FoodItem[]>([]);
 
   useEffect(() => {
@@ -42,10 +27,10 @@ const CategoryPage: FC = () => {
       addToCart({
         id: item.id,
         name: item.name,
+        category: item.category,
         description: item.description,
         price: item.price,
-        category: item.category,
-        image: item?.image?.asset?.url ?? "", // ✅ Correct way to extract image URL
+        image: item.image ?? {}, // ✅ Ensures correct image structure
         quantity: 1,
         stock: 10,
       })
@@ -78,7 +63,3 @@ const CategoryPage: FC = () => {
 };
 
 export default CategoryPage;
-
-
-
-

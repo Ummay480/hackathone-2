@@ -5,7 +5,13 @@ import Image from "next/image";
 export interface CartItemProps {
   id: string;
   name: string;
-  image?: { asset?: { url?: string } };
+  description: string;
+  image?: {
+    string?: string;
+    asset?: {
+      url?: string;
+    };
+  };
   price: number;
   quantity: number;
   stock: number;
