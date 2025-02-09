@@ -14,7 +14,7 @@ interface FoodState {
 }
 
 const initialState: FoodState = {
-  items: [],
+  items: [], // Initialize as an empty array
 };
 
 const foodSlice = createSlice({

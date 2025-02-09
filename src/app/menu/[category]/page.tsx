@@ -1,10 +1,10 @@
 "use client";
 import { FC, useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import { useSearchParams, useRouter } from "next/navigation"; 
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { addToCart } from "@/redux/slices/cartSlice"; // Import addToCart action
-import MenuCard from "@/components/MenuCard"; // Reusable component for menu items
+import { addToCart } from "@/redux/slices/cartSlice";
+import MenuCard from "@/components/MenuCard";
 
 interface FoodItem {
   id: string;
@@ -12,21 +12,23 @@ interface FoodItem {
   description: string;
   price: number;
   category: string;
-  image?: string
+  image?: {
+    string?: string;
+    asset?: {
+      url?: string;
+    };
   };
-
+}
 
 const CategoryPage: FC = () => {
   const router = useRouter();
-  const { category } = router.query; // Get category from URL
   const dispatch = useDispatch();
+  const searchParams = useSearchParams(); 
 
-  const state = useSelector((state: RootState) => state);
-console.log("Redux state:", state);
+  const category = searchParams.get("category") || "";
 
+  const foodItems = useSelector((state: RootState) => state.food.items) || [];
 
-  // Fetch food items from Redux store
-  const foodItems = useSelector((state: RootState) => state.food.items);
   const [categoryItems, setCategoryItems] = useState<FoodItem[]>([]);
 
   useEffect(() => {
@@ -34,19 +36,21 @@ console.log("Redux state:", state);
       setCategoryItems(foodItems.filter((item) => item.category === category));
     }
   }, [category, foodItems]);
-  
 
   const handleAddToCart = (item: FoodItem) => {
     dispatch(
       addToCart({
-        ...item,
+        id: item.id,
+        name: item.name,
+        description: item.description,
+        price: item.price,
+        category: item.category,
+        image: item?.image?.asset?.url ?? "", // ✅ Correct way to extract image URL
         quantity: 1,
-       image: item.image ,
+        stock: 10,
       })
     );
   };
-  
-
 
   if (!categoryItems.length) {
     return (
@@ -65,7 +69,7 @@ console.log("Redux state:", state);
             key={item.id}
             {...item}
             onClick={() => router.push(`/menu/${item.category}/${item.id}`)}
-            onAddToCart={() => handleAddToCart(item)} // Add to Cart
+            onAddToCart={() => handleAddToCart(item)}
           />
         ))}
       </div>
@@ -74,3 +78,7 @@ console.log("Redux state:", state);
 };
 
 export default CategoryPage;
+
+
+
+
