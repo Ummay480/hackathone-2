@@ -1,66 +1,110 @@
-import Image from "next/image";
-import { notFound } from "next/navigation";
+// app/shop/[slug]/page.tsx
+import React from "react";
+import { notFound } from 'next/navigation';
+import NavBar from "@/components/NavBar";
+import MainCourse from "@/components/MainCourse";
+import StatsSection from "@/components/StatsSection";
+import Dessert from "@/components/Dessert";
+import Drinks from "@/components/Drinks";
+import HeroBanner from "@/components/HeroBanner";
+import Partners from "@/components/Partners";
 
-// Define Food Interface
-interface Food {
-  id: string;
-  slug: string;
-  name: string;
-  price: number;
-  image: string;
-  description: string;
-  available: boolean;
-}
+// Placeholder for menu data.  In a real app, you'd fetch this.
+// You'll likely want to fetch this data based on the slug.
+const menuData = {
+  "main-course": {
+    title: "Main Course",
+    imageSrc: "/images/image-107.png",
+    items: [
+      {
+        name: "Optic Big Breakfast Combo Menu",
+        description: "Toasted French bread topped with romano, cheddar",
+        calories: 560,
+        price: 32,
+      },
+      {
+        name: "Cashew Chicken With Stir-Fry",
+        description: "Gorgonzola, ricotta, mozzarella, taleggio",
+        calories: 700,
+        price: 43,
+      },
+      {
+        name: "Vegetables & Green Salad",
+        description: "Ground cumin, avocados, peeled and cubed",
+        calories: 1000,
+        price: 14,
+      },
+      {
+        name: "Spicy Vegan Potato Curry",
+        description: "Spreadable cream cheese, crumbled blue cheese",
+        calories: 560,
+        price: 35,
+      },
+    ],
+  },
+  "desserts": {
+    title: "Desserts",
+    imageSrc: "/images/dessert.jpg", // Replace with actual image path
+    items: [
+      // ... your dessert items
+      {
+        name: "Chocolate Cake",
+        description: "Delicious chocolate cake",
+        calories: 400,
+        price: 10,
+      }
+    ],
+  },
+    "drinks": {
+    title: "Drinks",
+    imageSrc: "/images/drinks.jpg", // Replace with actual image path
+    items: [
+      // ... your dessert items
+      {
+        name: "Coke",
+        description: "Cold and refreshing",
+        calories: 150,
+        price: 2,
+      }
+    ],
+  },
+  // ... more menu categories
+};
 
-// Mock function to fetch food details (Replace with API call)
-async function getFood(slug: string): Promise<Food | null> {
-  const foods: Food[] = [
-    { id: "1", slug: "burger", name: "Cheese Burger", price: 5.99, image: "/burger.jpg", description: "A delicious cheese burger", available: true },
-    { id: "2", slug: "pizza", name: "Pepperoni Pizza", price: 10.99, image: "/pizza.jpg", description: "A tasty pepperoni pizza", available: false }
-  ];
 
-  return foods.find((food) => food.slug === slug) || null;
-}
+async function Page({ params }: { params: { slug: string } }) {
+  const { slug } = params;
 
-// Server Component (No "use client")
-export default async function FoodDetailsPage({ params }: { params: { slug: string } }) {
-  const food = await getFood(params.slug);
+  // Fetch menu data based on the slug.  This is the KEY change.
+  const currentMenu = menuData[slug];
 
-  if (!food) {
-    return notFound();
+  if (!currentMenu) {
+      notFound(); // Handle the case where the slug doesn't match a menu
   }
 
   return (
-    <div className="container mx-auto px-4 mt-10">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          {food.image && (
-            <Image
-              src={food.image}
-              alt={food.name}
-              width={500}
-              height={350}
-              className="w-full h-[350px] object-cover rounded-md"
-            />
-          )}
-        </div>
-        <div>
-          <h1 className="text-3xl font-bold">{food.name}</h1>
-          <p className="text-xl font-semibold text-gray-700 mt-4">${food.price}</p>
-          <p className="text-md text-gray-600 mt-6">{food.description}</p>
-          <p className="text-md font-semibold mt-4">
-            {food.available ? "Available" : "Out of Stock"}
-          </p>
-        </div>
+    <main className="overflow-x-hidden">
+      <NavBar />
+
+      <div>
+        <HeroBanner title={currentMenu.title} /> {/* Dynamic title */}
       </div>
-    </div>
+
+      <MainCourse
+        menuItems={currentMenu.items} // Dynamic menu items
+        imageSrc={currentMenu.imageSrc} // Dynamic image
+        title={currentMenu.title}      // Dynamic title
+      />
+
+      <StatsSection />
+      <Dessert />  {/* You might want to pass data to these components too */}
+      <Drinks />
+
+      <div>
+        <Partners />
+      </div>
+    </main>
   );
 }
 
-// ✅ Allow Static Generation
-export async function generateStaticParams() {
-  return [
-    { slug: "burger" },
-    { slug: "pizza" },
-  ];
-}
+export default Page;
