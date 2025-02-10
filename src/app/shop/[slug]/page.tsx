@@ -1,12 +1,5 @@
-"use client"; // Ensure this is a Client Component
-
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { loadStripe } from "@stripe/stripe-js";
-
-// Load Stripe instance
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 // Define Food Interface
 interface Food {
@@ -19,7 +12,7 @@ interface Food {
   available: boolean;
 }
 
-// Mock function to fetch food details (Replace this with an API call)
+// Mock function to fetch food details (Replace with API call)
 async function getFood(slug: string): Promise<Food | null> {
   const foods: Food[] = [
     { id: "1", slug: "burger", name: "Cheese Burger", price: 5.99, image: "/burger.jpg", description: "A delicious cheese burger", available: true },
@@ -29,17 +22,9 @@ async function getFood(slug: string): Promise<Food | null> {
   return foods.find((food) => food.slug === slug) || null;
 }
 
-export default function FoodDetailsPage({ params }: { params: { slug: string } }) {
-  const [food, setFood] = useState<Food | null>(null);
-
-  useEffect(() => {
-    async function fetchFoodDetails() {
-      const fetchedFood = await getFood(params.slug);
-      setFood(fetchedFood);
-    }
-
-    fetchFoodDetails();
-  }, [params.slug]);
+// Server Component (No "use client")
+export default async function FoodDetailsPage({ params }: { params: { slug: string } }) {
+  const food = await getFood(params.slug);
 
   if (!food) {
     return notFound();
@@ -72,7 +57,7 @@ export default function FoodDetailsPage({ params }: { params: { slug: string } }
   );
 }
 
-// Generate Static Paths for SSG (Optional)
+// ✅ Allow Static Generation
 export async function generateStaticParams() {
   return [
     { slug: "burger" },
