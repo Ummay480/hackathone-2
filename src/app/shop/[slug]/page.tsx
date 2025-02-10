@@ -23,6 +23,7 @@ async function getFood(slug: string): Promise<Food | null> {
     );
 
     if (!res.ok) {
+      console.error("Failed to fetch food data:", res.statusText);
       return null;
     }
 
@@ -34,14 +35,8 @@ async function getFood(slug: string): Promise<Food | null> {
   }
 }
 
-// Define the correct props type
-type FoodDetailsPageProps = {
-  params: {
-    slug: string;
-  };
-};
-
-export default async function FoodDetailsPage({ params }: FoodDetailsPageProps) {
+// Define the page component
+export default async function FoodDetailsPage({ params }: { params: { slug: string } }) {
   const food = await getFood(params.slug);
 
   if (!food) {
@@ -51,6 +46,7 @@ export default async function FoodDetailsPage({ params }: FoodDetailsPageProps) 
   return (
     <div className="container mx-auto px-4 mt-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Image Section */}
         <div>
           {food.image && (
             <Image
@@ -62,13 +58,13 @@ export default async function FoodDetailsPage({ params }: FoodDetailsPageProps) 
             />
           )}
         </div>
+
+        {/* Food Details Section */}
         <div>
           <h1 className="text-3xl font-bold">{food.name}</h1>
-          <p className="text-xl font-semibold text-gray-700 mt-4">
-            ${food.price}
-          </p>
+          <p className="text-xl font-semibold text-gray-700 mt-4">${food.price}</p>
           <p className="text-md text-gray-600 mt-6">{food.description}</p>
-          <p className="text-md font-semibold mt-4">
+          <p className={`text-md font-semibold mt-4 ${food.available ? "text-green-600" : "text-red-600"}`}>
             {food.available ? "Available" : "Out of Stock"}
           </p>
         </div>
