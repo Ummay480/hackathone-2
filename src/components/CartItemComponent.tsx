@@ -1,9 +1,10 @@
 import React from "react";
 import Image from "next/image";
 
-// ✅ Correct Interface for Cart Item Component
+// ✅ Cart Item Props Interface
 export interface CartItemProps {
   id: string;
+  category:string;
   name: string;
   description: string;
   image?: {
@@ -19,51 +20,47 @@ export interface CartItemProps {
   onAdd: () => void;
 }
 
-// ✅ Correct cartItem object (Removed `item: FoodItem`)
-const CartItemProps = {
-  id: "123",
-  name: "Pizza",
-  image: { asset: { url: "https://example.com/pizza.jpg" } },
-  stock: 5,
-  price: 10,
-  quantity: 2,
-  onAdd: () => console.log("Added"),
-  onRemove: () => console.log("Removed"),
-};
-
-// ✅ Use `CartItemProps` correctly in the component
-const CartItem: React.FC<CartItemProps> = ({ 
-  id, 
-  name, 
-  image, 
-  price, 
-  quantity, 
-  onAdd, 
-  onRemove 
+// ✅ Functional Component for Cart Item
+const CartItem: React.FC<CartItemProps> = ({
+  id,
+  name,
+  category,
+  description,
+  image,
+  price,
+  quantity,
+  stock,
+  onAdd,
+  onRemove,
 }) => {
   return (
     <div className="border p-4 rounded-lg shadow-lg text-center" data-id={id}>
-      <Image 
-        src={image?.asset?.url ?? "/images/product.jpg"} 
-        alt={name} 
-        width={128} 
-        height={128} 
-        className="mx-auto w-32 h-32 object-cover" 
+      {/* Product Image */}
+      <Image
+        src={image?.asset?.url ?? "/images/product.jpg"} // ✅ Fallback Image
+        alt={name}
+        width={128}
+        height={128}
+        className="mx-auto w-32 h-32 object-cover"
       />
 
+      {/* Product Details */}
       <h3 className="text-xl font-semibold mt-4">{name}</h3>
-      <p className="text-sm text-gray-500">ID: {id}</p> {/* ✅ Display ID for debugging */}
+      <h3 className="text-xl font-semibold mt-4">{category}</h3>
+      <p className="text-sm text-gray-500">{description}</p>
+      <p className="text-sm text-gray-400">Stock: {stock}</p> {/* ✅ Show Stock */}
       <p className="text-lg font-bold text-gray-700">${price.toFixed(2)}</p>
       <p className="text-gray-600">Quantity: {quantity}</p>
-      
+
+      {/* Action Buttons */}
       <div className="flex justify-center mt-4 space-x-2">
-        <button 
-          className="bg-orange-400 text-white px-4 py-2 rounded-lg hover:bg-green-700"
+        <button
+          className="bg-orange-400 text-white px-4 py-2 rounded-lg hover:bg-orange-500"
           onClick={onAdd}
         >
           Add More
         </button>
-        <button 
+        <button
           className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700"
           onClick={onRemove}
         >

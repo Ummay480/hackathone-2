@@ -1,9 +1,9 @@
-// src/providers/ReduxProvider.tsx
+// src/provider/cartProvider.tsx (or wherever you want it)
 'use client';
 
 import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
-import { store } from '../redux/store'; // Assuming the store is defined in redux/store.ts
+import store from '@/redux/store'; // Correct import path
 
 interface ReduxProviderProps {
   children: ReactNode;

@@ -48,7 +48,7 @@ const Cart: React.FC = () => {
       {cart.items.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
-        cart.items.map((item) => (
+        cart.items.map((item:any) => (
           <div key={item.id}>
             <p>{item.name} - ${item.price}</p>
             <button onClick={() => dispatch(removeFromCart(item.id))}>Remove</button>

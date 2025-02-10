@@ -1,8 +1,8 @@
-
-export interface CartItemProps {
+export interface CartItemProps { 
   id: string;
   name: string;
-  category: string;
+  item: any;
+  category: string;  // ✅ Ensure this exists
   description: string;
   image?: { 
     string?: string; 
@@ -12,5 +12,5 @@ export interface CartItemProps {
   price: number;
   quantity: number;
   onAdd?: () => void;
-  onRemove?: () => void; // ✅ Made optional
+  onRemove?: () => void;
 }
