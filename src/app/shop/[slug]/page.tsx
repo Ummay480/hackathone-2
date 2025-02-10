@@ -1,7 +1,6 @@
 "use client"; // Ensure this is a Client Component
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -20,10 +19,11 @@ interface Food {
   available: boolean;
 }
 
+
 export default function FoodDetailsPage({ params }: { params: { slug: string } }) {
   const [food, setFood] = useState<Food | null>(null);
   const [loading, setLoading] = useState(true);
-  const router = useRouter();
+ 
 
   // Fetch food data
   useEffect(() => {
@@ -44,6 +44,7 @@ export default function FoodDetailsPage({ params }: { params: { slug: string } }
     fetchFood();
   }, [params.slug]);
 
+  
   // Handle "Add to Cart"
   const handleAddToCart = () => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -52,6 +53,7 @@ export default function FoodDetailsPage({ params }: { params: { slug: string } }
     alert("Added to cart!");
   };
 
+  
   // Handle Stripe Checkout
   const handleCheckout = async () => {
     if (!food) return;
@@ -90,7 +92,7 @@ export default function FoodDetailsPage({ params }: { params: { slug: string } }
 
           {/* Buttons */}
           <div className="mt-6 flex gap-4">
-            <button className="px-6 py-2 bg-blue-600 text-white rounded-md" onClick={handleAddToCart}>Add to Cart</button>
+            <button className="px-6 py-2 bg-orange-400 text-white rounded-md" onClick={handleAddToCart}>Add to Cart</button>
             <button className="px-6 py-2 bg-green-600 text-white rounded-md" onClick={handleCheckout}>Buy Now</button>
           </div>
         </div>

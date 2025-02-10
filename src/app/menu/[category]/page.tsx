@@ -61,7 +61,7 @@ const CategoryPage: FC = () => {
         stock: item.stock,
         price: item.price,
         quantity: 1,
-        item,
+        item: "product",
         onAdd: () => handleAddToCart(item),
         onRemove: () => {}, // Placeholder if needed
       })
