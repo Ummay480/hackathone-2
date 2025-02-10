@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { GetServerSideProps } from "next"; // Import GetServerSideProps
 
+// Define the Food interface
 interface Food {
   id: string;
   slug: string;
@@ -12,11 +12,11 @@ interface Food {
   available: boolean;
 }
 
-// ✅ Define the getFood function
+// Fetch food data on the server side
 async function getFood(slug: string): Promise<Food | null> {
   try {
     const res = await fetch(`https://sanity-nextjs-rouge.vercel.app/api/foods?slug=${slug}`, {
-      cache: "no-store",
+      cache: "no-store", // Disable caching to always fetch fresh data
     });
 
     if (!res.ok) {
@@ -31,10 +31,12 @@ async function getFood(slug: string): Promise<Food | null> {
   }
 }
 
-// ✅ Change to a regular component and export default
-const FoodDetailsPage = ({ food }: { food: Food | null }) => {
+// The page component will automatically run server-side due to async function
+export default async function FoodDetailsPage({ params }: { params: { slug: string } }) {
+  const food = await getFood(params.slug);
+
   if (!food) {
-    return notFound();
+    return notFound(); // Show a 404 page if no food is found
   }
 
   return (
@@ -62,17 +64,4 @@ const FoodDetailsPage = ({ food }: { food: Food | null }) => {
       </div>
     </div>
   );
-};
-
-// ✅ Use GetServerSideProps to fetch the data on the server-side
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const food = await getFood(params?.slug as string);
-
-  return {
-    props: {
-      food,
-    },
-  };
-};
-
-export default FoodDetailsPage; // Export the page component as default
+}
