@@ -9,7 +9,7 @@ import CreativeProcess from "@/components/CreativeProcess";
 import StatsSection from "@/components/StatsSection";
 import Testimonials from "@/components/Testimonials2";
 import Cart from "@/components/Cart";
-import Product from "@/components/Product";
+
 
 const  HomePage =() =>{
   return (
@@ -27,7 +27,6 @@ const  HomePage =() =>{
         <CreativeProcess />
         </div>
         <BlogSection />
-        <Product /> 
         <Cart />
       </main>
     </>
