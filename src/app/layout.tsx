@@ -1,3 +1,5 @@
+'use client';
+
 import { usePathname } from "next/navigation"; // Import usePathname hook
 import type { Metadata } from "next";
 import ReduxProvider from '../providers/ReduxProvider';
