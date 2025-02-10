@@ -1,3 +1,4 @@
+import { usePathname } from "next/navigation"; // Import usePathname hook
 import type { Metadata } from "next";
 import ReduxProvider from '../providers/ReduxProvider';
 import ThemeProvider from '../providers/ThemeProvider';
@@ -32,6 +33,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname(); // Get the current pathname
+
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${greatVibes.variable} antialiased`} dir="ltr">
       <body>
@@ -39,8 +42,8 @@ export default function RootLayout({
         <ReduxProvider>
           <ThemeProvider>
             <div className="overflow-x-hidden min-h-screen flex flex-col">
-              {/* Cart component at the top */}
-              <Cart />
+              {/* Conditionally render Cart component only on the /cart page */}
+              {pathname === '/cart' && <Cart />}
               
               {/* Main content area */}
               <main className="flex-grow">
