@@ -1,7 +1,6 @@
-
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { PageProps } from "next";
+import { NextPage } from "next"; // Import NextPage
 
 interface Food {
   id: string;
@@ -32,8 +31,8 @@ async function getFood(slug: string): Promise<Food | null> {
   }
 }
 
-// ✅ Explicitly define `PageProps`
-export default async function FoodDetailsPage({ params }: PageProps<{ slug: string }>) {
+// ✅ Use `NextPage` to define the type of your page component
+const FoodDetailsPage: NextPage<{ params: { slug: string } }> = async ({ params }) => {
   if (!params?.slug) {
     return notFound();
   }
@@ -69,7 +68,7 @@ export default async function FoodDetailsPage({ params }: PageProps<{ slug: stri
       </div>
     </div>
   );
-}
+};
 
 // ✅ Correct the format of generateStaticParams
 export async function generateStaticParams() {
