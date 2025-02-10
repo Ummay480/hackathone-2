@@ -16,6 +16,7 @@ const client = createClient({
 type MenuItem = {
   _id: string;
   name: string;
+  slug:string;
   description: string;
   price: number;
   discountPercentage: number;
@@ -35,6 +36,7 @@ const MenuItems: React.FC = () => {
       const query = `*[_type == "menuItem"]{
         _id,
         name,
+        slug,
         description,
         price,
         discountPercentage,

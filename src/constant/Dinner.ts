@@ -1,5 +1,6 @@
 interface MenuItem {
     name: string;
+    slug:string;
     description: string;
     calories?: number;
     price: string;
@@ -8,34 +9,41 @@ interface MenuItem {
     highlight?: boolean;
   }
   
-  export const DessertItem: MenuItem[] = [
+  export const DrinksItem: MenuItem[] = [
     {
-      name: "Chicken Nihari",
-      description: "Slow-cooked chicken in a rich, flavorful curry.",
-      price: "$8",
-      image: "/images/chicken-nihari.jpg",
-      category: "Dinner",
+      name: "Coconut Water",
+      slug: "coconut-water",
+      description: "Fresh and refreshing coconut water, perfect for hydration.",
+      price: "$3",
+      calories: 50,
     },
     {
-      name: "Chicken Karahi",
-      description: "Traditional chicken curry cooked in a wok with aromatic spices.",
-      price: "$8",
-      image: "/images/chicken-karahi.jpg",
-      category: "Dinner",
+      name: "Orange Juice",
+      slug: "orange-juice",
+      description: "Freshly squeezed orange juice.",
+      price: "$2",
+      calories: 100,
     },
     {
-      name: "Chicken Tikka",
-      description: "Grilled chicken marinated with spices, served with naan.",
-      price: "$6",
-      image: "/images/chicken-tikka-breast.png",
-      category: "Dinner",
+      name: "Grapefruit Juice",
+      slug: "grapefruit-juice",
+      description: "Tangy and refreshing grapefruit juice.",
+      price: "$2",
+      calories: 90,
     },
     {
-      name: "Behari Kabab",
-      description: "Tender, spiced beef kebabs grilled to perfection.",
-      price: "$7",
-      image: "/images/behari-kabab.jpg",
-      category: "Dinner",
+      name: "Apple Juice",
+      slug: "apple-juice",
+      description: "Fresh and sweet apple juice.",
+      price: "$2",
+      calories: 95,
+    },
+    {
+      name: "Melon Shake",
+      slug: "melon-shake",
+      description: "Refreshing melon shake with a hint of sweetness.",
+      price: "$3",
+      calories: 220,
     },
   ];
   
