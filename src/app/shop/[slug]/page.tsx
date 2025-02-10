@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { NextPage } from "next"; // Import NextPage
+import { GetServerSideProps } from "next"; // Import GetServerSideProps
 
 interface Food {
   id: string;
@@ -31,14 +31,8 @@ async function getFood(slug: string): Promise<Food | null> {
   }
 }
 
-// ✅ Use `NextPage` to define the type of your page component
-const FoodDetailsPage: NextPage<{ params: { slug: string } }> = async ({ params }) => {
-  if (!params?.slug) {
-    return notFound();
-  }
-
-  const food = await getFood(params.slug);
-
+// ✅ Change to a regular component and export default
+const FoodDetailsPage = ({ food }: { food: Food | null }) => {
   if (!food) {
     return notFound();
   }
@@ -70,9 +64,15 @@ const FoodDetailsPage: NextPage<{ params: { slug: string } }> = async ({ params 
   );
 };
 
-// ✅ Correct the format of generateStaticParams
-export async function generateStaticParams() {
-  return [{ slug: "placeholder" }]; // Correct format
-}
+// ✅ Use GetServerSideProps to fetch the data on the server-side
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const food = await getFood(params?.slug as string);
 
-export const dynamicParams = true; // Enable dynamic params
+  return {
+    props: {
+      food,
+    },
+  };
+};
+
+export default FoodDetailsPage; // Export the page component as default
