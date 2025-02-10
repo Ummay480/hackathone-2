@@ -15,9 +15,12 @@ interface Food {
 // Fetch food data on the server side
 async function getFood(slug: string): Promise<Food | null> {
   try {
-    const res = await fetch(`https://sanity-nextjs-rouge.vercel.app/api/foods?slug=${slug}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `https://sanity-nextjs-rouge.vercel.app/api/foods?slug=${slug}`,
+      {
+        cache: "no-store",
+      }
+    );
 
     if (!res.ok) {
       return null;
@@ -31,12 +34,14 @@ async function getFood(slug: string): Promise<Food | null> {
   }
 }
 
-// The page component
-export default async function FoodDetailsPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+// Define the correct props type
+type FoodDetailsPageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+export default async function FoodDetailsPage({ params }: FoodDetailsPageProps) {
   const food = await getFood(params.slug);
 
   if (!food) {
@@ -59,7 +64,9 @@ export default async function FoodDetailsPage({
         </div>
         <div>
           <h1 className="text-3xl font-bold">{food.name}</h1>
-          <p className="text-xl font-semibold text-gray-700 mt-4">${food.price}</p>
+          <p className="text-xl font-semibold text-gray-700 mt-4">
+            ${food.price}
+          </p>
           <p className="text-md text-gray-600 mt-6">{food.description}</p>
           <p className="text-md font-semibold mt-4">
             {food.available ? "Available" : "Out of Stock"}
