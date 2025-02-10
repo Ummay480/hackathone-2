@@ -32,7 +32,11 @@ async function getFood(slug: string): Promise<Food | null> {
 }
 
 // The page component will automatically run server-side due to async function
-export default async function FoodDetailsPage({ params }: { params: { slug: string } }) {
+export default async function FoodDetailsPage({
+  params,
+}: {
+  params: { slug: string }; // Type `params` correctly
+}) {
   const food = await getFood(params.slug);
 
   if (!food) {
