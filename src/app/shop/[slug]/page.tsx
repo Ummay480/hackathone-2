@@ -16,7 +16,7 @@ interface Food {
 async function getFood(slug: string): Promise<Food | null> {
   try {
     const res = await fetch(`https://sanity-nextjs-rouge.vercel.app/api/foods?slug=${slug}`, {
-      cache: "no-store", // Disable caching to always fetch fresh data
+      cache: "no-store",
     });
 
     if (!res.ok) {
@@ -31,16 +31,16 @@ async function getFood(slug: string): Promise<Food | null> {
   }
 }
 
-// The page component will automatically run server-side due to async function
+// The page component
 export default async function FoodDetailsPage({
   params,
 }: {
-  params: { slug: string }; // Type `params` correctly
+  params: { slug: string };
 }) {
   const food = await getFood(params.slug);
 
   if (!food) {
-    return notFound(); // Show a 404 page if no food is found
+    return notFound();
   }
 
   return (
