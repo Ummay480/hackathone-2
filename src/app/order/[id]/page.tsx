@@ -1,9 +1,9 @@
 "use client";
 
-import { FC, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
+import { FC, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 interface OrderItem {
   id: string;
@@ -29,15 +29,13 @@ const OrderDetailsPage: FC = () => {
   const { id } = router.query; // Dynamic order ID from the URL
   const [orderDetails, setOrderDetails] = useState<OrderDetails | null>(null);
   const orders = useSelector((state: RootState) => state.orders?.items ?? []);
-  // Assuming you store orders in redux
 
   useEffect(() => {
-    if (id && orders.length) {
-      const order = orders.find((order) => order.id === id);
+    if (typeof id === "string" && orders.length) {
+      const order = orders.find((order: OrderDetails) => order.id === id);
       if (order) {
         setOrderDetails(order);
       } else {
-        // Handle the case where no order with the given ID is found
         setOrderDetails(null);
       }
     }
@@ -81,7 +79,7 @@ const OrderDetailsPage: FC = () => {
             </tr>
           </thead>
           <tbody>
-            {orderDetails.items.map(item => (
+            {orderDetails.items.map((item) => (
               <tr key={item.id}>
                 <td className="border border-gray-300 px-4 py-2">{item.name}</td>
                 <td className="border border-gray-300 px-4 py-2">{item.quantity}</td>
@@ -100,7 +98,7 @@ const OrderDetailsPage: FC = () => {
       <div className="mt-4">
         <button
           className="bg-blue-500 text-white py-2 px-4 rounded-md"
-          onClick={() => router.push('/order')}
+          onClick={() => router.push("/order")}
         >
           Back to Orders
         </button>
