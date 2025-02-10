@@ -1,7 +1,7 @@
 export interface CartItemProps { 
   id: string;
   name: string;
-  item: any;
+  item: string;
   category: string;  // ✅ Ensure this exists
   description: string;
   image?: { 

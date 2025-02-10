@@ -1,6 +1,7 @@
 "use server";
 
 import React from "react";
+import Image from "next/image";
 import { createClient } from "@sanity/client";
 
 const client = createClient({
@@ -54,7 +55,7 @@ export default async function FetchFood() {
               </p>
             )}
             <p>{food.available ? "Available" : "Out of Stock"}</p>
-            <img src={food.imageUrl} alt={food.name} />
+            <Image src={food.imageUrl} alt={food.name} />
             {food.tags && <p>Tags: {food.tags.join(", ")}</p>}
           </div>
         ))}

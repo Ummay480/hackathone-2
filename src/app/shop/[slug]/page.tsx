@@ -1,12 +1,15 @@
-"use client";
+"use client"; // Ensure this is a Client Component
 
-import { notFound } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useState } from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import NavBar from "@/components/NavBar";
+import { notFound } from "next/navigation";
 
-// Define the Food interface
+// Import necessary Stripe hooks
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+
 interface Food {
   id: string;
   slug: string;
@@ -17,77 +20,62 @@ interface Food {
   available: boolean;
 }
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+export default function FoodDetailsPage({ params }: { params: { slug: string } }) {
+  const [food, setFood] = useState<Food | null>(null);
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
-// Fetch food data on the server side
-async function getFood(slug: string): Promise<Food | null> {
-  try {
-    const res = await fetch(
-      `https://sanity-nextjs-rouge.vercel.app/api/foods?slug=${slug}`,
-      {
-        cache: "no-store",
+  // Fetch food data
+  useEffect(() => {
+    async function fetchFood() {
+      try {
+        const res = await fetch(`/api/foods?slug=${params.slug}`, { cache: "no-store" });
+        if (!res.ok) throw new Error("Failed to fetch food");
+
+        const data: Food[] = await res.json();
+        setFood(data.length ? data[0] : null);
+      } catch (error) {
+        console.error("Error fetching food:", error);
+      } finally {
+        setLoading(false);
       }
-    );
-
-    if (!res.ok) {
-      console.error("Failed to fetch food data:", res.statusText);
-      return null;
     }
 
-    const data: Food[] = await res.json();
-    return data.length ? data[0] : null;
-  } catch (error) {
-    console.error("Error fetching food:", error);
-    return null;
-  }
-}
+    fetchFood();
+  }, [params.slug]);
 
-export default async function FoodDetailsPage({ params }: { params: { slug: string } }) {
-  const food = await getFood(params.slug);
-
-  if (!food) {
-    return notFound();
-  }
-
-  // Add to Cart functionality
+  // Handle "Add to Cart"
   const handleAddToCart = () => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
     cart.push(food);
     localStorage.setItem("cart", JSON.stringify(cart));
-    alert("Item added to cart!");
+    alert("Added to cart!");
   };
 
-  // Stripe Checkout
+  // Handle Stripe Checkout
   const handleCheckout = async () => {
+    if (!food) return;
     const stripe = await stripePromise;
-    if (!stripe) return;
-
-    const response = await fetch("/api/checkout", {
+    const res = await fetch("/api/checkout", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ items: [food] }),
     });
 
-    const session = await response.json();
-    await stripe.redirectToCheckout({ sessionId: session.id });
+    const { id } = await res.json();
+    stripe?.redirectToCheckout({ sessionId: id });
   };
 
+  if (loading) return <p>Loading...</p>;
+  if (!food) return notFound();
+
   return (
-    <main className="container mx-auto px-4 mt-10">
-      <NavBar />
+    <div className="container mx-auto px-4 mt-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Image Section */}
         <div>
           {food.image && (
-            <Image
-              src={food.image}
-              alt={food.name}
-              width={500}
-              height={350}
-              className="w-full h-[350px] object-cover rounded-md"
-            />
+            <Image src={food.image} alt={food.name} width={500} height={350} className="w-full h-[350px] object-cover rounded-md" />
           )}
         </div>
 
@@ -99,20 +87,14 @@ export default async function FoodDetailsPage({ params }: { params: { slug: stri
           <p className={`text-md font-semibold mt-4 ${food.available ? "text-green-600" : "text-red-600"}`}>
             {food.available ? "Available" : "Out of Stock"}
           </p>
-          <button
-            className="bg-blue-600 text-white px-4 py-2 mt-4 rounded-md hover:bg-blue-700"
-            onClick={handleAddToCart}
-          >
-            Add to Cart
-          </button>
-          <button
-            className="bg-green-600 text-white px-4 py-2 mt-4 ml-4 rounded-md hover:bg-green-700"
-            onClick={handleCheckout}
-          >
-            Buy Now
-          </button>
+
+          {/* Buttons */}
+          <div className="mt-6 flex gap-4">
+            <button className="px-6 py-2 bg-blue-600 text-white rounded-md" onClick={handleAddToCart}>Add to Cart</button>
+            <button className="px-6 py-2 bg-green-600 text-white rounded-md" onClick={handleCheckout}>Buy Now</button>
+          </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

@@ -1,27 +1,31 @@
 "use client"
 import React from "react";
-import { Product } from "@/types/food"; // Adjust path as needed
+import { FoodItem } from "@/types/food"; // Adjust path as needed
 import Link from "next/link";
+import Image from "next/image";
 
 interface ProductCardProps {
-  product: Product;        // Ensure the `product` prop is correctly typed
-  addToCart: (product: Product) => void;
+  product: FoodItem;        // Ensure the `product` prop is correctly typed
+  addToCart: (product: FoodItem) => void;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, addToCart }) => {
   return (
     <div className="border p-4 rounded shadow relative group">
-      <img
-        src={product.image}
-        alt={product.name}
-        className="w-full h-40 object-cover mb-4"
-      />
+      <Image
+          src={product.image?.string || product.image?.asset?.url || "/default-image.jpg"}
+          alt={product.name}
+          width={300}
+          height={160}
+          className="w-full h-40 object-cover mb-4"
+        />
+
       <h3 className="text-lg font-bold">{product.name}</h3>
       <p className="text-gray-700">
         ${product.price}{" "}
-        {product.oldPrice && (
+        {product.price && (
           <span className="line-through text-sm text-gray-500">
-            ${product.oldPrice}
+            ${product.price}
           </span>
         )}
       </p>

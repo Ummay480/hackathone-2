@@ -1,38 +1,64 @@
 "use client";
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { addToCart } from "@/redux/slices/cartSlice"; // Corrected import
-import type { Product } from '@/types/food'; // Correct Product type import
+
+import React from "react";
+import Image from "next/image";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/slices/cartSlice";
+import type { FoodItem } from "@/types/food";
 
 interface ProductProps {
-  product: Product; // Ensure 'product' prop is passed correctly
+  product: FoodItem;
 }
 
 const Product: React.FC<ProductProps> = ({ product }) => {
   const dispatch = useDispatch();
 
-  // Check if product is undefined
   if (!product) {
-    console.error('Product is undefined!');
-    return null; // or return a fallback UI
+    console.error("Product is undefined!");
+    return null;
   }
 
- 
-    // Convert id to string before dispatching
-    const handleAddToCart = () => {
-      const cartItem = { ...product, id: product.id.toString(), quantity: 1 }; // Add default quantity
-      dispatch(addToCart(cartItem));
-    };
-    
-
+  const handleAddToCart = () => {
+    dispatch(
+      addToCart({
+        id: product.id,
+        name: product.name,
+        category: product.category,
+        description: product.description,
+        image: product.image ?? {}, // ✅ Ensure image structure
+        stock: product.stock,
+        price: product.price,
+        quantity: 1,
+        item: "product", // ✅ Added missing 'item' property
+      })
+    );
+  };
   return (
-    <div>
-      <h2>{product.name}</h2>
-      <p>${product.price}</p>
-      <p>Category: {product.category}</p>
-      <p>Quantity: {product.quantity}</p>
-      <img src={product.image} alt={product.name} />
-      <button onClick={handleAddToCart}>Add to Cart</button>
+    <div className="border p-4 rounded-lg shadow-md">
+      <h2 className="text-lg font-bold">{product.name}</h2>
+      <p className="text-gray-600">${product.price}</p>
+      <p className="text-sm text-gray-500">Category: {product.category}</p>
+      <p className="text-sm text-gray-500">Stock: {product.stock}</p>
+
+      {/* Use Next.js Image */}
+      {product.image?.asset?.url ? (
+        <Image
+          src={product.image.asset.url}
+          alt={product.name}
+          width={200}
+          height={150}
+          className="rounded-md object-cover"
+        />
+      ) : (
+        <p>No image available</p>
+      )}
+
+      <button
+        onClick={handleAddToCart} // ✅ Corrected: Pass function correctly
+        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+      >
+        Add to Cart
+      </button>
     </div>
   );
 };
