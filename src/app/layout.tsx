@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation"; // Import usePathname hook
 import ReduxProvider from '../providers/ReduxProvider';
 import ThemeProvider from '../providers/ThemeProvider';
+import { ClerkProvider } from "@clerk/nextjs";
 import Cart from "@/components/Cart";
 import { Inter, Great_Vibes } from "next/font/google"; // Import fonts
 import "./globals.css";
@@ -35,9 +36,10 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${greatVibes.variable} antialiased`} dir="ltr">
       <body>
         {/* Wrapping ReduxProvider and ThemeProvider */}
+        <ClerkProvider>
         <ReduxProvider>
           <ThemeProvider>
-            <div className="overflow-x-hidden min-h-screen flex flex-col">
+             <div className="overflow-x-hidden min-h-screen flex flex-col">
               {/* Conditionally render Cart component only on the /cart page */}
               {pathname === '/cart' && <Cart />}
 
@@ -51,6 +53,7 @@ export default function RootLayout({
             </div>
           </ThemeProvider>
         </ReduxProvider>
+        </ClerkProvider>
       </body>
     </html>
   );

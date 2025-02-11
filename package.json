@@ -10,6 +10,7 @@
     "import-data": "node scripts/importSanityData.mjs"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.11.2",
     "@radix-ui/react-slot": "^1.1.1",
     "@reduxjs/toolkit": "^2.5.1",
     "@sanity/client": "^6.27.2",

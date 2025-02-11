@@ -3,16 +3,15 @@ import { FcGoogle } from "react-icons/fc";
 import { ImAppleinc } from "react-icons/im";
 import NavBar from "@/components/NavBar";
 import HeroBanner from "@/components/HeroBanner";
+import { SignIn } from "@clerk/nextjs";
 
 export default function SignInPage() {
   return (
     <div className="min-h-screen bg-white">
-      <NavBar/>
+      <NavBar />
+
       {/* Header */}
-      <div>
-      <HeroBanner title="SignIn"/>
-      </div>
- 
+      <HeroBanner title="Sign In" />
 
       {/* Signin Form */}
       <section className="py-16">
@@ -31,8 +30,7 @@ export default function SignInPage() {
               <label className="block mb-2 font-medium">Email</label>
               <input
                 type="email"
-                className="w-full border rounded px-3 py-2 focus:ring focus:ring[#FF9F0D];
-"
+                className="w-full border rounded px-3 py-2 focus:ring focus:ring-[#FF9F0D]"
                 placeholder="Enter your email"
               />
             </div>
@@ -40,7 +38,7 @@ export default function SignInPage() {
               <label className="block mb-2 font-medium">Password</label>
               <input
                 type="password"
-                className="w-full border rounded px-3 py-2 focus:ring focus:ring[#FF9F0D];"
+                className="w-full border rounded px-3 py-2 focus:ring focus:ring-[#FF9F0D]"
                 placeholder="Enter your password"
               />
             </div>
@@ -50,18 +48,20 @@ export default function SignInPage() {
             </div>
             <button
               type="submit"
-              className="w-full bg-[#FF9F0D] hover:[#FF9F0D] text-white font-bold py-2 rounded"
+              className="w-full bg-[#FF9F0D] hover:bg-[#FF8F00] text-white font-bold py-2 rounded"
             >
               Sign In
             </button>
             <p className="text-center mt-4">
-              <Link href="/forgot-password" className="text-[#FF9F0D]">Forgot password?</Link>
+              <Link href="/forgot-password" className="text-[#FF9F0D]">
+                Forgot password?
+              </Link>
             </p>
           </form>
           <div className="text-center mt-8">
             <p>or</p>
             <button className="w-full bg-gray-100 border text-black py-2 rounded mt-2 flex items-center justify-center">
-            <FcGoogle className="h-6 mr-2" />
+              <FcGoogle className="h-6 mr-2" />
               Sign in with Google
             </button>
             <button className="w-full bg-gray-100 border text-black py-2 rounded mt-2 flex items-center justify-center">
@@ -71,7 +71,6 @@ export default function SignInPage() {
           </div>
         </div>
       </section>
-
     </div>
-    );
+  );
 }

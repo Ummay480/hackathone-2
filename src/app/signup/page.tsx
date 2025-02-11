@@ -1,13 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
+import NavBar from "@/components/NavBar";
 
 export default function SignUp() {
   return (
-    <div className="mt-[120px]">
-     
+    <div className="min-h-screen bg-white">
+      <NavBar />
+
       {/* Signup Form */}
-      <section className="py-16">
-        <div className="container mx-auto max-w-md bg-white shadow-lg rounded-md p-8">
+      <section className="py-16 flex justify-center">
+        <div className="max-w-md w-full bg-white shadow-lg rounded-md p-8">
           <h3 className="text-2xl font-bold mb-6 text-center">Sign Up</h3>
           <form>
             <div className="mb-4">
@@ -45,18 +47,22 @@ export default function SignUp() {
               Sign Up
             </button>
             <p className="text-center mt-4">
-              <Link href="/forgot-password" className="text-yellow-500">Forgot password?</Link>
+              <Link href="/forgot-password" className="text-yellow-500">
+                Forgot password?
+              </Link>
             </p>
           </form>
+
+          {/* Social Sign Up */}
           <div className="text-center mt-8">
             <p>or</p>
-            <button className="w-full bg-gray-100 border text-black py-2 rounded mt-2 flex gap-[78px] items-center justify-center">
-              <Image src="/google.png" alt="Google" className="h-6 mr-2" width={20} height={20}/>
-              Sign up with Google
+            <button className="w-full bg-gray-100 border text-black py-2 rounded mt-2 flex items-center justify-between px-4">
+              <Image src="/google.png" alt="Google" width={20} height={20} />
+              <span className="flex-1 text-center">Sign up with Google</span>
             </button>
-            <button className="w-full bg-gray-100 border text-black py-2 rounded mt-2 gap-[78px] flex items-center justify-center">
-              <Image src="/apple.png" alt="Apple" className="h-6 mr-2 " width={20} height={20} />
-              Sign up with Apple
+            <button className="w-full bg-gray-100 border text-black py-2 rounded mt-2 flex items-center justify-between px-4">
+              <Image src="/apple.png" alt="Apple" width={20} height={20} />
+              <span className="flex-1 text-center">Sign up with Apple</span>
             </button>
           </div>
         </div>
