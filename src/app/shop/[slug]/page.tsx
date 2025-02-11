@@ -1,67 +1,88 @@
-"use server";
-
+// src/app/shop/[slug]/page.tsx
 import React from "react";
-import Image from "next/image";
-import { createClient } from "@sanity/client";
+import { notFound } from 'next/navigation';
+import NavBar from "@/components/NavBar";
+import MainCourse from "@/components/MainCourse";
+import StatsSection from "@/components/StatsSection";
+import Dessert from "@/components/Dessert";
+import Drinks from "@/components/Drinks";
+import HeroBanner from "@/components/HeroBanner";
+import Partners from "@/components/Partners";
 
-const client = createClient({
-  projectId: "yfaabr9s",
-  dataset: "production",
-  useCdn: false,
-  token: process.env.SANITY_API_TOKEN,
-  apiVersion: "2025-02-02",
-});
-
-// Define a TypeScript interface for the food object
-interface Food {
-  _id: string;
-  slus:string;
+interface FoodItem {
   name: string;
-  price: number;
-  originalPrice?: number;
-  rating: number;
-  tags?: string[];
-  imageUrl: string;
   description: string;
-  available: boolean;
+  calories: number;
+  price: number;
 }
 
-export default async function FetchFood() {
-  const query = `*[_type == "food"]{
-    _id,
-    name,
-    slug,
-    price,
-    "originalPrice": originalPrice,
-    rating,
-    tags,
-    "imageUrl": image.asset->url,
-    description,
-    available
-  }`;
+interface MenuCategory {
+  category: string;
+  items: FoodItem[];
+}
 
-  const foods: Food[] = await client.fetch(query); // Apply the Food[] type
+async function fetchMenuData(slug: string) {
+  try {
+    const response = await fetch('/api/foods');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const allFoods: MenuCategory[] = await response.json();
+
+    const currentMenu = findMenuBySlug(allFoods, slug);
+    return currentMenu;
+
+  } catch (error) {
+    console.error("Error fetching menu data:", error);
+    return null; // Or throw the error if you want to handle it differently
+  }
+}
+
+function findMenuBySlug(allFoods: MenuCategory[], slug: string) {
+  for (const category of allFoods) {
+    if (category.category === slug) {
+      return {
+        title: category.category.charAt(0).toUpperCase() + category.category.slice(1).replace('-', ' '),
+        imageSrc: `/images/${category.category}.jpg`, // Make sure images exist!
+        items: category.items,
+      };
+    }
+  }
+  return null;
+}
+
+async function Page({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+
+  const currentMenu = await fetchMenuData(slug);
+
+  if (!currentMenu) {
+    notFound();
+  }
 
   return (
-    <div>
-      <h1>Foods</h1>
+    <main className="overflow-x-hidden">
+      <NavBar />
       <div>
-        {foods.map((food: Food) => (
-          <div key={food._id}>
-            <h2>{food.name}</h2>
-            <p>{food.description}</p>
-            <p>Price: ${food.price}</p>
-            {food.originalPrice && (
-              <p>
-                Original Price: <s>${food.originalPrice}</s>
-              </p>
-            )}
-            <p>{food.available ? "Available" : "Out of Stock"}</p>
-            <Image src={food.imageUrl} alt={food.name} />
-            {food.tags && <p>Tags: {food.tags.join(", ")}</p>}
-          </div>
-        ))}
+        <HeroBanner title={currentMenu.title} />
       </div>
-    </div>
+
+      <MainCourse
+        menuItems={currentMenu.items}
+        imageSrc={currentMenu.imageSrc}
+        title={currentMenu.title}
+      />
+
+      <StatsSection />
+      <Dessert />
+      <Drinks />
+
+      <div>
+        <Partners />
+      </div>
+    </main>
   );
 }
+
+export default Page;
