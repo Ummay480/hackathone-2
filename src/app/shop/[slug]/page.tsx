@@ -15,6 +15,7 @@ const client = createClient({
 // Define a TypeScript interface for the food object
 interface Food {
   _id: string;
+  slus:string;
   name: string;
   price: number;
   originalPrice?: number;
@@ -29,6 +30,7 @@ export default async function FetchFood() {
   const query = `*[_type == "food"]{
     _id,
     name,
+    slug,
     price,
     "originalPrice": originalPrice,
     rating,

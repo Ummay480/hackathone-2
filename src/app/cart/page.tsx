@@ -32,7 +32,7 @@ const CartPage: React.FC = () => {
       stock: item.stock,
       price: item.price,
       quantity: 1,
-      item,
+      item: item.id, // ✅ Store only the item ID if `CartItemProps.item` expects a string
       onAdd: () => handleAddToCart(item),
       onRemove: () => handleRemoveFromCart(item.id),
     };
@@ -56,19 +56,18 @@ const CartPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {cart.items.map((item) => (
               <CartItem
-              key={item.id}
-              id={item.id}
-              name={item.name}
-              category={item.category} // ✅ Ensure CartItemProps expects it
-              description={item.description}
-              image={item.image ?? {}}
-              stock={item.stock}
-              price={item.price}
-              quantity={item.quantity}
-              onAdd={() => handleAddToCart(item.item)}  // ✅ Fixed parenthesis
-              onRemove={() => handleRemoveFromCart(item.id)}
-            />
-            
+                key={item.id}
+                id={item.id}
+                name={item.name}
+                category={item.category} // ✅ Ensure CartItemProps expects it
+                description={item.description}
+                image={item.image ?? {}}
+                stock={item.stock}
+                price={item.price}
+                quantity={item.quantity}
+                onAdd={() => handleAddToCart(item)} // ✅ Pass the actual item
+                onRemove={() => handleRemoveFromCart(item.id)}
+              />
             ))}
           </div>
         ) : (
