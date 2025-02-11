@@ -2,24 +2,24 @@
 import React from "react";
 import { notFound } from 'next/navigation';
 import NavBar from "@/components/NavBar";
-import MainCourse from "@/components/MainCourse";
+import {FoodItem} from "@/types/food";
 import StatsSection from "@/components/StatsSection";
 import Dessert from "@/components/Dessert";
 import Drinks from "@/components/Drinks";
 import HeroBanner from "@/components/HeroBanner";
 import Partners from "@/components/Partners";
 
+
 async function fetchMenuData(slug: string) {
   try {
-    const response = await fetch('/api/foods'); // Fetch ALL food data
+    const response = await fetch('/api/foods');
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    const allFoods = await response.json();
 
-    // Find the menu items based on the slug
+    const allFoods: FoodItem[] = await response.json(); // Type the response!
+
     const currentMenu = findMenuBySlug(allFoods, slug);
-
     return currentMenu;
 
   } catch (error) {
@@ -28,36 +28,18 @@ async function fetchMenuData(slug: string) {
   }
 }
 
-
-
-function findMenuBySlug(allFoods: any, slug: string) {
-  // Example structure of your food.json (adjust as needed)
-  // const allFoods = [
-  //   {
-  //     "category": "main-course",
-  //     "items": [ /* main course items */ ]
-  //   },
-  //   {
-  //     "category": "desserts",
-  //     "items": [ /* dessert items */ ]
-  //   },
-  //   // ... more categories
-  // ];
-
+function findMenuBySlug(allFoods: FoodItem[], slug: string) { // Correct type here!
   for (const category of allFoods) {
     if (category.category === slug) {
       return {
-        title: category.category.charAt(0).toUpperCase() + category.category.slice(1).replace('-', ' '), // Nicer title
-        imageSrc: `/images/${category.category}.jpg`, // Or dynamic image path
-        items: category.items,
+        title: category.category.charAt(0).toUpperCase() + category.category.slice(1).replace('-', ' '),
+        imageSrc: `/images/${category.category}.jpg`,
+        items: category,
       };
     }
   }
-
-  return null; // Return null if slug not found
+  return null;
 }
-
-
 
 async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
@@ -75,11 +57,7 @@ async function Page({ params }: { params: { slug: string } }) {
         <HeroBanner title={currentMenu.title} />
       </div>
 
-      <MainCourse  // Or appropriate component for the category
-        menuItems={currentMenu.items}
-        imageSrc={currentMenu.imageSrc}
-        title={currentMenu.title}
-      />
+    
 
       <StatsSection />
       <Dessert />
