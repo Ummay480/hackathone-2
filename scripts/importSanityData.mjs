@@ -37,7 +37,7 @@ async function uploadImageToSanity(imageUrl) {
 async function importData() {
   try {
     console.log('Fetching menuItems from API...');
-    const menuItemsResponse = await axios.get('https://67a1c2e05bcfff4fabe3568a.mockapi.io/menuItems');
+    const menuItemsResponse = await axios.get('http://localhost:3000/api/foods');
     const menuItems = menuItemsResponse.data;
 
     console.log(`Fetched ${menuItems.length} menuItems`);
