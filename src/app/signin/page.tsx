@@ -3,7 +3,6 @@ import { FcGoogle } from "react-icons/fc";
 import { ImAppleinc } from "react-icons/im";
 import NavBar from "@/components/NavBar";
 import HeroBanner from "@/components/HeroBanner";
-import { SignIn } from "@clerk/nextjs";
 
 export default function SignInPage() {
   return (
