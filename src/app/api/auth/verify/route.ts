@@ -1,34 +1,28 @@
-import { NextResponse } from "next/server";
 import { clerkClient } from "@clerk/clerk-sdk-node";
 
-export async function POST(req: Request) {
+export async function verifyEmail(userId: string, code: string) {
   try {
-    const { userId, code } = await req.json();
-
-    if (!userId || !code) {
-      return NextResponse.json({ error: "User ID and code are required" }, { status: 400 });
-    }
-
     const user = await clerkClient.users.getUser(userId);
 
     if (!user.emailAddresses.length) {
-      return NextResponse.json({ error: "No email found for user" }, { status: 400 });
+      throw new Error("No email address found for this user.");
     }
 
-    const email = user.emailAddresses[0];
+    const email = user.emailAddresses.find(e => e.id === user.primaryEmailAddressId);
 
-    // ✅ Verify the email with the code
-    const result = await clerkClient.users.attemptVerification({
-      emailAddressId: email.id,
-      code,
-    });
+    if (!email || !email.verification) {
+      throw new Error("Email verification is not available.");
+    }
 
-    if (result.verification.status === "verified") {
-      return NextResponse.json({ message: "Email verified successfully!" }, { status: 200 });
+    // ✅ Attempt email verification
+    const result = await email.verification.attempt({ code });
+
+    if (result.status === "verified") {
+      console.log("✅ Email verified successfully!");
     } else {
-      return NextResponse.json({ error: "Invalid or expired verification code" }, { status: 400 });
+      console.log("❌ Email verification failed.");
     }
   } catch (error) {
-    return NextResponse.json({ error: "Error verifying email" }, { status: 500 });
+    console.error("❌ Error verifying email:", error);
   }
 }

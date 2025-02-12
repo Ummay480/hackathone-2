@@ -1,30 +1,24 @@
-import { NextResponse } from "next/server";
 import { clerkClient } from "@clerk/clerk-sdk-node";
 
-export async function POST(req: Request) {
+export async function sendVerificationEmail(userId: string) {
   try {
-    const { userId } = await req.json();
-    
-    if (!userId) {
-      return NextResponse.json({ error: "User ID is required" }, { status: 400 });
-    }
-
     const user = await clerkClient.users.getUser(userId);
 
     if (!user.emailAddresses.length) {
-      return NextResponse.json({ error: "No email found for user" }, { status: 400 });
+      throw new Error("No email address found for this user.");
     }
 
-    const email = user.emailAddresses[0];
+    const email = user.emailAddresses.find(e => e.id === user.primaryEmailAddressId);
 
-    // ✅ Send verification email
-    await clerkClient.users.createEmailVerification({
-      emailAddressId: email.id,
-      strategy: "email_code",
-    });
+    if (!email || !email.verification) {
+      throw new Error("Email verification is not available.");
+    }
 
-    return NextResponse.json({ message: "Verification email sent!" }, { status: 200 });
+    // ✅ Start email verification
+    await email.verification.start({ strategy: "email_code" });
+
+    console.log("✅ Verification email sent successfully!");
   } catch (error) {
-    return NextResponse.json({ error: "Error sending verification email" }, { status: 500 });
+    console.error("❌ Error sending verification email:", error);
   }
 }
