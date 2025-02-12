@@ -8,10 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "import-data": "node scripts/importSanityData.mjs",
-     "cleanup": "node scripts/cleanup.mjs"
-
+    "cleanup": "node scripts/cleanup.mjs"
   },
   "dependencies": {
+    "@clerk/clerk-sdk-node": "^5.1.6",
     "@clerk/nextjs": "^6.11.2",
     "@radix-ui/react-slot": "^1.1.1",
     "@reduxjs/toolkit": "^2.5.1",
