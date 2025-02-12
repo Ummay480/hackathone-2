@@ -1,6 +1,4 @@
-import { defineType } from 'sanity';
-
-const foodSchema = defineType({
+export default { 
   name: 'food',
   type: 'document',
   title: 'Food',
@@ -59,5 +57,4 @@ const foodSchema = defineType({
       description: 'Availability status of the food item',
     },
   ],
-});
-export default foodSchema;
+};

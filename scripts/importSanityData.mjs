@@ -7,7 +7,7 @@ import path from 'path';
 // Load environment variables from .env.local
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-dotenv.config({ path: path.resolve(__dirname, '../.env.local') });
+dotenv.config({ path: path.resolve(__dirname, '../../.env.local') });
 
 // Create Sanity client
 const client = createClient({
@@ -36,45 +36,48 @@ async function uploadImageToSanity(imageUrl) {
 
 async function importData() {
   try {
-    console.log('Fetching menuItems from API...');
-    const menuItemsResponse = await axios.get('https://67a1c2e05bcfff4fabe3568a.mockapi.io/menuItems');
-    const menuItems = menuItemsResponse.data;
+    console.log('Fetching food data from API...');
 
-    console.log(`Fetched ${menuItems.length} menuItems`);
+    // API endpoint containing data
+    const foodsResponse = await axios.get('http://localhost:3001/api/food');
+    const foods = foodsResponse.data;
 
-    for (const item of menuItems) {
-      console.log(`Processing menuItem: ${item.title}`);
+    for (const food of foods) {
+      console.log(`Processing food: ${food.name}`);
+
       let imageRef = null;
-      if (item.image) {
-        imageRef = await uploadImageToSanity(item.image);
+      if (food.image) {
+        imageRef = await uploadImageToSanity(food.image);
       }
-      const sanityMenuItem = {
-        _type: 'menuItem',
-        name: item.title,
-        description: item.description,
-        price: item.price,
-        discountPercentage: 0,
-        priceWithoutDiscount: item.price,
-        rating: item.rating?.rate || 0,
-        ratingCount: item.rating?.count || 0,
-        tags: item.category ? [item.category] : [],
-        sizes: [],
-        image: imageRef ? {
-          _type: 'image',
-          asset: {
-            _type: 'reference',
-            _ref: imageRef,
-          },
-        } : undefined,
+
+      const sanityFood = {
+        _type: 'food',
+        name: food.name,
+        category: food.category || null,
+        price: food.price,
+        originalPrice: food.originalPrice || null,
+        tags: food.tags || [],
+        description: food.description || '',
+        available: food.available !== undefined ? food.available : true,
+        image: imageRef
+          ? {
+              _type: 'image',
+              asset: {
+                _type: 'reference',
+                _ref: imageRef,
+              },
+            }
+          : undefined,
       };
-      console.log('Uploading menuItem to Sanity:', sanityMenuItem.name);
-      const result = await client.create(sanityMenuItem);
-      console.log(`MenuItem uploaded successfully: ${result._id}`);
+
+      console.log('Uploading food to Sanity:', sanityFood.name);
+      const result = await client.create(sanityFood);
+      console.log(`Food uploaded successfully: ${result._id}`);
     }
 
-    console.log('Menu items import completed successfully!');
+    console.log('Food data import completed successfully!');
   } catch (error) {
-    console.error('Error importing menu items:', error);
+    console.error('Error importing food data:', error);
   }
 }
 
