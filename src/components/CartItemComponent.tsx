@@ -1,26 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import { CartItemProps } from "@/types/food"; // Import the correct type
 
-// ✅ Cart Item Props Interface
-export interface CartItemProps {
-  id: string;
-  category:string;
-  name: string;
-  description: string;
-  image?: {
-    string?: string;
-    asset?: {
-      url?: string;
-    };
-  };
-  price: number;
-  quantity: number;
-  stock: number;
-  onRemove: () => void;
-  onAdd: () => void;
-}
-
-// ✅ Functional Component for Cart Item
 const CartItem: React.FC<CartItemProps> = ({
   id,
   name,
@@ -37,7 +18,7 @@ const CartItem: React.FC<CartItemProps> = ({
     <div className="border p-4 rounded-lg shadow-lg text-center" data-id={id}>
       {/* Product Image */}
       <Image
-        src={image?.asset?.url ?? "/images/product.jpg"} // ✅ Fallback Image
+        src={image?.asset?.url ?? "/images/product.jpg"} // Fallback image
         alt={name}
         width={128}
         height={128}
@@ -46,9 +27,9 @@ const CartItem: React.FC<CartItemProps> = ({
 
       {/* Product Details */}
       <h3 className="text-xl font-semibold mt-4">{name}</h3>
-      <h3 className="text-xl font-semibold mt-4">{category}</h3>
+      <p className="text-sm text-gray-500">{category}</p>
       <p className="text-sm text-gray-500">{description}</p>
-      <p className="text-sm text-gray-400">Stock: {stock}</p> {/* ✅ Show Stock */}
+      <p className="text-sm text-gray-400">Stock: {stock}</p>
       <p className="text-lg font-bold text-gray-700">${price.toFixed(2)}</p>
       <p className="text-gray-600">Quantity: {quantity}</p>
 
@@ -71,5 +52,4 @@ const CartItem: React.FC<CartItemProps> = ({
   );
 };
 
-// ✅ Correct Export
 export default CartItem;

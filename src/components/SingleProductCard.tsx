@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { CartItemProps } from '@/types/cart';
 import { useDispatch } from 'react-redux';
-import { addToCart } from '@/redux/slices/cartSlice'; // Adjust path as needed
+import { addToCart } from '@/lib/redux/slices/cartSlice'; // Adjust path as needed
 
 interface ProductCardProps {
   product: CartItemProps;

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import stripe from '@/lib/stripe';
+import stripe from "@/lib/stripe";
 
 export async function POST(req: NextApiRequest, res: NextApiResponse) {
   const { amount } = await req.body;

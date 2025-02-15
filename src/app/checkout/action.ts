@@ -1,8 +1,18 @@
-// "use server"
+import { createCheckoutSession } from '@/lib/stripe';
+import { redirect } from 'next/navigation';
 
-// import Stripe from "stripe"
+export default async function CheckoutPage() {
+  const items = [
+    {
+      name: 'Pizza',
+      price: 10.99,
+      quantity: 2,
+    },
+  ];
 
+  // Create a Stripe checkout session
+  const session = await createCheckoutSession(items);
 
-// export async function createPaymentIntent(){
-// const stripe = new Stripe(process.env)
-// }
+  // Redirect to the Stripe checkout page
+  redirect(session.url);
+}

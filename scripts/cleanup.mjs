@@ -55,7 +55,7 @@ async function cleanupData() {
   console.log("🚀 Starting data cleanup...");
 
   try {
-    await deleteDocumentsByType("menuItem");
+    await deleteDocumentsByType("chef");
     console.log("🎉 menuItem data cleanup completed successfully!");
   } catch (error) {
     console.error("❌ Error during cleanup:", error.message);

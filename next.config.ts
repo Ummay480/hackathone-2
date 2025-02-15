@@ -3,15 +3,15 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   images: {
     domains: [
-      'cdn.sanity.io', // Existing domains
-      'example.com', // Existing domains
-      'cdn.example.com', // Existing domains
-      'via.placeholder.com', // Added via.placeholder.com for placeholder images
+      'cdn.sanity.io', 
+      'example.com', 
+      'cdn.example.com', 
+      'via.placeholder.com', 
+      'sanity-nextjs-rouge.vercel.app', // ✅ Add this missing domain
     ],
   },
 
-  // Other configuration options can go here, like React Strict Mode, etc.
-  reactStrictMode: true, // Example of enabling React Strict Mode
+  reactStrictMode: true, // Keep this enabled if needed
 };
 
 export default nextConfig;

@@ -1,74 +1,62 @@
-import React from "react";
-import NavBar from "@/components/NavBar";
-import MainCourse from "@/components/MainCourse"; // Ensure MainCourse is imported correctly
-import StatsSection from "@/components/StatsSection";
-import Dessert from "@/components/Dessert";
-import Drinks from "@/components/Drinks";
-import HeroBanner from "@/components/HeroBanner";
-import Partners from "@/components/Partners";
+import { notFound } from "next/navigation";
+import FoodCard from "@/components/FoodCard";
 
+interface FoodItem {
+  id: string;
+  item:string;
+  name: string;
+  category: string;
+  description: string;
+  image?: {
+    asset?: {
+      url?: string;
+    };
+  };
+  stock: number;
+  price: number;
+}
 
-// Local menuItems array for MainCourse component
-const mainCourseItems = [
-  {
-    name: "Optic Big Breakfast Combo Menu",
-    description: "Toasted French bread topped with romano, cheddar",
-    calories: 560,
-    price: 32,
-  },
-  {
-    name: "Cashew Chicken With Stir-Fry",
-    description: "Gorgonzola, ricotta, mozzarella, taleggio",
-    calories: 700,
-    price: 43,
-  },
-  {
-    name: "Vegetables & Green Salad",
-    description: "Ground cumin, avocados, peeled and cubed",
-    calories: 1000,
-    price: 14,
-  },
-  {
-    name: "Spicy Vegan Potato Curry",
-    description: "Spreadable cream cheese, crumbled blue cheese",
-    calories: 560,
-    price: 35,
-  },
-];
+const getFoodItems = async (): Promise<FoodItem[] | null> => {
+  try {
+    const res = await fetch("https://food-xtn5-lac.vercel.app/api/food", {
+      cache: "no-store",
+    });
 
-function Page() {
+    if (!res.ok) {
+      return null;
+    }
+
+    const data: FoodItem[] = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching food items:", error);
+    return null;
+  }
+};
+
+export default async function ShopPage() {
+  const foodItems = await getFoodItems();
+
+  if (!foodItems) {
+    notFound();
+  }
+
   return (
-    <main className="overflow-x-hidden">
-      {/* Navbar Component */}
-      <NavBar />
-      
-      {/* Hero Banner */}
-      <div>
-        <HeroBanner title="Our Menu" />
+    <div>
+      <h1>Shop</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {foodItems.map((item) => (
+          <FoodCard key={item.id} item={item} />
+        ))}
       </div>
-
-      {/* Starter Menu Component */}
-      {/* You can add the StarterMenu component here once you've imported it */}
-      {/* <StarterMenu menuItems={starters} /> */}
-      
-      {/* Main Course Section */}
-      <MainCourse
-        menuItems={mainCourseItems}
-        imageSrc="/images/image-107.png" // Replace with the correct image path
-        title="Main Course"
-      />
-      
-      {/* Optional Sections */}
-      <StatsSection />
-      <Dessert />
-      <Drinks />
-
-      {/* Partners Section */}
-      <div>
-        <Partners />
-      </div>
-    </main>
+    </div>
   );
 }
 
-export default Page;
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
+  const foodItems: Array<{ slug: { current: string } }> = await fetch(
+    "https://food-xtn5-lac.vercel.app/api/food"
+  ).then((res) => res.json());
+
+  return foodItems.map((item) => ({ slug: item.slug.current }));
+}

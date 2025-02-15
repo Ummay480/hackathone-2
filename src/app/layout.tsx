@@ -1,8 +1,8 @@
 'use client'; // Ensure this is only for the client-side component
 
 import { usePathname } from "next/navigation"; // Import usePathname hook
-import ReduxProvider from '../providers/ReduxProvider';
-import ThemeProvider from '../providers/ThemeProvider';
+import ReduxProvider from '../lib/redux/providers/ReduxProvider';
+import ThemeProvider from '../lib/redux/providers/ThemeProvider';
 import { ClerkProvider } from "@clerk/nextjs";
 import Cart from "@/components/Cart";
 import { Inter, Great_Vibes } from "next/font/google"; // Import fonts

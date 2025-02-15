@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { RootState } from "@/lib/redux/store";
 import { CartItemProps } from "@/types/cart";
 import { loadStripe } from "@stripe/stripe-js";
 import Image from "next/image";

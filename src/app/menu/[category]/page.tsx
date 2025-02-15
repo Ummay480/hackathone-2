@@ -2,96 +2,92 @@
 import { FC, useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { addToCart } from "@/redux/slices/cartSlice";
-import MenuCard from "@/components/MenuCard";
-import type { FoodItem } from "@/types/food";
+import { addToCart } from "@/lib/redux/slices/cartSlice";
+import MenuCard from "@/components/MenuCard";// src/app/shop/[slug]/page.tsx
+import React from "react";
+import { notFound } from 'next/navigation';
+import NavBar from "@/components/NavBar";
+import MainCourse from "@/components/MainCourse";
+import StatsSection from "@/components/StatsSection";
+import Dessert from "@/components/Dessert";
+import Drinks from "@/components/Drinks";
+import HeroBanner from "@/components/HeroBanner";
+import Partners from "@/components/Partners";
 
-const CategoryPage: FC = () => {
-  const router = useRouter();
-  const dispatch = useDispatch();
-  const searchParams = useSearchParams();
+interface FoodItem {
+  name: string;
+  description: string;
+  calories: number;
+  price: number;
+}
 
-  // ✅ Get category from URL parameters
-  const category = searchParams.get("category") || "All Items";
+interface MenuCategory {
+  category: string;
+  items: FoodItem[];
+}
 
-  // ✅ Food items state (Temporary placeholder data)
-  const [foodItems] = useState<FoodItem[]>([
-    {
-      id: "1",
-      name: "Burger",
-      category: "Fast Food",
-      description: "A delicious cheeseburger.",
-      image: { asset: { url: "/images/burger.jpg" } },
-      stock: 10,
-      price: 5,
-    },
-    {
-      id: "2",
-      name: "Pizza",
-      category: "Fast Food",
-      description: "Tasty pepperoni pizza.",
-      image: { asset: { url: "/images/pizza.jpg" } },
-      stock: 8,
-      price: 12,
-    },
-  ]);
-
-  // ✅ Filter items based on selected category
-  const [categoryItems, setCategoryItems] = useState<FoodItem[]>([]);
-
-  useEffect(() => {
-    if (category && foodItems.length) {
-      setCategoryItems(
-        category === "All Items"
-          ? foodItems
-          : foodItems.filter((item) => item.category === category)
-      );
+async function fetchMenuData(slug: string) {
+  try {
+    const response = await fetch('/api/foods');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
-  }, [category, foodItems]);
 
-  // ✅ Add to Cart Function
-  const handleAddToCart = (item: FoodItem) => {
-    dispatch(
-      addToCart({
-        id: item.id,
-        name: item.name,
-        category: item.category,
-        description: item.description,
-        image: item.image ?? {}, // ✅ Ensure image structure
-        stock: item.stock,
-        price: item.price,
-        quantity: 1,
-        item: "product",
-        onAdd: () => handleAddToCart(item),
-        onRemove: () => {}, // Placeholder if needed
-      })
-    );
-  };
+    const allFoods: MenuCategory[] = await response.json();
 
-  // ✅ Handle empty category items
-  if (!categoryItems.length) {
-    return (
-      <div className="container mx-auto text-center py-10">
-        <p className="text-red-500 text-lg">No items found in this category.</p>
-      </div>
-    );
+    const currentMenu = findMenuBySlug(allFoods, slug);
+    return currentMenu;
+
+  } catch (error) {
+    console.error("Error fetching menu data:", error);
+    return null; // Or throw the error if you want to handle it differently
+  }
+}
+
+function findMenuBySlug(allFoods: MenuCategory[], slug: string) {
+  for (const category of allFoods) {
+    if (category.category === slug) {
+      return {
+        title: category.category.charAt(0).toUpperCase() + category.category.slice(1).replace('-', ' '),
+        imageSrc: `/images/${category.category}.jpg`, // Make sure images exist!
+        items: category.items,
+      };
+    }
+  }
+  return null;
+}
+
+async function Page({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+
+  const currentMenu = await fetchMenuData(slug);
+
+  if (!currentMenu) {
+    notFound();
   }
 
   return (
-    <div className="container mx-auto py-10">
-      <h1 className="text-2xl font-bold mb-6 text-center">{category} Menu</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {categoryItems.map((item) => (
-          <MenuCard
-            key={item.id}
-            {...item}
-            onClick={() => router.push(`/menu/${item.category}/${item.id}`)}
-            onAddToCart={() => handleAddToCart(item)}
-          />
-        ))}
+    <main className="overflow-x-hidden">
+      <NavBar />
+      <div>
+        <HeroBanner title={currentMenu.title} />
       </div>
-    </div>
-  );
-};
 
-export default CategoryPage;
+      <MainCourse
+        menuItems={currentMenu.items}
+        imageSrc={currentMenu.imageSrc}
+        title={currentMenu.title}
+      />
+
+      <StatsSection />
+      <Dessert />
+      <Drinks />
+
+      <div>
+        <Partners />
+      </div>
+    </main>
+  );
+}
+
+export default Page;

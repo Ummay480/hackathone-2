@@ -1,6 +1,6 @@
 import { loadStripe } from "@stripe/stripe-js";
 import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { RootState } from "@/lib/redux/store";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!);
 

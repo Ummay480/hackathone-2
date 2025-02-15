@@ -1,88 +1,64 @@
-// src/app/shop/[slug]/page.tsx
-import React from "react";
-import { notFound } from 'next/navigation';
-import NavBar from "@/components/NavBar";
-import MainCourse from "@/components/MainCourse";
-import StatsSection from "@/components/StatsSection";
-import Dessert from "@/components/Dessert";
-import Drinks from "@/components/Drinks";
-import HeroBanner from "@/components/HeroBanner";
-import Partners from "@/components/Partners";
+import { notFound } from "next/navigation";
+import Image from "next/image";
 
 interface FoodItem {
+  id: string;
   name: string;
+  category: string;
   description: string;
-  calories: number;
+  image?: {
+    asset?: {
+      url?: string;
+    };
+  };
+  stock: number;
   price: number;
 }
 
-interface MenuCategory {
-  category: string;
-  items: FoodItem[];
-}
-
-async function fetchMenuData(slug: string) {
+const getFoodItem = async (slug: string): Promise<FoodItem | null> => {
   try {
-    const response = await fetch('/api/foods');
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    const res = await fetch(`https://food-ruddy-rho.vercel.app/api/food?slug=${slug}`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      return null;
     }
 
-    const allFoods: MenuCategory[] = await response.json();
-
-    const currentMenu = findMenuBySlug(allFoods, slug);
-    return currentMenu;
-
+    const data: FoodItem[] = await res.json();
+    return data.length ? data[0] : null;
   } catch (error) {
-    console.error("Error fetching menu data:", error);
-    return null; // Or throw the error if you want to handle it differently
+    console.error("Error fetching food item:", error);
+    return null;
   }
-}
+};
 
-function findMenuBySlug(allFoods: MenuCategory[], slug: string) {
-  for (const category of allFoods) {
-    if (category.category === slug) {
-      return {
-        title: category.category.charAt(0).toUpperCase() + category.category.slice(1).replace('-', ' '),
-        imageSrc: `/images/${category.category}.jpg`, // Make sure images exist!
-        items: category.items,
-      };
-    }
-  }
-  return null;
-}
+export default async function FoodPage({ params }: { params: { slug: string } }) {
+  const foodItem = await getFoodItem(params.slug);
 
-async function Page({ params }: { params: { slug: string } }) {
-  const { slug } = params;
-
-  const currentMenu = await fetchMenuData(slug);
-
-  if (!currentMenu) {
+  if (!foodItem) {
     notFound();
   }
 
   return (
-    <main className="overflow-x-hidden">
-      <NavBar />
-      <div>
-        <HeroBanner title={currentMenu.title} />
-      </div>
-
-      <MainCourse
-        menuItems={currentMenu.items}
-        imageSrc={currentMenu.imageSrc}
-        title={currentMenu.title}
+    <div className="max-w-5xl mx-auto my-20">
+      <h1 className="text-3xl font-bold">{foodItem.name}</h1>
+      <Image
+        src={foodItem.image?.asset?.url || "/placeholder.jpg"}
+        alt={foodItem.name || "Food image"}
+        width={500}
+        height={350}
+        className="rounded-lg object-cover"
       />
-
-      <StatsSection />
-      <Dessert />
-      <Drinks />
-
-      <div>
-        <Partners />
-      </div>
-    </main>
+      <p className="text-md text-gray-600 mt-6">{foodItem.description}</p>
+    </div>
   );
 }
 
-export default Page;
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
+  const foodItems: Array<{ slug: { current: string } }> = await fetch(
+    "https://food-xtn5-lac.vercel.app/api/food"
+  ).then((res) => res.json());
+
+  return foodItems.map((item) => ({ slug: item.slug.current }));
+}

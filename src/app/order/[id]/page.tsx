@@ -3,7 +3,7 @@
 import { FC, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { RootState } from "@/lib/redux/store";
 
 interface OrderItem {
   id: string;
