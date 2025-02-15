@@ -1,64 +1,75 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
+import { createClient } from "@sanity/client";
 
-interface FoodItem {
-  id: string;
+// Initialize Sanity client
+const client = createClient({
+  projectId: "yfaabr9s",
+  dataset: "production",
+  useCdn: false,
+  apiVersion: "2025-02-02",
+});
+
+// Define the food type for TypeScript
+type Food = {
+  _id: string;
   name: string;
-  category: string;
-  description: string;
-  image?: {
-    asset?: {
-      url?: string;
-    };
-  };
-  stock: number;
   price: number;
-}
+  rating: number;
+  tags: string[];
+  imageUrl: string;
+  description?: string; // Add more fields as needed
+};
 
-const getFoodItem = async (slug: string): Promise<FoodItem | null> => {
+const getFoodBySlug = async (slug: string): Promise<Food | null> => {
   try {
-    const res = await fetch(`https://food-ruddy-rho.vercel.app/api/food?slug=${slug}`, {
-      cache: "no-store",
-    });
+    const query = `*[_type == "food" && slug.current == $slug][0]{
+      _id,
+      name,
+      price,
+      rating,
+      tags,
+      description,
+      "imageUrl": image.asset->url
+    }`;
 
-    if (!res.ok) {
-      return null;
-    }
-
-    const data: FoodItem[] = await res.json();
-    return data.length ? data[0] : null;
+    const data = await client.fetch(query, { slug });
+    return data;
   } catch (error) {
-    console.error("Error fetching food item:", error);
+    console.error("Failed to fetch food:", error);
     return null;
   }
 };
 
 export default async function FoodPage({ params }: { params: { slug: string } }) {
-  const foodItem = await getFoodItem(params.slug);
+  const food = await getFoodBySlug(params.slug);
 
-  if (!foodItem) {
+  if (!food) {
     notFound();
   }
 
   return (
-    <div className="max-w-5xl mx-auto my-20">
-      <h1 className="text-3xl font-bold">{foodItem.name}</h1>
-      <Image
-        src={foodItem.image?.asset?.url || "/placeholder.jpg"}
-        alt={foodItem.name || "Food image"}
-        width={500}
-        height={350}
-        className="rounded-lg object-cover"
+    <div className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-6">{food.name}</h1>
+      <img
+        src={food.imageUrl}
+        alt={food.name}
+        className="w-full h-64 object-cover rounded-lg"
       />
-      <p className="text-md text-gray-600 mt-6">{foodItem.description}</p>
+      <p className="text-gray-600 mt-4">{food.description}</p>
+      <p className="text-lg font-bold mt-2">${food.price}</p>
+      <p className="text-sm text-gray-500">Rating: {food.rating}</p>
     </div>
   );
 }
 
-export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  const foodItems: Array<{ slug: { current: string } }> = await fetch(
-    "https://food-xtn5-lac.vercel.app/api/food"
-  ).then((res) => res.json());
+export async function generateStaticParams() {
+  const query = `*[_type == "food"]{
+    "slug": slug.current
+  }`;
 
-  return foodItems.map((item) => ({ slug: item.slug.current }));
+  const foods: { slug: string }[] = await client.fetch(query);
+
+  return foods.map((food) => ({
+    slug: food.slug,
+  }));
 }

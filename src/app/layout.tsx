@@ -1,8 +1,9 @@
 'use client'; // Ensure this is only for the client-side component
 
 import { usePathname } from "next/navigation"; // Import usePathname hook
-import ReduxProvider from '../lib/redux/providers/ReduxProvider';
 import ThemeProvider from '../lib/redux/providers/ThemeProvider';
+import { Provider } from "react-redux";
+import { store } from "@/lib/redux/store"; 
 import { ClerkProvider } from "@clerk/nextjs";
 import Cart from "@/components/Cart";
 import { Inter, Great_Vibes } from "next/font/google"; // Import fonts
@@ -37,7 +38,7 @@ export default function RootLayout({
       <body>
         {/* Wrapping ReduxProvider and ThemeProvider */}
         <ClerkProvider>
-        <ReduxProvider>
+        <Provider store={store}>
           <ThemeProvider>
              <div className="overflow-x-hidden min-h-screen flex flex-col">
               {/* Conditionally render Cart component only on the /cart page */}
@@ -52,7 +53,7 @@ export default function RootLayout({
               <Footer />
             </div>
           </ThemeProvider>
-        </ReduxProvider>
+        </Provider>
         </ClerkProvider>
       </body>
     </html>

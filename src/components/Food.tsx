@@ -1,10 +1,9 @@
-"use client"
+"use client";
 
 import React, { useEffect, useState } from "react";
 import { createClient } from "@sanity/client";
-import FoodCard from "@/components/FoodCard"; // Assuming the FoodCard component is in the same directory
+import FoodCard from "@/components/FoodCard"; 
 
-// Initialize Sanity client
 const client = createClient({
   projectId: "yfaabr9s",
   dataset: "production",
@@ -12,17 +11,16 @@ const client = createClient({
   apiVersion: "2025-02-02",
 });
 
-// Define the food type for TypeScript
 type Food = {
   _id: string;
   name: string;
   price: number;
   rating: number;
   tags: string[];
-  imageUrl: string;
+  imageUrl?: string;
 };
 
-const Food: React.FC = () => {
+const FoodList: React.FC = () => {
   const [foods, setFoods] = useState<Food[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -55,25 +53,22 @@ const Food: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto p-4 ">
+    <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6">Foods</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {foods.map((food) => (
-          <FoodCard
-            key={food._id}
-            imageUrl={food.imageUrl}
-            name={food.name}
-            title={food.name}
-            price={`$${food.price}`}
-            discountPrice={`$${(food.price * 0.8).toFixed(2)}`} // 20% discount example
-            discount="20% off" // Example static discount
-            rating={food.rating}
-            reviewCount={Math.floor(Math.random() * 100)} // Example random review count
-          />
-        ))}
+       {foods.map((food) => (
+        <FoodCard
+          key={food._id}
+          id={food._id}
+          imageUrl={food.imageUrl}
+          name={food.name}
+          price={typeof food.price === "number" ? food.price : 0} // Default to 0
+        />
+      ))}
+
       </div>
     </div>
   );
 };
 
-export default Food;
+export default FoodList;

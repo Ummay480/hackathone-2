@@ -1,24 +1,13 @@
-export interface FoodItem {
-  id: string;
-  name: string;
-  category: string;
-  description: string;
-  image?: {
-    asset?: {
-      url?: string;
-    };
-  };
-  stock: number;
-  price: number;
-}
 
 export interface FoodCardProps {
-  item: FoodItem; // Update this to match the FoodItem type
+  item: FoodItem;
 }
 
 // Define the CartItemProps interface
 export interface CartItemProps {
+  
   id: string;
+  item: FoodItem;
   name: string;
   item: string; // This should match the `id` of the FoodItem
   category: string;
@@ -39,4 +28,21 @@ export interface CartItemProps {
 // Define the FoodCardProps interface
 export interface FoodCardProps {
   item: FoodItem; // The `item` prop should be of type FoodItem
+}
+export interface FoodItem {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  image?: {
+    asset?: {
+      url?: string;
+    };
+  };
+  stock: number;
+  price: number;
+}
+
+export interface FoodCardProps {
+  item: FoodItem;
 }

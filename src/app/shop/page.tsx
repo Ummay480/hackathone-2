@@ -1,62 +1,77 @@
 import { notFound } from "next/navigation";
 import FoodCard from "@/components/FoodCard";
+import NavBar from "@/components/NavBar";
+import { createClient } from "@sanity/client";
 
-interface FoodItem {
-  id: string;
-  item:string;
+import HeroBanner from "@/components/HeroBanner";
+
+// Initialize Sanity client
+const client = createClient({
+  projectId: "yfaabr9s",
+  dataset: "production",
+  useCdn: false,
+  apiVersion: "2025-02-02",
+});
+
+// Define the food type for TypeScript
+type Food = {
+  id: string; // Changed from _id to id
   name: string;
-  category: string;
-  description: string;
-  image?: {
-    asset?: {
-      url?: string;
-    };
-  };
-  stock: number;
   price: number;
-}
+  rating: number;
+  tags: string[];
+  imageUrl: string;
+};
 
-const getFoodItems = async (): Promise<FoodItem[] | null> => {
+const getFoods = async (): Promise<Food[] | null> => {
   try {
-    const res = await fetch("https://food-xtn5-lac.vercel.app/api/food", {
-      cache: "no-store",
-    });
+    const query = `*[_type == "food"]{
+      _id,
+      name,
+      "price": price + 0, // Ensures price is a number
+      rating,
+      tags,
+      "imageUrl": image.asset->url
+    }`;
+    
 
-    if (!res.ok) {
-      return null;
-    }
+    const data = await client.fetch(query);
 
-    const data: FoodItem[] = await res.json();
-    return data;
+    // Map _id to id
+    return data.map((food: any) => ({
+      id: food._id, // Convert _id to id
+      name: food.name,
+      price: food.price,
+      rating: food.rating,
+      tags: food.tags,
+      imageUrl: food.imageUrl,
+    }));
   } catch (error) {
-    console.error("Error fetching food items:", error);
+    console.error("Failed to fetch foods:", error);
     return null;
   }
 };
 
 export default async function ShopPage() {
-  const foodItems = await getFoodItems();
+  const foods = await getFoods();
 
-  if (!foodItems) {
+  if (!foods) {
     notFound();
   }
 
   return (
-    <div>
-      <h1>Shop</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {foodItems.map((item) => (
-          <FoodCard key={item.id} item={item} />
+    <div className="bg-gray-50 text-gray-800 overflow-x-hidden">
+      {/* Header */}
+      <div>
+        <NavBar />
+      <HeroBanner title="Shop"/>
+      <h1 className="text-3xl font-bold mb-6">Foods</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {foods.map((food) => (
+          <FoodCard key={food.id} item={food} />
         ))}
       </div>
     </div>
+    </div>
   );
-}
-
-export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  const foodItems: Array<{ slug: { current: string } }> = await fetch(
-    "https://food-xtn5-lac.vercel.app/api/food"
-  ).then((res) => res.json());
-
-  return foodItems.map((item) => ({ slug: item.slug.current }));
 }

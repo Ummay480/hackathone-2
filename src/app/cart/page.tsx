@@ -3,7 +3,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
-import { addItem, removeItem } from "@/lib/redux/slices/cartSlice";
+import { addToCart, removeFromCart } from "@/lib/redux/slices/cartSlice";
 import NavBar from "@/components/NavBar";
 import HeroBanner from "@/components/HeroBanner";
 import CartItem from "@/components/CartItemComponent";
@@ -11,8 +11,6 @@ import { FoodItem, CartItemProps } from "@/types/cart";
 
 const CartPage: React.FC = () => {
   const dispatch = useDispatch();
-
-  // Use RootState to get the cart state
   const cart = useSelector((state: RootState) => state.cart);
 
   // Convert FoodItem to CartItemProps
@@ -20,22 +18,19 @@ const CartPage: React.FC = () => {
     const cartItem: CartItemProps = {
       id: item.id,
       name: item.name,
-      item: item.id, // Ensure this matches the expected type in CartItemProps
       category: item.category,
       description: item.description,
-      image: item.image ?? {}, // Ensure image is an object or provide a default
+      image: item.image || "/images/placeholder.jpg", // Ensure a valid image URL
       stock: item.stock,
       price: item.price,
       quantity: 1,
-      onAdd: () => handleAddToCart(item),
-      onRemove: () => handleRemoveFromCart(item.id),
     };
 
-    dispatch(addItem(cartItem)); // Use addItem instead of addToCart
+    dispatch(addToCart(cartItem)); // Corrected function call
   };
 
   const handleRemoveFromCart = (id: string) => {
-    dispatch(removeItem(id)); // Use removeItem instead of removeFromCart
+    dispatch(removeFromCart({ id })); // Ensure the correct action payload
   };
 
   return (
@@ -48,21 +43,22 @@ const CartPage: React.FC = () => {
         {/* Safely check for cart items */}
         {cart.items && cart.items.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {cart.items.map((item) => (
+           {cart.map((item) => (
               <CartItem
                 key={item.id}
                 id={item.id}
                 name={item.name}
-                item={item.id} // Pass the item ID as required by CartItemProps
                 category={item.category}
                 description={item.description}
-                image={item.image ?? {}}
+                image={item.image}
                 stock={item.stock}
                 price={item.price}
                 quantity={item.quantity}
-                onAdd={() => handleAddToCart(item)}
-                onRemove={() => handleRemoveFromCart(item.id)}
+                onAdd={item.onAdd}
+                onRemove={item.onRemove}
               />
+            ))}
+
             ))}
           </div>
         ) : (

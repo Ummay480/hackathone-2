@@ -1,38 +1,44 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CartItemProps } from "@/types/cart";
+
+interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  imageUrl?: string;
+}
 
 interface CartState {
-  items: CartItemProps[];
-  total: number; // Add total field
+  items: CartItem[];
 }
 
 const initialState: CartState = {
   items: [],
-  total: 0, // Initialize total
 };
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addItem: (state, action: PayloadAction<CartItemProps>) => {
+    addToCart: (state, action: PayloadAction<CartItem>) => {
       const existingItem = state.items.find((item) => item.id === action.payload.id);
       if (existingItem) {
-        existingItem.quantity += 1;
+        existingItem.quantity += 1; // Increase quantity if item already exists
       } else {
-        state.items.push(action.payload);
+        state.items.push({ ...action.payload, quantity: 1 }); // Add new item to cart
       }
-      state.total += action.payload.price * action.payload.quantity; // Update total
     },
-    removeItem: (state, action: PayloadAction<string>) => {
-      const itemToRemove = state.items.find((item) => item.id === action.payload);
-      if (itemToRemove) {
-        state.total -= itemToRemove.price * itemToRemove.quantity; // Update total when removing
+    removeFromCart: (state, action: PayloadAction<string>) => {
+      state.items = state.items.filter((item) => item.id !== action.payload); // Remove item by ID
+    },
+    updateQuantity: (state, action: PayloadAction<{ id: string; quantity: number }>) => {
+      const item = state.items.find((item) => item.id === action.payload.id);
+      if (item) {
+        item.quantity = action.payload.quantity; // Update item quantity
       }
-      state.items = state.items.filter((item) => item.id !== action.payload);
     },
   },
 });
 
-export const { addItem, removeItem } = cartSlice.actions;
+export const { addToCart, removeFromCart, updateQuantity } = cartSlice.actions;
 export default cartSlice.reducer;

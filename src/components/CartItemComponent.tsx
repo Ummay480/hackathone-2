@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { CartItemProps } from "@/types/food"; // Import the correct type
+import { CartItemProps } from "@/types/cart"; // Import the correct type
 
 const CartItem: React.FC<CartItemProps> = ({
   id,
@@ -18,7 +18,7 @@ const CartItem: React.FC<CartItemProps> = ({
     <div className="border p-4 rounded-lg shadow-lg text-center" data-id={id}>
       {/* Product Image */}
       <Image
-        src={image?.asset?.url ?? "/images/product.jpg"} // Fallback image
+        src={image?.asset?.url ?? "/images/placeholder.jpg"} // Fallback image
         alt={name}
         width={128}
         height={128}
@@ -37,13 +37,13 @@ const CartItem: React.FC<CartItemProps> = ({
       <div className="flex justify-center mt-4 space-x-2">
         <button
           className="bg-orange-400 text-white px-4 py-2 rounded-lg hover:bg-orange-500"
-          onClick={onAdd}
+          onClick={onAdd} // Use the onAdd function
         >
           Add More
         </button>
         <button
           className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-700"
-          onClick={onRemove}
+          onClick={onRemove} // Use the onRemove function
         >
           Remove
         </button>

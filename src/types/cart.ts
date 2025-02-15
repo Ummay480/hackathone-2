@@ -4,7 +4,6 @@ export interface FoodItem {
   category: string;
   description: string;
   image?: {
-    string?: string;
     asset?: {
       url?: string;
     };
@@ -16,11 +15,9 @@ export interface FoodItem {
 export interface CartItemProps {
   id: string;
   name: string;
-  item: string; // This should match the `id` of the FoodItem
   category: string;
   description: string;
   image?: {
-    string?: string;
     asset?: {
       url?: string;
     };
