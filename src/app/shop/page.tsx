@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import FoodCard from "@/components/FoodCard";
 import NavBar from "@/components/NavBar";
 import { createClient } from "@sanity/client";
-
 import HeroBanner from "@/components/HeroBanner";
 
 // Initialize Sanity client
@@ -15,7 +15,8 @@ const client = createClient({
 
 // Define the food type for TypeScript
 type Food = {
-  id: string; // Changed from _id to id
+  id: string;
+  item: string;
   name: string;
   price: number;
   rating: number;
@@ -27,19 +28,20 @@ const getFoods = async (): Promise<Food[] | null> => {
   try {
     const query = `*[_type == "food"]{
       _id,
+      item,
       name,
       "price": price + 0, // Ensures price is a number
       rating,
       tags,
       "imageUrl": image.asset->url
     }`;
-    
 
     const data = await client.fetch(query);
 
     // Map _id to id
     return data.map((food: any) => ({
-      id: food._id, // Convert _id to id
+      id: food._id,
+      item: food.item,
       name: food.name,
       price: food.price,
       rating: food.rating,
@@ -61,17 +63,22 @@ export default async function ShopPage() {
 
   return (
     <div className="bg-gray-50 text-gray-800 overflow-x-hidden">
-      {/* Header */}
-      <div>
-        <NavBar />
-      <HeroBanner title="Shop"/>
+      <NavBar />
+      <HeroBanner title="Shop" />
       <h1 className="text-3xl font-bold mb-6">Foods</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {foods.map((food) => (
-          <FoodCard key={food.id} item={food} />
+          <Link key={food.id} href={`/product/${food.id}`}>
+            <FoodCard
+              id={food.id}
+              item={food.item}
+              name={food.name}
+              price={food.price}
+              image={{ asset: { url: food.imageUrl } }}
+            />
+          </Link>
         ))}
       </div>
-    </div>
     </div>
   );
 }

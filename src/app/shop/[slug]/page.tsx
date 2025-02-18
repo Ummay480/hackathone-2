@@ -1,5 +1,8 @@
 import { notFound } from "next/navigation";
 import { createClient } from "@sanity/client";
+import Image from "next/image";
+import { FaHeart, FaShoppingCart, FaStar } from "react-icons/fa";
+import Link from "next/link";
 
 // Initialize Sanity client
 const client = createClient({
@@ -9,67 +12,92 @@ const client = createClient({
   apiVersion: "2025-02-02",
 });
 
-// Define the food type for TypeScript
-type Food = {
-  _id: string;
+// Define the product type
+type Product = {
+  id: string;
   name: string;
+  description: string;
   price: number;
   rating: number;
+  reviews: number;
+  category: string;
   tags: string[];
   imageUrl: string;
-  description?: string; // Add more fields as needed
+  similarProducts: Product[];
 };
 
-const getFoodBySlug = async (slug: string): Promise<Food | null> => {
+// Fetch all products
+const getProducts = async (): Promise<Product[]> => {
   try {
-    const query = `*[_type == "food" && slug.current == $slug][0]{
+    const query = `*[_type == "food"]{
       _id,
       name,
+      description,
       price,
       rating,
+      "reviews": count(*[_type == "reviews" && food._ref == ^._id]),
+      category,
       tags,
-      description,
       "imageUrl": image.asset->url
     }`;
 
-    const data = await client.fetch(query, { slug });
-    return data;
+    const products = await client.fetch(query);
+    return products.map(product => ({ ...product, id: product._id }));
   } catch (error) {
-    console.error("Failed to fetch food:", error);
-    return null;
+    console.error("Error fetching products:", error);
+    return [];
   }
 };
 
-export default async function FoodPage({ params }: { params: { slug: string } }) {
-  const food = await getFoodBySlug(params.slug);
+// **Shop Component**
+export default async function Shop() {
+  const products = await getProducts();
 
-  if (!food) {
+  if (!products.length) {
     notFound();
   }
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6">{food.name}</h1>
-      <img
-        src={food.imageUrl}
-        alt={food.name}
-        className="w-full h-64 object-cover rounded-lg"
-      />
-      <p className="text-gray-600 mt-4">{food.description}</p>
-      <p className="text-lg font-bold mt-2">${food.price}</p>
-      <p className="text-sm text-gray-500">Rating: {food.rating}</p>
+    <div className="max-w-6xl mx-auto px-4 py-10">
+      <h1 className="text-3xl font-bold mb-6">Our Shop</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {products.map((product) => (
+          <div key={product.id} className="border rounded-lg p-4">
+            <Image
+              src={product.imageUrl}
+              alt={product.name}
+              width={300}
+              height={300}
+              className="rounded-lg"
+            />
+            <h2 className="text-xl font-semibold mt-3">{product.name}</h2>
+            <p className="text-gray-600 mt-2">{product.description}</p>
+            <h3 className="text-lg font-semibold mt-2">${product.price}</h3>
+            <div className="flex items-center gap-2 mt-2">
+              <div className="flex text-yellow-500">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <FaStar key={i} className={i < product.rating ? "text-yellow-500" : "text-gray-300"} />
+                ))}
+              </div>
+              <span className="text-gray-500 text-sm">({product.reviews} Reviews)</span>
+            </div>
+            <div className="flex items-center gap-3 mt-4">
+              <button className="px-3 py-2 bg-gray-200 rounded-md">-</button>
+              <span>1</span>
+              <button className="px-3 py-2 bg-gray-200 rounded-md">+</button>
+              <button className="flex items-center bg-orange-500 text-white px-5 py-2 rounded-md">
+                <FaShoppingCart className="mr-2" /> Add to Cart
+              </button>
+            </div>
+            <div className="flex gap-5 mt-4">
+              <button className="flex items-center text-gray-700">
+                <FaHeart className="mr-2" /> Add to Wishlist
+              </button>
+              <button className="flex items-center text-gray-700">Compare</button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
-}
-
-export async function generateStaticParams() {
-  const query = `*[_type == "food"]{
-    "slug": slug.current
-  }`;
-
-  const foods: { slug: string }[] = await client.fetch(query);
-
-  return foods.map((food) => ({
-    slug: food.slug,
-  }));
 }

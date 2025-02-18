@@ -4,7 +4,7 @@ interface CategoryFilterProps {
   onCategoryChange: (category: string, isChecked: boolean) => void;
 }
 
-const categories = ["Sandwiches", "Burger", "Chicken Chup", "Drink", "Pizza", "Thai", "Non Veg"];
+const categories = ["Dinner", "Lunch", "Breakfast", "Dessert","Drink","Snacks","Healthy", "FastFood"];
 
 const CategoryFilter: React.FC<CategoryFilterProps> = ({ onCategoryChange }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
