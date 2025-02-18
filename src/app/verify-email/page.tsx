@@ -37,6 +37,12 @@ export default function VerifyEmailPage() {
       <div className="bg-white shadow-lg rounded-md p-8 max-w-md w-full">
         <h3 className="text-2xl font-bold mb-4 text-center">Email Verification</h3>
         <p className="text-center text-gray-600">{message}</p>
+        <p className="mt-4 text-center text-sm text-gray-600">
+          Go back to{" "}
+          <a href="/sign-in" className="text-indigo-600 hover:text-indigo-500">
+            Sign In
+          </a>
+        </p>
       </div>
     </div>
   );

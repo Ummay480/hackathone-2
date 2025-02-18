@@ -166,9 +166,7 @@ export default function ProductPage() {
               onClick={() => setQuantity((prev) => prev + 1)}
             >
               +
-            </button>
-              
-           
+            </button>      
            
           </div>
 
