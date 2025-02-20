@@ -4,6 +4,8 @@ import { useSignUp } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Script from "next/script";
+import NavBar from "@/components/NavBar";
+import HeroBanner from "@/components/HeroBanner";
 
 declare global {
   interface Window {
@@ -78,6 +80,9 @@ export default function SignUpPage() {
   };
 
   return (
+    <div>
+    <NavBar/>
+    <HeroBanner title="Sign Up"/>
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       {/* Google reCAPTCHA Script */}
       <Script
@@ -133,18 +138,19 @@ export default function SignUpPage() {
           {error && <p className="text-red-500 text-sm">{error}</p>}
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full bg-[#FF9F0D] text-white py-2 px-4 rounded-md hover:bg-lime-500 focus:outline-none focus:ring-2 focus:ring-[#FF9F0D]"
           >
             Sign Up
           </button>
         </form>
         <p className="mt-4 text-center text-sm text-gray-600">
           Already have an account?{" "}
-          <a href="/sign-in" className="text-indigo-600 hover:text-indigo-500">
+          <a href="/signin" className="text-indigo-600 hover:text-indigo-500">
             Sign In
           </a>
         </p>
       </div>
+    </div>
     </div>
   );
 }

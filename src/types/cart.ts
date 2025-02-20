@@ -9,12 +9,14 @@ export interface CartItemProps {
       url?: string;
     };
   };
+  
   stock: number;
   price: number;
   quantity: number;
   onAdd?: () => void;
   onRemove?: () => void;
 }
+
 
 export interface FoodItem {
   id: string;

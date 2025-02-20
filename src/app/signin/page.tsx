@@ -1,5 +1,7 @@
 "use client";
 
+import HeroBanner from "@/components/HeroBanner";
+import NavBar from "@/components/NavBar";
 import { useSignIn } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -32,6 +34,10 @@ export default function SignInPage() {
   };
 
   return (
+    <div>
+    <NavBar/>
+    <HeroBanner title="Sign In"/>
+   
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white shadow-lg rounded-md p-8 max-w-md w-full">
         <h3 className="text-2xl font-bold mb-4 text-center">Sign In</h3>
@@ -65,18 +71,19 @@ export default function SignInPage() {
           {error && <p className="text-red-500 text-sm">{error}</p>}
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full bg-[#FF9F0D] text-white py-2 px-4 rounded-md hover:bg-lime-500 focus:outline-none focus:ring-2 focus:ring-[#FF9F0D]"
           >
             Sign In
           </button>
         </form>
         <p className="mt-4 text-center text-sm text-gray-600">
           Don't have an account?{" "}
-          <a href="/sign-up" className="text-indigo-600 hover:text-indigo-500">
+          <a href="/signup" className="text-indigo-600 hover:text-indigo-500">
             Sign Up
           </a>
         </p>
       </div>
-    </div>
+    </div> 
+</div>
   );
 }

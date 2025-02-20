@@ -1,43 +1,47 @@
-"use client";
+"use client"
+import { addtocart } from '@/lib/redux/slices/cartSlice';
+import React from 'react'
+import { useDispatch } from 'react-redux';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import "react-toastify/ReactToastify.css";
+import { Button } from './ui/button';
 
-import { toast, ToastContainer, Bounce } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
-export default function AddToCartToastify() {
-  const handleAddToCart = () => {
-    toast.success("🛒 Item added to cart!", {
-      position: "top-left",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true, // Toast will close when clicked
-      pauseOnHover: true,
-      draggable: true,
-      theme: "colored",
-    });
-  };
-
+function Toastity({cartItem}:any) {
+    const dispatch = useDispatch();
+    const notify = () =>
+    toast.success("Product added Successfully",{
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
   return (
-    <div>
-      <button
-        onClick={handleAddToCart}
-        className="px-5 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition-all"
-      >
-        Add to Cart
-      </button>
-
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={true} // Toast will close when clicked
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition={Bounce} // Added Bounce transition from react-toastify
-      />
+    <>
+    <div  onClick={()=>dispatch(addtocart(cartItem))}>
+         <Button onClick={notify}>Add to cart!</Button>
+        
     </div>
-  );
+     <ToastContainer
+     position="top-left"
+     autoClose={5000}
+     hideProgressBar={false}
+     newestOnTop={false}
+     closeOnClick={false}
+     rtl={false}
+     pauseOnFocusLoss
+     draggable
+     pauseOnHover
+     theme="light"
+     transition={Bounce}
+     />
+     </>
+  )
 }
+
+export default Toastity

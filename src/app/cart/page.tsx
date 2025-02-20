@@ -1,147 +1,76 @@
 "use client"
-import React, { useState } from "react";
-
-import Image from "next/image";
-import { FaTrash } from "react-icons/fa";
-import NavBar from "@/components/NavBar";
-import HeroBanner from "@/components/HeroBanner";
-
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
-  image?: string;
+import Image, { StaticImageData } from 'next/image'
+import React from 'react'
+import { useSelector } from 'react-redux'
+import Cartpage from './cartPage';
+import { Button } from '@/components/ui/button';
+interface CartItem{
+   id: number; // Product ka unique identifier
+      title: string; // Product ka title ya name
+      image?: string[] | StaticImageData | string; // Product ki images
+      slug: string; // URL-friendly unique identifier for the product
+      price: number; // Product ki price
+      size: string[]; // Product ke available sizes
+      color: string[]; // Product ke available colors
+      qty: number; // Available quantity of the product
+      uuid:string | number | undefined
 }
 
-const ShoppingCart: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [coupon, setCoupon] = useState("");
-  const [discount, setDiscount] = useState(0);
-  const [newProduct, setNewProduct] = useState({ name: "", price: "", image: "" });
 
-  const handleQuantityChange = (id: number, amount: number) => {
-    setProducts((prev) =>
-      prev.map((product) =>
-        product.id === id
-          ? { ...product, quantity: Math.max(1, product.quantity + amount) }
-          : product
-      )
-    );
-  };
+interface CartItem {
+  price: number;
+  discount: number;
+  qty: number;
+}
 
-  const handleRemove = (id: number) => {
-    setProducts((prev) => prev.filter((product) => product.id !== id));
-  };
-
-  const applyCoupon = () => {
-    setDiscount(coupon === "DISCOUNT10" ? 10 : 0);
-  };
-
-  const addProduct = () => {
-    if (!newProduct.name || !newProduct.price) return;
-    const newItem: Product = {
-      id: products.length + 1,
-      name: newProduct.name,
-      price: parseFloat(newProduct.price),
-      quantity: 1,
-      image: newProduct.image || "/default.jpg",
-    };
-    setProducts([...products, newItem]);
-    setNewProduct({ name: "", price: "", image: "" });
-  };
-
-  const subtotal = products.reduce((sum, product) => sum + product.price * product.quantity, 0);
-  const total = subtotal - (subtotal * discount) / 100;
-
-  return (
-    <div>
-      <NavBar/>
-      <HeroBanner title="Cart"/>
+function Cart() {
   
-    <div className="p-10">
-      <h1 className="text-3xl font-bold mb-6">Shopping Cart</h1>
-      <div className="mb-4 flex gap-2">
-        <input
-          type="text"
-          placeholder="Product Name"
-          className="border p-2"
-          value={newProduct.name}
-          onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-        />
-        <input
-          type="number"
-          placeholder="Price"
-          className="border p-2"
-          value={newProduct.price}
-          onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Image URL (optional)"
-          className="border p-2"
-          value={newProduct.image}
-          onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })}
-        />
-        <button onClick={addProduct} className="bg-green-500 text-white p-2">Add Product</button>
-      </div>
-      {products.length > 0 ? (
-        <table className="w-full border-collapse">
-          <thead>
-            <tr className="border-b">
-              <th>Product</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Total</th>
-              <th>Remove</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product.id} className="border-b">
-                <td className="flex items-center gap-2">
-                  {product.image && <Image src={product.image} alt={product.name} width={50} height={50} />}
-                  {product.name}
-                </td>
-                <td>${product.price.toFixed(2)}</td>
-                <td>
-                  <button onClick={() => handleQuantityChange(product.id, -1)} className="mx-2">-</button>
-                  {product.quantity}
-                  <button onClick={() => handleQuantityChange(product.id, 1)} className="mx-2">+</button>
-                </td>
-                <td>${(product.price * product.quantity).toFixed(2)}</td>
-                <td>
-                  <FaTrash className="cursor-pointer" onClick={() => handleRemove(product.id)} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <p className="text-center text-gray-500 mt-4">Your cart is empty.</p>
-      )}
+  // formula 
+   
+  const cartArray: CartItem[] = useSelector((state: { cart: CartItem[] }) => state.cart);
 
-      <div className="flex justify-between mt-6">
-        <div>
-          <input
-            type="text"
-            placeholder="Enter Coupon Code"
-            className="border p-2"
-            value={coupon}
-            onChange={(e) => setCoupon(e.target.value)}
-          />
-          <button onClick={applyCoupon} className="bg-[#FF9F0D] p-2 ml-2">Apply</button>
-        </div>
-        <div>
-          <p>Subtotal: ${subtotal.toFixed(2)}</p>
-          <p>Discount: {discount}%</p>
-          <p className="font-bold">Total: ${total.toFixed(2)}</p>
-          <button className="bg-[#FF9F0D] p-3 text-white mt-2">Proceed to Checkout</button>
-        </div>
-      </div>
-    </div>
-    </div>
-  );
-};
+  const total = cartArray.reduce((total: number, arr: CartItem) => {
+    const discountedPrice = arr.discount > 0 ? arr.price - (arr.price * arr.discount) / 100 : arr.price;
+    return total + discountedPrice * arr.qty;
+  }, 0);
 
-export default ShoppingCart;
+
+   
+  return (
+      <div className=' mt-24 flex flex-col lg:flex-row justify-around items-center lg:items-start'>
+         <Cartpage/>
+           {/* Order Summary */}
+           <div className="bg-white p-4 w-[90%] lg:w-[500px] border rounded-[20px] mt-5 lg:mt-0">
+                             <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+                             <div className="space-y-2">
+                               <div className="flex justify-between">
+                                 <p>Subtotal</p>
+                                 <p>${total}</p>
+                               </div>
+                               <div className="flex justify-between">
+                                 <p>Discount (-20%)</p>
+                                 <p>-${0}</p>
+                               </div>
+                               <div className="flex justify-between">
+                                 <p>Delivery Fee</p>
+                                 <p>$0</p>
+                               </div>
+                               <div className="border-t pt-2 flex justify-between font-bold">
+                                 <p>Total</p>
+                                 <p>${total}</p>
+                               </div>
+                               <div className="flex justify-between items-center">
+                                <input className="h-10 rounded-[6px] bg-[#F0F0F0] px-4 w-[200px] md:w-[360px] border-none" type="search" placeholder="Add promo code" />
+                                <Button className="w-[100px] rounded-[20px]">Apply</Button>
+                               </div>
+                             </div>
+                             <button className="w-full mt-4 bg-black text-white py-2 rounded-md">
+                               Go to Checkout
+                             </button>
+                         </div>
+        
+      </div>
+  )
+}
+
+export default Cart
