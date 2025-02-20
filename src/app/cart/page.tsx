@@ -2,7 +2,7 @@
 import Image, { StaticImageData } from 'next/image'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Cartpage from './cartPage';
+import Cartpage from './cartpage';
 import { Button } from '@/components/ui/button';
 interface CartItem{
    id: number; // Product ka unique identifier

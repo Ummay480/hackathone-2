@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation"; // Import usePathname hook
 import ThemeProvider from '../lib/redux/providers/ThemeProvider';
 import { Provider } from "react-redux";
-import { store } from "@/lib/redux/store"; 
+import store from "@/lib/redux/store"; 
 import { ClerkProvider } from "@clerk/nextjs";
 import Cart from "@/components/Cart";
 import { Inter, Great_Vibes } from "next/font/google"; // Import fonts

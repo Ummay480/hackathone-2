@@ -1,35 +1,40 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import cartReducer from "./slices/cartSlice";
+import cartReducer from "./slices/cartSlice"; // Ensure this is the correct reducer
+import foodReducer from "./slices/foodSlice"; // Ensure this is the correct reducer
 import storage from "redux-persist/lib/storage";
-import { persistStore, persistReducer } from "redux-persist";
-import FoodItem from "./slices/foodSlice";
-import middleware from "@/middleware";
-import CartItem from "@/components/CartItemComponent";
+import { persistStore, persistReducer} from "redux-persist";
+import type { Middleware } from "redux"; // Explicit type for middleware
 
-
-const persistconfiq = {
-  key:"root",
-  version:1,
+// ✅ Persist configuration
+const persistConfig = {
+  key: "root",
+  version: 1,
   storage,
-}
+};
 
-const reducer = combineReducers({
-  product:FoodItem,
-  cart:CartItem
-})
+// ✅ Combine reducers
+const rootReducer = combineReducers({
+  product: foodReducer,
+  cart: cartReducer,
+});
 
-const persistedReducer = persistReducer(persistconfiq,reducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
+// ✅ Middleware handling
+const middleware: Middleware[] = []; // Explicitly define middleware array
 
+// ✅ Configure Store
 export const Store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({serializableCheck:false}),
- 
-})
+    getDefaultMiddleware({ serializableCheck: false }).concat(middleware), // Ensure middleware is used correctly
+});
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof Store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof Store.dispatch
-export default {Store, reducer};
+// ✅ Create persistor
+export const persistor = persistStore(Store);
+
+// ✅ Store Types
+export type RootState = ReturnType<typeof Store.getState>;
+export type AppDispatch = typeof Store.dispatch;
+
+export default Store;

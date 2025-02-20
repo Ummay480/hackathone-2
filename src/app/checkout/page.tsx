@@ -23,7 +23,7 @@ import { Input } from "@/components/ui/input";
 import { client } from "@/sanity/lib/client";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 // import { BreadcrumbCollapsed } from "@/components/Breadcrupm";
-import { removeOrderFromLocalStorage } from "@/lib/slices/cartSlice";
+import { removeOrderFromLocalStorage } from "@/lib/redux/slices/cartSlice";
 import { useRouter } from "next/navigation";
 // Form schema with validations
 const formSchema = z.object({
@@ -118,8 +118,7 @@ function Checkout() {
         
       // Show success toast
       notifySuccess();
-
-      dispatch(removeOrderFromLocalStorage())
+      dispatch(removeOrderFromLocalStorage());
       // Clear form fields after submission
       form.reset();
       router.push("/payment");

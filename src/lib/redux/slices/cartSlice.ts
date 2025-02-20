@@ -4,15 +4,14 @@ interface CartItem {
   id: string;
   name: string;
   price: number;
-  description:string;
   quantity: number;
-  imageUrl?: string;
 }
 
 interface CartState {
-  items: CartItem[];
+  items: CartItem[]; // ✅ Ensure `items` is an array
 }
 
+// ✅ Define initial state properly
 const initialState: CartState = {
   items: [],
 };
@@ -22,24 +21,24 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<CartItem>) => {
-      const existingItem = state.items.find((item) => item.id === action.payload.id);
-      if (existingItem) {
-        existingItem.quantity += 1; // Increase quantity if item already exists
-      } else {
-        state.items.push({ ...action.payload, quantity: 1 }); // Add new item to cart
-      }
+      state.items.push(action.payload);
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
-      state.items = state.items.filter((item) => item.id !== action.payload); // Remove item by ID
+      state.items = state.items.filter((item) => item.id !== action.payload);
     },
     updateQuantity: (state, action: PayloadAction<{ id: string; quantity: number }>) => {
       const item = state.items.find((item) => item.id === action.payload.id);
       if (item) {
-        item.quantity = action.payload.quantity; // Update item quantity
+        item.quantity = Math.max(1, action.payload.quantity);
       }
+    },
+    removeOrderFromLocalStorage: (state) => {
+      localStorage.removeItem("cart"); // ✅ Clear local storage
+      state.items = []; // ✅ Reset cart state
     },
   },
 });
 
-export const { addToCart, removeFromCart, updateQuantity } = cartSlice.actions;
+// ✅ Export all Redux actions properly
+export const { addToCart, removeFromCart, updateQuantity, removeOrderFromLocalStorage } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -1,5 +1,5 @@
 "use client"
-import { addtocart } from '@/lib/redux/slices/cartSlice';
+import { addToCart } from '@/lib/redux/slices/cartSlice';
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
@@ -23,7 +23,7 @@ function Toastity({cartItem}:any) {
         });
   return (
     <>
-    <div  onClick={()=>dispatch(addtocart(cartItem))}>
+    <div  onClick={()=>dispatch(addToCart(cartItem))}>
          <Button onClick={notify}>Add to cart!</Button>
         
     </div>

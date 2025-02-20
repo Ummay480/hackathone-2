@@ -28,7 +28,8 @@ const OrderDetailsPage: FC = () => {
   const router = useRouter();
   const { id } = router.query; // Dynamic order ID from the URL
   const [orderDetails, setOrderDetails] = useState<OrderDetails | null>(null);
-  const orders = useSelector((state: RootState) => state.orders?.items ?? []);
+  const orders = useSelector((state: RootState) => state.orders?.items || []);
+
 
   useEffect(() => {
     if (typeof id === "string" && orders.length) {
