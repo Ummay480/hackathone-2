@@ -1,35 +1,7 @@
-export interface CartItemProps {
-  id: string;
-  item: string;
-  name: string;
-  category: string;
-  description: string;
-  image?: {
-    asset?: {
-      url?: string;
-    };
-  };
-  
-  stock: number;
-  price: number;
-  quantity: number;
+// src/types/cart.ts
+import { FoodItem } from './food';
+
+export interface CartItemProps extends FoodItem {
   onAdd?: () => void;
   onRemove?: () => void;
-}
-
-
-export interface FoodItem {
-  id: string;
-  item: string;
-  name: string;
-  category: string;
-  description: string;
-  image?: {
-    asset?: {
-      url?: string;
-    };
-  };
-  stock: number;
-  price: number;
-  quantity?: number;
 }

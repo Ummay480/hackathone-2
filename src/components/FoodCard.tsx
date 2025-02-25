@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "@/lib/redux/slices/cartSlice";
 import { FoodItem } from "@/types/cart";
 
-interface FoodCardProps extends FoodItem {
+interface FoodCardProps extends Omit<FoodItem, "quantity" | "category" | "description" | "stock"> {
   id: string;
   item: string;
   name: string;
@@ -32,9 +32,10 @@ const FoodCard: React.FC<FoodCardProps> = ({ id, item, name, price, image }) => 
       category: "Uncategorized", // Default category
       description: "No description available.", // Default description
       stock: 10, // Default stock
-      quantity: 1,
+      quantity: 1, // Ensure quantity is always a number
       image,
     };
+    
     dispatch(addToCart(cartItem));
     router.push("/cart");
   };
@@ -44,7 +45,7 @@ const FoodCard: React.FC<FoodCardProps> = ({ id, item, name, price, image }) => 
       <Image
         src={image?.asset?.url || "/images/placeholder.jpg"}
         alt={name || "Food Item Image"}
-        width={128}
+        width={400}
         height={128}
         className="mx-auto w-32 h-32 object-cover"
       />
